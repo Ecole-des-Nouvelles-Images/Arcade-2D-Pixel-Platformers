@@ -9,10 +9,20 @@ namespace Michael.Scripts
 
   {
     public static Action OnChangeColor;
-    [SerializeField] private List<Material> playerShader;
-    [SerializeField] private GameObject playerArmor;
-    [SerializeField] private bool isRed;
-    [SerializeField] private bool isBlue;
+    [SerializeField] private  PlayerData _playerData;
+    [SerializeField] private Material _redMaterial;
+    [SerializeField] private Material _blueMaterial;
+  
+
+    private void Update()
+    {
+      
+    }
+
+    private void Start()
+    {
+      
+    }
 
     private void OnEnable()
     {
@@ -27,13 +37,36 @@ namespace Michael.Scripts
 
     public void ChangeColor()
     {
-      gameObject.GetComponent<SpriteRenderer>().material = playerShader[0];
-    }
-
-    public void TargetChoice()
-    {
+      if (!_playerData.ArmorIsSelected)
+      {
+        if (_playerData.BallIsRed == false)
+        {
+          _playerData.colorTarget.GetComponent<SpriteRenderer>().material = _redMaterial;
+          _playerData.BallIsRed = true;
+        }
+        else
+        {
+          _playerData.colorTarget.GetComponent<SpriteRenderer>().material = _blueMaterial;
+          _playerData.BallIsRed = false;
+        }
+      }
+      else
+      {
+        if (_playerData.ArmorIsRed == false)
+        {
+          _playerData.colorTarget.GetComponent<SpriteRenderer>().material = _redMaterial;
+          _playerData.ArmorIsRed = true;
+        }
+        else
+        {
+          _playerData.colorTarget.GetComponent<SpriteRenderer>().material = _blueMaterial;
+          _playerData.ArmorIsRed = false;
+        }
+      }
       
+    
     }
+    
     
   }
 }
