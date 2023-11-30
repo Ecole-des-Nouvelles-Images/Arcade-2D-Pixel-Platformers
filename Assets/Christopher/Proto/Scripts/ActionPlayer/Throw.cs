@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Throw : MonoBehaviour
 {
-    //public Transform Orientation;
-    public Vector3 Orientation;
+    public Transform Orientation;
+    //public Vector3 Orientation;
     [SerializeField] private GameObject projectile;
     [SerializeField] private float power;
 
@@ -19,10 +19,10 @@ public class Throw : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PerformThrow(InputAction.CallbackContext callbackContext)
+    public void PerformThrow(Vector2 dir)
     {
         var o = Instantiate(projectile);
-        o.transform.position = transform.position;
-        o.transform.GetComponent<Rigidbody2D>().AddForce(Orientation * _currentPower, ForceMode2D.Impulse);
+        o.transform.position = Orientation.position;
+        o.transform.GetComponent<Rigidbody2D>().AddForce(dir * _currentPower, ForceMode2D.Impulse);
     }
 }
