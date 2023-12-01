@@ -19,10 +19,11 @@ public class Throw : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PerformThrow(Vector2 dir)
+    public void PerformThrow(Vector2 dir, List<GameObject> myBalls)
     {
         var o = Instantiate(projectile);
         o.transform.position = Orientation.position;
         o.transform.GetComponent<Rigidbody2D>().AddForce(dir * _currentPower, ForceMode2D.Impulse);
+        myBalls.Add(o);
     }
 }

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 6408626418389380055}
   - component: {fileID: 1332524034492943530}
   - component: {fileID: 9012732765536555325}
+  - component: {fileID: 7252706150435562332}
   - component: {fileID: 6696620167186088839}
   - component: {fileID: 5734716959483788811}
   m_Layer: 0
@@ -149,19 +150,67 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6408626418389380055}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 22cd4ab0-63d7-4711-a428-21808c2ae2cc
     m_ActionName: CharacterControler/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick,/XInputControllerWindows/dpad,/XInputControllerWindows1/dpad]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6408626418389380055}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnChangeSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a9bbcbf2-975a-496a-bdb5-4c668ed1d08f
     m_ActionName: CharacterControler/ChangeSelect[/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6408626418389380055}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnChangeColor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cd45c1cd-f04a-4643-a098-4cf789cb81d4
     m_ActionName: CharacterControler/ChangeColor[/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6408626418389380055}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnThrow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6dbed08e-fd5e-41fd-8b19-42e659c88c68
     m_ActionName: CharacterControler/Throw[/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest]
   - m_PersistentCalls:
@@ -172,6 +221,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a74c9eb5-8350-4e34-aa41-6f29efa46054
     m_ActionName: CharacterControler/View[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60c003fe-ecad-40b2-a8a9-be6fe6986f1e
+    m_ActionName: Menu/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: BasicControl
   m_DefaultActionMap: CharacterControler
@@ -189,11 +242,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26d256e3101e20439c64fdffc98fb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 3
   CurrentColor: 
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
+  ChangeColor: {fileID: 1829715767865773766, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
+  ChangeSelect: {fileID: -296077554498403986, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   moveSpeed: 10
-  rotSpeed: 200
+  HandedBall: 1
 --- !u!114 &1332524034492943530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +277,18 @@ MonoBehaviour:
   Orientation: {fileID: 0}
   projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
   power: 20
+--- !u!114 &7252706150435562332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978768878104956576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994ec7d16dcdc9d4f93e44e5056f811a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &6696620167186088839
 Rigidbody2D:
   serializedVersion: 4
@@ -332,7 +400,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8487778997152096798}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

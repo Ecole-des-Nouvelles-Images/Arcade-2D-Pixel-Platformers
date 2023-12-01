@@ -12,12 +12,12 @@ public class Deplacement : MonoBehaviour
     {
         _rb = transform.GetComponent<Rigidbody2D>();
     }
-    public void PerformMovement(Vector2 move,float speed)
+    public void PerformMovement(Vector2 dep, float speed)
     {
-        float Xmove = move.x * speed * Time.deltaTime;//* -1;
-        float Zmove = move.y * speed * Time.deltaTime;
-        move = new Vector2(Xmove, Zmove);
-        _rb.AddForce(move, ForceMode2D.Impulse);
+        float Xmove = dep.x * speed * Time.deltaTime;//* -1;
+        float Zmove = dep.y * speed * Time.deltaTime;
+        dep = new Vector2(Xmove, Zmove);
+        _rb.AddForce(dep, ForceMode2D.Impulse);
     }
     
 }

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
 public class PlayerControler : MonoBehaviour
 {
+    public int Health = 3;
     public string CurrentColor;
-    [SerializeField] private InputActionReference Move, Throw;
+    [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotSpeed;
-    //[SerializeField] private float rotSpeed;
     private string[] _colorList = new string[] { "bleu", "rouge" };
     private Transform _pivot;
     private Transform _visé;
@@ -22,16 +22,21 @@ public class PlayerControler : MonoBehaviour
     private Throw _playerThrow;
     private Rotation _playerRotation;
     private float _currentSpeed;
-    private Vector2 _mouvementValue;
-    private bool _handedBall = true;
+    private Vector2 _mouvementValue = Vector2.zero;
+    [FormerlySerializedAs("_handedBall")] public bool HandedBall = true;
     private bool _throw = false;
+    private bool _changeSelect = false;
+    private bool _changeColor = false;
+    private bool _armorSelected;
+    private List<GameObject> _myBalls;
 
     private Rigidbody2D _rb;
     // Start is called before the first frame update
     void Start()
     {
-        int randomColorIndex = Random.Range(0, 1);
+        int randomColorIndex = Random.Range(0, _colorList.Length);
         CurrentColor = _colorList[randomColorIndex];
+        _playerRotation = transform.GetComponent<Rotation>();
         _playerDeplacement = transform.GetComponent<Deplacement>();
         _playerThrow = transform.GetComponent<Throw>();
         _currentSpeed = moveSpeed;
@@ -39,83 +44,70 @@ public class PlayerControler : MonoBehaviour
         _visé = _pivot.GetChild(0).transform;
         _playerThrow.Orientation = _visé;
         _rb = transform.GetComponent<Rigidbody2D>();
-
     }
 
-    public void OnMove()
+    public void OnMove(InputAction.CallbackContext Move)
     {
         _mouvementValue = Move.action.ReadValue<Vector2>(); 
     }
-    public void OnThrow()
+    public void OnThrow(InputAction.CallbackContext Throw)
     {
-        //_throw = Throw.
-       _throw = Throw.action.triggered; 
+        if (HandedBall)
+        {
+            _throw = Throw.action.inProgress;
+            HandedBall = false;
+        }
     }
-    private void FixedUpdate()
+    public void OnChangeSelect(InputAction.CallbackContext ChangeSelect)
     {
-        float tmpX = Mathf.Clamp(_visé.position.x, transform.position.x-1f,transform.position.x+ 1f);
-        float tmpY = Mathf.Clamp(_visé.position.y, transform.position.y-1f,transform.position.y+ 1f);
-        _visé.position = new Vector3(tmpX, tmpY, _visé.position.z);
+        //_changeSelect = ChangeSelect.action.ReadValue<bool>();
+        _changeSelect = ChangeSelect.action.triggered;
     }
-
-    // Update is called once per frame
+    public void OnChangeColor(InputAction.CallbackContext ChangeColor)
+    { 
+        _changeColor = ChangeColor.action.ReadValue<bool>();
+        _changeColor = ChangeColor.action.triggered;
+    }
     private void Update()
     {
         if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
         if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
-        
-        _playerDeplacement.PerformMovement(_mouvementValue,_currentSpeed);
-        float movementMag = Mathf.Clamp01(_mouvementValue.magnitude);
-        
-        //visé en mode gros dégueulasse
-        if (_mouvementValue.x > 0.1f && _mouvementValue.y > 0.1f) //diag haut droit
+        _playerDeplacement.PerformMovement(_mouvementValue, _currentSpeed);
+        _playerRotation.LookAt(_mouvementValue,_visé);
+        if (_throw && HandedBall)
         {
-            _visé.position = new Vector3(transform.position.x + 1, transform.position.y + 1, transform.position.z);
-        } 
-        if (_mouvementValue.x < -0.1f && _mouvementValue.y < -0.1f)//diag bas gauche
-            _visé.position = new Vector3(transform.position.x - 1, transform.position.y - 1, transform.position.z);
-        if (_mouvementValue.x < -0.1f && _mouvementValue.y > 0.1f)//diag haut gauche
-            _visé.position = new Vector3(transform.position.x - 1, transform.position.y + 1, transform.position.z);
-        if (_mouvementValue.x > 0.1f && _mouvementValue.y < -0.1f)//diag bas droit
-            _visé.position = new Vector3(transform.position.x + 1, transform.position.y - 1, transform.position.z);
-        if(_mouvementValue == Vector2.zero)// par défaut : droit
-            _visé.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-        if (_mouvementValue.y < 0.1 && _mouvementValue.y > -0.1 && _mouvementValue.x > 0.1f )//droit
-            _visé.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-        if (_mouvementValue.y < 0.1 && _mouvementValue.y > -0.1 && _mouvementValue.x < -0.1f )//gauche
-            _visé.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-        if (_mouvementValue.x < 0.1 && _mouvementValue.x > -0.1 && _mouvementValue.y > 0.1f)//haut
-            _visé.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-        if (_mouvementValue.x < 0.1 && _mouvementValue.x > -0.1 && _mouvementValue.y < -0.1f)//bas
-            _visé.position = new Vector3(transform.position.x , transform.position.y - 1, transform.position.z);
-       /* 
-       if (_mouvementValue != Vector2.zero )
-       {
-           _visé.Translate(_mouvementValue * _currentSpeed * movementMag * Time.deltaTime);
-       }
-       else
-       {
-           _visé.position = transform.position;
-       }
-       */
-       
-        if (_throw && _handedBall)
-        {
-            _playerThrow.PerformThrow(_mouvementValue);
-            _handedBall = false;
+            _playerThrow.PerformThrow(_mouvementValue,_myBalls);
+            HandedBall = false;
         }
-        //_playerRotation.LookAt();
-    }
 
+        if (_changeSelect)
+        {
+            _armorSelected = !_armorSelected;
+        }
+
+        if (_changeColor && _armorSelected)
+        {
+            SwitchArmorColor();
+        }
+        if (_changeColor && !_armorSelected)
+        {
+            for (int i = 0; i < _myBalls.Count - 1; i++)
+            {
+                _myBalls[i].transform.GetComponent<Ball>().SwitchBallColor();
+            }
+        }
+    }
     
-/*
-    private void OnEnable(InputAction.CallbackContext callbackContext)
+    public void SwitchArmorColor()
     {
-        Throw.action.performed += _playerThrow.PerformThrow;
+        for (int i = 0; i < _colorList.Length - 1; i++)
+        {
+            if (CurrentColor == _colorList[i])
+            {
+                if (i == _colorList.Length - 1) CurrentColor = _colorList[0];
+                else CurrentColor = _colorList[i + 1];
+            }
+        }
     }
-
-    private void OnDisable(InputAction.CallbackContext callbackContext)
-    {
-        Throw.action.performed -= _playerThrow.PerformThrow;
-    }*/
+ 
 }
