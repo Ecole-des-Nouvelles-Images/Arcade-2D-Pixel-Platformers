@@ -1,0 +1,157 @@
+{
+    "name": "Mapping",
+    "maps": [
+        {
+            "name": "CharacterControler",
+            "id": "b0b26215-3492-496e-8047-2915918c7826",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "22cd4ab0-63d7-4711-a428-21808c2ae2cc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeSelect",
+                    "type": "Button",
+                    "id": "a9bbcbf2-975a-496a-bdb5-4c668ed1d08f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeColor",
+                    "type": "Button",
+                    "id": "cd45c1cd-f04a-4643-a098-4cf789cb81d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "6dbed08e-fd5e-41fd-8b19-42e659c88c68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "67e7d5c4-74a9-4727-8c54-dfe0192df6bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "View",
+                    "type": "Value",
+                    "id": "a74c9eb5-8350-4e34-aa41-6f29efa46054",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "29377cf6-2c00-4540-a5c3-ead78b403ac7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bca2df8-d92e-4039-a197-88d69031c124",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32f81c8e-ca98-4e13-9d6e-5bdfce14e256",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "ChangeSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2046648c-0af5-4a88-9bf4-c5dd955d4fdf",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "ChangeColor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70d54fa1-2d02-4879-a132-a3f57297fef1",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af496351-81bb-4a93-868c-d1566f8e8b32",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13d8edf9-ede3-4411-ba40-2cc509757878",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BasicControl",
+                    "action": "View",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "BasicControl",
+            "bindingGroup": "BasicControl",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
