@@ -14,9 +14,9 @@ public class Deplacement : MonoBehaviour
     }
     public void PerformMovement(Vector2 dep, float speed)
     {
-        float Xmove = dep.x * speed * Time.deltaTime;//* -1;
-        float Zmove = dep.y * speed * Time.deltaTime;
-        dep = new Vector2(Xmove, Zmove);
+        float xmove = dep.x * speed * Time.deltaTime;//* -1;
+        float zmove = dep.y * speed * Time.deltaTime;
+        dep = new Vector2(xmove, zmove);
         _rb.AddForce(dep, ForceMode2D.Impulse);
     }
     

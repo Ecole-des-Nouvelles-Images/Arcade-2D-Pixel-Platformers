@@ -31,18 +31,24 @@ public class PlayerControler : MonoBehaviour
     private List<GameObject> _myBalls;
 
     private Rigidbody2D _rb;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        int randomColorIndex = Random.Range(0, _colorList.Length);
-        CurrentColor = _colorList[randomColorIndex];
         _playerRotation = transform.GetComponent<Rotation>();
         _playerDeplacement = transform.GetComponent<Deplacement>();
         _playerThrow = transform.GetComponent<Throw>();
-        _currentSpeed = moveSpeed;
+        _playerThrow.Orientation = _visé;
         _pivot = transform.GetChild(0).transform;
         _visé = _pivot.GetChild(0).transform;
-        _playerThrow.Orientation = _visé;
+        int randomColorIndex = Random.Range(0, _colorList.Length);
+        CurrentColor = _colorList[randomColorIndex];
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+        _currentSpeed = moveSpeed;
         _rb = transform.GetComponent<Rigidbody2D>();
     }
 
@@ -52,11 +58,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void OnThrow(InputAction.CallbackContext Throw)
     {
-        if (HandedBall)
-        {
-            _throw = Throw.action.inProgress;
-            HandedBall = false;
-        }
+        _throw = Throw.action.IsPressed();
     }
     public void OnChangeSelect(InputAction.CallbackContext ChangeSelect)
     {
@@ -65,7 +67,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void OnChangeColor(InputAction.CallbackContext ChangeColor)
     { 
-        _changeColor = ChangeColor.action.ReadValue<bool>();
+        //_changeColor = ChangeColor.action.ReadValue<bool>();
         _changeColor = ChangeColor.action.triggered;
     }
     private void Update()
