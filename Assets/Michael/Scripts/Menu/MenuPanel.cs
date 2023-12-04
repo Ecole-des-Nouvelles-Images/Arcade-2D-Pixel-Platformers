@@ -1,34 +1,44 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Michael.Scripts;
 using UnityEngine;
-[RequireComponent(typeof(Canvas))]
-public class MenuPanel : MonoBehaviour
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+namespace Michael.Scripts.Menu
 {
-    [SerializeField] private PanelType _type;
-    private bool _state;
-
-
-    private void Awake()
+    public class MenuPanel : MonoBehaviour
     {
+        private Menunavigation _menuNavigation;
+        [SerializeField] private Button _backButton;
+        [SerializeField] private EventSystem _eventSystem;
+
+        private void Awake()
+        {
+            _menuNavigation = new Menunavigation();
+            _menuNavigation.UI.Cancel.performed += OnBack;
+        }
+
+        public void SetSelectedButton(GameObject button)
+        {
+            _eventSystem.SetSelectedGameObject(button);
+        }
+        private void OnBack(InputAction.CallbackContext context)
+        {
+            _backButton.onClick?.Invoke();
+        }
+
+        private void OnEnable()
+        {
+            _menuNavigation.UI.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _menuNavigation.UI.Disable();
+        }
         
-    }
-
-    private void UpdateState()
-    {
-        gameObject.SetActive(_state);
-    }
-
-    private void ChangeState()
-    {
-        _state = !_state;
-        UpdateState();
-    }
-
-    private void ChangeState(bool state)
-    {
-        _state = state;
-        UpdateState();
+        
+        
+        
     }
 }

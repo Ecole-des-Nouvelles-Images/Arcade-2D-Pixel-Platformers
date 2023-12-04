@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,10 +33,22 @@ public class PlayerConfigsManager : MonoBehaviour
     public void PlayerIsReady(int index)
     {
         _playerConfigs[index].IsReady = true;
-        if (_playerConfigs.Count == _maxPlayers && _playerConfigs.All( p => p.IsReady))
+        if (_playerConfigs.Count == _maxPlayers && _playerConfigs.All( p => p.IsReady/*==true)*/))
         {
             GameManager.instance.ChangeScene("Game");
         }
+    }
+
+    public void HandlePlayerJoin(PlayerInput pi)
+    {
+        Debug.Log("player joined" + pi.playerIndex); 
+        /*if (!_playerConfigs.Any(_playerConfigs => _playerConfigs.PlayerIndex == pi.playerIndex ))*/
+        if (!_playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
+        {
+            pi.transform.SetParent(transform);
+            _playerConfigs.Add(new PlayerConfiguration(pi));
+        }
+        
     }
     
 }
