@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &269155693999089246
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1634669028153950418}
-  m_Layer: 0
-  m_Name: pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1634669028153950418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269155693999089246}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6478584446003126705}
-  m_Father: {fileID: 3738721587810699175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7978768878104956576
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,14 +12,11 @@ GameObject:
   - component: {fileID: 561835819203318436}
   - component: {fileID: 391800970867382576}
   - component: {fileID: 6408626418389380055}
-  - component: {fileID: 1332524034492943530}
-  - component: {fileID: 9012732765536555325}
-  - component: {fileID: 7252706150435562332}
   - component: {fileID: 6696620167186088839}
   - component: {fileID: 5734716959483788811}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1634669028153950418}
+  - {fileID: 6478584446003126705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &561835819203318436
@@ -214,13 +179,21 @@ MonoBehaviour:
     m_ActionId: 6dbed08e-fd5e-41fd-8b19-42e659c88c68
     m_ActionName: CharacterControler/Throw[/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6408626418389380055}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 67e7d5c4-74a9-4727-8c54-dfe0192df6bd
     m_ActionName: CharacterControler/Dash[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a74c9eb5-8350-4e34-aa41-6f29efa46054
-    m_ActionName: CharacterControler/View[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 60c003fe-ecad-40b2-a8a9-be6fe6986f1e
@@ -244,51 +217,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   CurrentColor: 
+  HandedBall: 1
+  MyBalls: []
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeColor: {fileID: 1829715767865773766, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeSelect: {fileID: -296077554498403986, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
-  moveSpeed: 10
-  HandedBall: 1
---- !u!114 &1332524034492943530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7978768878104956576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d311411dcedba9c4e82653ee8e7db2ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9012732765536555325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7978768878104956576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a41ffb2df7b9a4aaa653ece313103e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Orientation: {fileID: 0}
+  Dash: {fileID: 1436546209546189881, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
+  moveSpeed: 15
   projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
-  power: 20
---- !u!114 &7252706150435562332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7978768878104956576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994ec7d16dcdc9d4f93e44e5056f811a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  thriwingPower: 3
+  Cooldown: 5
+  dashPower: 2
 --- !u!50 &6696620167186088839
 Rigidbody2D:
   serializedVersion: 4
@@ -302,10 +242,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 962a9c037085818479dc0801898c8572, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -391,7 +331,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1634669028153950418}
+  m_Father: {fileID: 3738721587810699175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2862413340953036415
 SpriteRenderer:

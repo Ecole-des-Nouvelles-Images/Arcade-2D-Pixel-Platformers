@@ -71,15 +71,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""View"",
-                    ""type"": ""Value"",
-                    ""id"": ""a74c9eb5-8350-4e34-aa41-6f29efa46054"",
-                    ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -148,17 +139,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""13d8edf9-ede3-4411-ba40-2cc509757878"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""BasicControl"",
-                    ""action"": ""View"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -212,7 +192,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
         m_CharacterControler_ChangeColor = m_CharacterControler.FindAction("ChangeColor", throwIfNotFound: true);
         m_CharacterControler_Throw = m_CharacterControler.FindAction("Throw", throwIfNotFound: true);
         m_CharacterControler_Dash = m_CharacterControler.FindAction("Dash", throwIfNotFound: true);
-        m_CharacterControler_View = m_CharacterControler.FindAction("View", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
@@ -282,7 +261,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControler_ChangeColor;
     private readonly InputAction m_CharacterControler_Throw;
     private readonly InputAction m_CharacterControler_Dash;
-    private readonly InputAction m_CharacterControler_View;
     public struct CharacterControlerActions
     {
         private @Mapping m_Wrapper;
@@ -292,7 +270,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
         public InputAction @ChangeColor => m_Wrapper.m_CharacterControler_ChangeColor;
         public InputAction @Throw => m_Wrapper.m_CharacterControler_Throw;
         public InputAction @Dash => m_Wrapper.m_CharacterControler_Dash;
-        public InputAction @View => m_Wrapper.m_CharacterControler_View;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -317,9 +294,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @View.started += instance.OnView;
-            @View.performed += instance.OnView;
-            @View.canceled += instance.OnView;
         }
 
         private void UnregisterCallbacks(ICharacterControlerActions instance)
@@ -339,9 +313,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @View.started -= instance.OnView;
-            @View.performed -= instance.OnView;
-            @View.canceled -= instance.OnView;
         }
 
         public void RemoveCallbacks(ICharacterControlerActions instance)
@@ -421,7 +392,6 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
         void OnChangeColor(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnView(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
