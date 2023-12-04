@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Michael/Prototype game.unity
     guid: 6255138dc4c6e134a9d5b01c20786778
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 3484d5b0b463e33499a06d698882456e, type: 2}
