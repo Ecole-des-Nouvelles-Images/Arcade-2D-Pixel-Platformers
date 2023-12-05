@@ -218,15 +218,16 @@ MonoBehaviour:
   Health: 3
   CurrentColor: 
   HandedBall: 1
+  PlayerNumber: 0
   MyBalls: []
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeColor: {fileID: 1829715767865773766, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeSelect: {fileID: -296077554498403986, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Dash: {fileID: 1436546209546189881, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
-  moveSpeed: 15
+  moveSpeed: 20
   projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
-  thriwingPower: 3
+  thriwingPower: 4
   Cooldown: 5
   dashPower: 2
 --- !u!50 &6696620167186088839

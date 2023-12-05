@@ -13,6 +13,7 @@ public class PlayerControler : MonoBehaviour
     public int Health = 3;
     public string CurrentColor;
     public bool HandedBall;
+    public int PlayerNumber;
     [FormerlySerializedAs("_myBalls")] public List<GameObject> MyBalls = new List<GameObject>();
     
     [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
@@ -38,13 +39,15 @@ public class PlayerControler : MonoBehaviour
         _visé = transform.GetChild(0).transform;
         int randomColorIndex = Random.Range(0, _colorList.Length);
         CurrentColor = _colorList[randomColorIndex];
+        _rb = transform.GetComponent<Rigidbody2D>();
     }
     void Start()
     {
         HandedBall = true;
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
-        _rb = transform.GetComponent<Rigidbody2D>();
+        
+        GameManager.AddPlayerList.Invoke(gameObject);
     }
     public void OnMove(InputAction.CallbackContext Move)
     {
@@ -57,23 +60,13 @@ public class PlayerControler : MonoBehaviour
         PerformThrow();
         
     }
-
-    public void OnDash(InputAction.CallbackContext Dash)
-    {
-        if (Dash.started && _dashEnabled)
-        {
-            _rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
-            _dashEnabled = false;
-            _currentCooldown = Cooldown;
-        }
-    }
     public void OnChangeSelect(InputAction.CallbackContext ChangeSelect)
     {
         if (ChangeSelect.started)
         {
             _armorSelected = !_armorSelected;
         }
-        Debug.Log(_armorSelected);
+        //Debug.Log(_armorSelected);
     }
     public void OnChangeColor(InputAction.CallbackContext ChangeColor)
     { 
@@ -89,14 +82,23 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
+    public void OnDash(InputAction.CallbackContext Dash)
+    {
+        if (Dash.started && _dashEnabled)
+        {
+            PerformDash();
+        }
+    }
 
     private void FixedUpdate()
     {
         PerformDepalecement();
+        //PerformDepalecement2();
     }
 
     private void Update()
     {
+        if(_mouvementValue == Vector2.zero)_rb.velocity = Vector2.zero;
         if (_currentCooldown > 0 && !_dashEnabled)
         {
             _currentCooldown -= Time.deltaTime;
@@ -112,8 +114,15 @@ public class PlayerControler : MonoBehaviour
     {
         float xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
         float zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
+        Vector2 dep = new Vector2(xmove, zmove);
+        _rb.AddForce( dep, ForceMode2D.Impulse);
+    }
+    private void PerformDepalecement2()
+    {
+        float xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
+        float zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
         _mouvementValue = new Vector2(xmove, zmove);
-        _rb.AddForce(_mouvementValue, ForceMode2D.Impulse);
+        transform.Translate(_mouvementValue);
     }
     private void LookAt()
     {
@@ -173,6 +182,13 @@ public class PlayerControler : MonoBehaviour
     {
         if (CurrentColor == "bleu") CurrentColor = "rouge";
         else if (CurrentColor == "rouge") CurrentColor = "bleu";
+    }
+
+    private void PerformDash()
+    {
+        _rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
+        _dashEnabled = false;
+        _currentCooldown = Cooldown;
     }
  
 }

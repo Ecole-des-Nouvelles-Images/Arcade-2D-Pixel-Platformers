@@ -26,10 +26,8 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("collide !");
         if (other.transform.CompareTag("Player"))
         {
-            Debug.Log("player contact !");
             if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor)
             {
                 other.transform.GetComponent<PlayerControler>().Health -= 1;
@@ -37,12 +35,13 @@ public class Ball : MonoBehaviour
             }
             if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor)
             {
-                Debug.Log("catch!");
                 other.transform.GetComponent<PlayerControler>().HandedBall = true;
                 for (int i = 0; i < MyOwner.transform.GetComponent<PlayerControler>().MyBalls.Count; i++)
                 {
                     if (MyOwner.transform.GetComponent<PlayerControler>().MyBalls[i] == gameObject)
                     {
+                        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        MyOwner.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         MyOwner.transform.GetComponent<PlayerControler>().MyBalls.Remove
                                 (MyOwner.transform.GetComponent<PlayerControler>().MyBalls[i]);
                     }
