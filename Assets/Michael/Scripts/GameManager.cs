@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    public static GameManager instance { private set; get; }
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    } 
-    
     public void QuitApplication()
     {
         Application.Quit();     
@@ -28,4 +15,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
+    
+    public void OpenCharacterSelection()
+    {
+        GameManager.Instance.ChangeScene("CharacterSelection");
+    }
+    
+    
+    
+    
 }
