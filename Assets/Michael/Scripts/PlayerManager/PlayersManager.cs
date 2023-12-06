@@ -12,9 +12,11 @@ namespace Michael.Scripts.PlayerManager
     public class PlayersManager : MonoBehaviour
 
     {
+        
         [Header("input management")]
         public static bool[] PlayerIsReady = new bool[4]{ false, false, false, false};
         public static bool[] PlayersJoined = new bool[4] { false, false, false, false};
+        static int readyCount ;
         public int PlayerIndex = 1;
         public GameObject PlayerPanel;
         [SerializeField] private GameObject _selectionPanel;
@@ -22,6 +24,8 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
+        
+        [SerializeField] bool allPlayersReady = true;
         
        [Header("character selection")]
         [SerializeField] private List<Sprite> _characterSpriteslist;
@@ -35,6 +39,7 @@ namespace Michael.Scripts.PlayerManager
         private void Start()
         {
             OnOpenMenu.Invoke();
+            readyCount = 0;
         }
 
         public void PlayerJoined()
@@ -46,9 +51,8 @@ namespace Michael.Scripts.PlayerManager
         public void PlayerReady()
         {
             PlayerIsReady[PlayerIndex - 1] = true;
-            bool allPlayersReady = true;
-            int readyCount = 0;
-
+           
+            
             for (int i = 0; i < PlayersJoined.Length; i++)
             {
                 if (PlayersJoined[i] == true )
@@ -61,14 +65,15 @@ namespace Michael.Scripts.PlayerManager
                     {
                         readyCount++; 
                         Debug.Log("player " + PlayerIndex + " Is Ready");
+                        Debug.Log(readyCount);
                         
                     }
                 }
             }
-            if (allPlayersReady == true && readyCount > 1 )
+            if (allPlayersReady == true && readyCount > 2 )
             {
                 GameManager.Instance.ChangeScene("Prototype game");
-            }
+                Debug.Log("2 players ready minimum");}
         }
 
 
@@ -76,6 +81,7 @@ namespace Michael.Scripts.PlayerManager
         {
             if (PlayerIsReady[PlayerIndex - 1 ] == true)
             {
+                readyCount = readyCount-1; 
                 PlayerIsReady[PlayerIndex - 1] = false;
                 GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_readyButton);
                 _readyButton.SetActive(true);
