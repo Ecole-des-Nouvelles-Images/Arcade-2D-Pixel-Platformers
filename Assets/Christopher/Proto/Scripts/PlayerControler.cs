@@ -14,6 +14,7 @@ public class PlayerControler : MonoBehaviour
     public string CurrentColor;
     public bool HandedBall;
     public int PlayerNumber;
+    public int RoundCount;
     [FormerlySerializedAs("_myBalls")] public List<GameObject> MyBalls = new List<GameObject>();
     
     [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
@@ -22,6 +23,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float thriwingPower;
     [SerializeField] private float Cooldown = 5f;
     [SerializeField] private float dashPower = 2f;
+    [SerializeField] private float dashTime = 1.5f;
     
     private string[] _colorList = new string[] { "bleu", "rouge" };
     private Transform _visé;
@@ -33,7 +35,11 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D _rb;
     private float _currentCooldown ;
     private bool _dashEnabled = true;
-
+    private bool _dashIsPossible = true;
+    private bool _dashing;
+    private float Xmove;
+    private float Zmove;
+    private float _timeDash;
     private void Awake()
     {
         _visé = transform.GetChild(0).transform;
@@ -43,7 +49,8 @@ public class PlayerControler : MonoBehaviour
     }
     void Start()
     {
-        HandedBall = true;
+        _timeDash = dashTime;
+        //HandedBall = true;
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
         
@@ -51,7 +58,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext Move)
     {
-        _mouvementValue = Move.action.ReadValue<Vector2>();
+        if(!_dashing) _mouvementValue = Move.action.ReadValue<Vector2>();
         //Debug.Log(_mouvementValue);
     }
     public void OnThrow(InputAction.CallbackContext Throw)
@@ -98,24 +105,30 @@ public class PlayerControler : MonoBehaviour
 
     private void Update()
     {
-        if(_mouvementValue == Vector2.zero)_rb.velocity = Vector2.zero;
+        //if(_mouvementValue == Vector2.zero)_rb.velocity = Vector2.zero;
         if (_currentCooldown > 0 && !_dashEnabled)
         {
             _currentCooldown -= Time.deltaTime;
             if (_currentCooldown <= 0) _dashEnabled = true;
         }
-        
-        if(Health <= 0){Destroy(gameObject);}
+
+        if (Health <= 0)
+        {
+            GameManager.RemovePlayerList.Invoke(gameObject);
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
+        }
         if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
         if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
         LookAt();
+        DashPerforming();
     }
     private void PerformDepalecement()
     {
-        float xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
-        float zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
-        Vector2 dep = new Vector2(xmove, zmove);
-        _rb.AddForce( dep, ForceMode2D.Impulse);
+        Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
+        Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
+        Vector2 dep = new Vector2(Xmove, Zmove);
+        _rb.velocity = dep;
     }
     private void PerformDepalecement2()
     {
@@ -185,10 +198,41 @@ public class PlayerControler : MonoBehaviour
     }
 
     private void PerformDash()
-    {
-        _rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
-        _dashEnabled = false;
-        _currentCooldown = Cooldown;
+    {/*
+        if (_dashIsPossible)
+        {
+            Vector3 dep = new Vector2(Xmove, Zmove);
+            transform.position += dep*dashPower/10;
+            //_rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
+            _dashEnabled = false;
+            _currentCooldown = Cooldown;
+        }*/
+        if (_dashIsPossible && !_dashing)
+        {
+            _dashing = true;
+            //Vector3 dep = new Vector2(Xmove, Zmove);
+            //_rb.velocity = Vector2.zero;
+            _rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
+        }
     }
- 
+
+    private void DashPerforming()
+    {
+        if (_dashing && _timeDash > 0) _timeDash -= Time.deltaTime;
+        if (_timeDash <= 0)
+        {
+            _dashEnabled = false;
+            _currentCooldown = Cooldown;
+            _dashing = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Wall")) _dashIsPossible = false;
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Wall")) _dashIsPossible = true;
+    }
 }

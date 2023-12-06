@@ -30,6 +30,8 @@ public class Ball : MonoBehaviour
         {
             if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor)
             {
+                other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
+                transform.GetComponent<Rigidbody2D>().velocity *= -1;
                 other.transform.GetComponent<PlayerControler>().Health -= 1;
                 Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
             }

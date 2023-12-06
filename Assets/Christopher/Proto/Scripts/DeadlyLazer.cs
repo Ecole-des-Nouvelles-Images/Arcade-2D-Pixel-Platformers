@@ -8,7 +8,7 @@ public class DeadlyLazer : MonoBehaviour
     [SerializeField] private int moveSpeed = 5;
     [SerializeField] private int minLimitMove = -10;
     [SerializeField] private int maxLimitMove = 10;
-    
+    [SerializeField] private bool isTrigger;
     private bool _goForward = true;
     // Start is called before the first frame update
     void Start()
@@ -38,10 +38,21 @@ public class DeadlyLazer : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.transform.CompareTag("Player"))
         {
+            isTrigger = true;
+            other.transform.GetComponent<PlayerControler>().Health -= 1;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        
+        if (other.transform.CompareTag("Player"))
+        {
+            isTrigger = true;
             other.transform.GetComponent<PlayerControler>().Health -= 1;
         }
     }
