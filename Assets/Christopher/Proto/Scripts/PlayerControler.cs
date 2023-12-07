@@ -23,7 +23,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float thriwingPower;
     [SerializeField] private float Cooldown = 5f;
     [SerializeField] private float dashPower = 2f;
-    [SerializeField] private float dashTime = 1.5f;
+    [FormerlySerializedAs("dashTime")] [SerializeField] private float recoveringDashTime = 2f;
     
     private string[] _colorList = new string[] { "bleu", "rouge" };
     private Transform _visé;
@@ -35,11 +35,10 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D _rb;
     private float _currentCooldown ;
     private bool _dashEnabled = true;
-    private bool _dashIsPossible = true;
     private bool _dashing;
     private float Xmove;
     private float Zmove;
-    //private float _timeDash;
+    private float _timeDash;
     private void Awake()
     {
         _visé = transform.GetChild(0).transform;
@@ -49,7 +48,7 @@ public class PlayerControler : MonoBehaviour
     }
     void Start()
     {
-       // _timeDash = dashTime;
+        _timeDash = recoveringDashTime;
         //HandedBall = true;
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
@@ -65,7 +64,6 @@ public class PlayerControler : MonoBehaviour
     {
         if (!Throw.started || !HandedBall) return;
         PerformThrow();
-        
     }
     public void OnChangeSelect(InputAction.CallbackContext ChangeSelect)
     {
@@ -121,6 +119,7 @@ public class PlayerControler : MonoBehaviour
         if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
         if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
         LookAt();
+        RecoverDash();
     }
     private void PerformDepalecement()
     {
@@ -201,19 +200,23 @@ public class PlayerControler : MonoBehaviour
 
     private void PerformDash()
     {
-        if (_dashIsPossible)
+        _dashing = true;
+        _currentSpeed *= dashPower;
+        Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
+        Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
+        Vector2 dep = new Vector2(Xmove, Zmove);
+        _rb.velocity = dep;
+        _currentSpeed = moveSpeed;
+        _dashEnabled = false;
+    }
+    private void RecoverDash()
+    {
+        if (_timeDash > 0 && _dashing) _timeDash -= Time.deltaTime;
+        if (_timeDash <= 0 && _dashing)
         {
-            _dashing = true;
-            
-            _currentSpeed *= dashPower;
-            Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
-            Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
-            Vector2 dep = new Vector2(Xmove, Zmove);
-            _rb.velocity = dep;
-            _dashing = false;
-            _currentSpeed = moveSpeed;
-            _dashEnabled = false;
             _currentCooldown = Cooldown;
+            _dashing = false;
+            _timeDash = recoveringDashTime;
         }
     }
 }
