@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Michael/Fred/FredShared.unity
+    guid: 8f68b66d18d88374e8d5ffd9b8bc8526
   - enabled: 1
-    path: Assets/Michael/Prototype game.unity
+    path: Assets/Michael/Fred/FredMenu.unity
+    guid: 4f7e6282ad173274fa8c9bf997307255
+  - enabled: 1
+    path: Assets/Michael/Fred/FredGame.unity
+    guid: 315c9f30a49e53f468e6a371429ef663
+  - enabled: 1
+    path: Assets/Michael/Scenes/CharacterSelection.unity
+    guid: 6ddb050e8c5d5f5498df53f89d4a6ece
+  - enabled: 1
+    path: Assets/Michael/Scenes/Proto Menu.unity
+    guid: cf1f704bbd6e3384e8bef86338a8b854
+  - enabled: 1
+    path: Assets/Michael/Scenes/Prototype game.unity
     guid: 6255138dc4c6e134a9d5b01c20786778
   m_configObjects: {}
