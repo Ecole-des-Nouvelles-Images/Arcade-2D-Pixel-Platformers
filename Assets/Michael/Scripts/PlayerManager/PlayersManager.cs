@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -16,7 +19,7 @@ namespace Michael.Scripts.PlayerManager
         [Header("input management")]
         public static bool[] PlayerIsReady = new bool[4]{ false, false, false, false};
         public static bool[] PlayersJoined = new bool[4] { false, false, false, false};
-        static int readyCount ;
+      
         public int PlayerIndex = 1;
         public GameObject PlayerPanel;
         [SerializeField] private GameObject _selectionPanel;
@@ -24,8 +27,8 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
-        
-        [SerializeField] bool allPlayersReady = true;
+
+        [SerializeField] DataModifier _dataModifier;
         
        [Header("character selection")]
         [SerializeField] private List<Sprite> _characterSpriteslist;
@@ -37,21 +40,26 @@ namespace Michael.Scripts.PlayerManager
         public UnityEvent OnOpenMenu;
 
         private void Start()
-        {
+        { 
             OnOpenMenu.Invoke();
-            readyCount = 0;
         }
+        
+        
 
         public void PlayerJoined()
         {
             PlayersJoined[PlayerIndex - 1] = true; 
             Debug.Log("Player " + PlayerIndex + " joined");
+            
         }
+        
+        
 
         public void PlayerReady()
         {
             PlayerIsReady[PlayerIndex - 1] = true;
-           
+            bool allPlayersReady = true;
+            int readyCount = 0;
             
             for (int i = 0; i < PlayersJoined.Length; i++)
             {
@@ -64,16 +72,20 @@ namespace Michael.Scripts.PlayerManager
                     else
                     {
                         readyCount++; 
+                        GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(null);
                         Debug.Log("player " + PlayerIndex + " Is Ready");
                         Debug.Log(readyCount);
-                        
                     }
                 }
+                
             }
-            if (allPlayersReady == true && readyCount > 2 )
+            if (allPlayersReady == true && readyCount > 1 )
             {
-                GameManager.Instance.ChangeScene("Prototype game");
-                Debug.Log("2 players ready minimum");}
+                SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("CharacterSelection");
+                
+                Debug.Log("2 players ready minimum");
+            }
         }
 
 
@@ -81,12 +93,14 @@ namespace Michael.Scripts.PlayerManager
         {
             if (PlayerIsReady[PlayerIndex - 1 ] == true)
             {
-                readyCount = readyCount-1; 
+               
                 PlayerIsReady[PlayerIndex - 1] = false;
                 GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_readyButton);
                 _readyButton.SetActive(true);
                 _readyText.SetActive(false);
                 Debug.Log("Cancel Ready");
+                Debug.Log(PlayerIsReady[PlayerIndex-1]);
+                
             }
             else if (PlayersJoined[PlayerIndex - 1] == true)
             {
@@ -100,8 +114,10 @@ namespace Michael.Scripts.PlayerManager
             }
             else if(PlayerIndex == 1)
             {
-                GameManager.Instance.ChangeScene("Proto Menu");
+                SceneManager.LoadScene("Proto Menu", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("CharacterSelection");
             }
+            
         }
 
        
@@ -130,22 +146,7 @@ namespace Michael.Scripts.PlayerManager
 
         public void ChangeCharacterBio()
         {
-            if (PlayerIndex == 0)
-            {
-                _characterBio.text = "pipi"; 
-            }
-            if (PlayerIndex == 1)
-            {
-                _characterBio.text = "caca"; 
-            }
-            if (PlayerIndex == 2)
-            {
-                _characterBio.text = "popo"; 
-            }
-            if (PlayerIndex == 3)
-            {
-                _characterBio.text = "pipo"; 
-            }
+            
             
         }
         

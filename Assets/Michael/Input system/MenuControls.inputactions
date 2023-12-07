@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "StartPause",
+                    "type": "Button",
+                    "id": "58cf7b28-a73e-4d20-9e6c-7e96177be894",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Submit",
                     "type": "Button",
                     "id": "69e9c35c-2238-4f4c-a799-93ffda11dee8",
@@ -512,6 +521,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a90cbc32-6238-4408-8853-4f8360f6d2b3",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

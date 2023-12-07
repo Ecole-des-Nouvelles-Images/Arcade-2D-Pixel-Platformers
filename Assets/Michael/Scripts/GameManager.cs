@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
+    public static int CurrentRound;
     public void QuitApplication()
     {
         Application.Quit();     
@@ -16,10 +17,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SceneManager.LoadSceneAsync(sceneName);
     }
     
-    public void OpenCharacterSelection()
-    {
-        GameManager.Instance.ChangeScene("CharacterSelection");
-    }
+   
     
     
     
