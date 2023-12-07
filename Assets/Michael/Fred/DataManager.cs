@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviourSingleton<DataManager> {
     private void Start()
     {
         SceneManager.LoadScene(StartingScene, LoadSceneMode.Additive);
+        
     }
     
     

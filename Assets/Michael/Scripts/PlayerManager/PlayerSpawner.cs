@@ -36,14 +36,11 @@ public class PlayerSpawner : MonoBehaviour
             }
         }
     }
-
-
-
-
+    
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-     /*   playerInput.gameObject.GetComponent<PlayerControler>().Health = playerInput.playerIndex + 1;
-        Debug.Log(playerInput.gameObject.GetComponent<PlayerControler>().Health);*/
+       playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex = playerInput.playerIndex+1;
+       Debug.Log(playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex); 
     }
 
     

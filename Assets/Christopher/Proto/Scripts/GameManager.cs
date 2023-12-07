@@ -5,7 +5,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Christopher.Proto.scripts
+{
+    public class GameManager : MonoBehaviour
 {
     public static Action<GameObject> AddPlayerList;
     public static Action<GameObject> RemovePlayerList;
@@ -86,4 +88,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
+}
+
 }

@@ -7,7 +7,7 @@ namespace Michael.Scripts
 {
   public class Changecolor : MonoBehaviour
 
-  {
+  {/*
     public static Action OnChangeColor;
     [SerializeField] private  PlayerData _playerData;
     [SerializeField] private Material _redMaterial;
@@ -65,7 +65,7 @@ namespace Michael.Scripts
       }
       
     
-    }
+    }*/
     
     
   }

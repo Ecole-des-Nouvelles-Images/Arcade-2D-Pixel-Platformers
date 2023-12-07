@@ -81,10 +81,12 @@ namespace Michael.Scripts.PlayerManager
             }
             if (allPlayersReady == true && readyCount > 1 )
             {
+                
+               
                 SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("CharacterSelection");
-                
                 Debug.Log("2 players ready minimum");
+                
             }
         }
 
@@ -146,9 +148,11 @@ namespace Michael.Scripts.PlayerManager
 
         public void ChangeCharacterBio()
         {
-            
-            
+
+           // gameObject.GetComponent<PlayerInput>().
         }
+        
+        
         
         
         

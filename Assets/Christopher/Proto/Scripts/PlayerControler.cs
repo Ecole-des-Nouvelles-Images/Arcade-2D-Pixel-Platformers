@@ -53,7 +53,7 @@ public class PlayerControler : MonoBehaviour
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
         _currentCooldown = Cooldown;
-        GameManager.AddPlayerList.Invoke(gameObject);
+        //GameManager.AddPlayerList.Invoke(gameObject);
     }
     public void OnMove(InputAction.CallbackContext Move)
     {
@@ -112,7 +112,7 @@ public class PlayerControler : MonoBehaviour
 
         if (Health <= 0)
         {
-            GameManager.RemovePlayerList.Invoke(gameObject);
+            //GameManager.RemovePlayerList.Invoke(gameObject);
             Destroy(gameObject);
             //gameObject.SetActive(false);
         }
