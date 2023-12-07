@@ -39,7 +39,7 @@ public class PlayerControler : MonoBehaviour
     private bool _dashing;
     private float Xmove;
     private float Zmove;
-    private float _timeDash;
+    //private float _timeDash;
     private void Awake()
     {
         _visé = transform.GetChild(0).transform;
@@ -49,16 +49,16 @@ public class PlayerControler : MonoBehaviour
     }
     void Start()
     {
-        _timeDash = dashTime;
+       // _timeDash = dashTime;
         //HandedBall = true;
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
-        
+        _currentCooldown = Cooldown;
         GameManager.AddPlayerList.Invoke(gameObject);
     }
     public void OnMove(InputAction.CallbackContext Move)
     {
-        if(!_dashing) _mouvementValue = Move.action.ReadValue<Vector2>();
+        _mouvementValue = Move.action.ReadValue<Vector2>();
         //Debug.Log(_mouvementValue);
     }
     public void OnThrow(InputAction.CallbackContext Throw)
@@ -121,14 +121,16 @@ public class PlayerControler : MonoBehaviour
         if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
         if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
         LookAt();
-        DashPerforming();
     }
     private void PerformDepalecement()
     {
-        Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
-        Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
-        Vector2 dep = new Vector2(Xmove, Zmove);
-        _rb.velocity = dep;
+        if (!_dashing)
+        {
+            Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
+            Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
+            Vector2 dep = new Vector2(Xmove, Zmove);
+            _rb.velocity = dep;
+        }
     }
     private void PerformDepalecement2()
     {
@@ -198,41 +200,20 @@ public class PlayerControler : MonoBehaviour
     }
 
     private void PerformDash()
-    {/*
+    {
         if (_dashIsPossible)
         {
-            Vector3 dep = new Vector2(Xmove, Zmove);
-            transform.position += dep*dashPower/10;
-            //_rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
-            _dashEnabled = false;
-            _currentCooldown = Cooldown;
-        }*/
-        if (_dashIsPossible && !_dashing)
-        {
             _dashing = true;
-            //Vector3 dep = new Vector2(Xmove, Zmove);
-            //_rb.velocity = Vector2.zero;
-            _rb.AddForce(_rb.velocity*dashPower,ForceMode2D.Impulse);
-        }
-    }
-
-    private void DashPerforming()
-    {
-        if (_dashing && _timeDash > 0) _timeDash -= Time.deltaTime;
-        if (_timeDash <= 0)
-        {
+            
+            _currentSpeed *= dashPower;
+            Xmove = _mouvementValue.x * _currentSpeed * Time.deltaTime;//* -1;
+            Zmove = _mouvementValue.y * _currentSpeed * Time.deltaTime;
+            Vector2 dep = new Vector2(Xmove, Zmove);
+            _rb.velocity = dep;
+            _dashing = false;
+            _currentSpeed = moveSpeed;
             _dashEnabled = false;
             _currentCooldown = Cooldown;
-            _dashing = false;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.transform.CompareTag("Wall")) _dashIsPossible = false;
-    }
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.transform.CompareTag("Wall")) _dashIsPossible = true;
     }
 }
