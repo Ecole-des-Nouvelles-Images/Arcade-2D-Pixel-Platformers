@@ -15,6 +15,10 @@ public class Ball : MonoBehaviour
     [SerializeField] private GameObject iceParticules;
     [SerializeField] private GameObject flamesLight;
     [SerializeField] private GameObject iceLight;
+    //[SerializeField] private GameObject impactIceParticules_1;
+    [SerializeField] private GameObject impactIceParticules_2;
+   //[SerializeField] private GameObject impactFlamesParticules_1;
+    [SerializeField] private GameObject impactFlamesParticules_2;
     
     private string[] _colorList = new string[] { "bleu", "rouge" };
 
@@ -49,6 +53,7 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        CollideImpactEffect();
         if (other.transform.CompareTag("Player"))
         {
             if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<PlayerRecover>().isRecovering == false)
@@ -79,6 +84,20 @@ public class Ball : MonoBehaviour
         {
             Debug.Log("Wall!");
             
+        }
+    }
+
+    private void CollideImpactEffect()
+    {
+        if (CurrentColor == "bleu")
+        {
+            var o = Instantiate(impactIceParticules_2);
+            o.transform.position = transform.position;
+        }
+        if (CurrentColor == "rouge")
+        {
+            var o = Instantiate(impactFlamesParticules_2);
+            o.transform.position = transform.position;
         }
     }
 }
