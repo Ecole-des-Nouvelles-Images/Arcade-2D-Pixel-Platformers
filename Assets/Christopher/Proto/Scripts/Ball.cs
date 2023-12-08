@@ -51,12 +51,13 @@ public class Ball : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor)
+            if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<PlayerRecover>().isRecovering == false)
             {
                 other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
                 transform.GetComponent<Rigidbody2D>().velocity *= -1;
                 other.transform.GetComponent<PlayerControler>().Health -= 1;
-                Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
+                other.transform.GetComponent<PlayerRecover>().isRecovering = true;
+                //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
             }
             if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor)
             {

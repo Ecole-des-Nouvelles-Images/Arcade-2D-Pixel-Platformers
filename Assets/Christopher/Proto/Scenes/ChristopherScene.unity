@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerDisplay: {fileID: 266866562}
-  timerMortSubite: 10
+  timerMortSubite: 120
   lazerMortSubite: {fileID: 790652733}
 --- !u!1 &1712305528
 GameObject:
