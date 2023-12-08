@@ -153,8 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingScene: Proto Menu
-  Data: 
-  BackgroundMusic: {fileID: 0}
+  BackgroundMusic: {fileID: 4844433460766985082, guid: eb29b4a617f22d546a9384cb1a424792, type: 3}
 --- !u!4 &41399098
 Transform:
   m_ObjectHideFlags: 0

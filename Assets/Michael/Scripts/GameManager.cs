@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public static int CurrentRound;
+    public List<GameObject> PlayerList;
     public void QuitApplication()
     {
         Application.Quit();     
@@ -16,6 +17,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
+    
+    
+    
     
    
     

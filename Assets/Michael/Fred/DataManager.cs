@@ -1,22 +1,30 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DataManager : MonoBehaviourSingleton<DataManager> {
+namespace Michael.Fred
+{
+    
+    public class DataManager : MonoBehaviourSingleton<DataManager> {
 
-    public string StartingScene;
-    public string Data;
-    public AudioSource BackgroundMusic;
-    public Dictionary<int, PlayerData> PlayerDatasDict;
-    public List<PlayerData> PlayerDatasList;
+        public string StartingScene;
+        public AudioSource BackgroundMusic;
+        public Dictionary<int, int> PlayerDatasDict = new Dictionary<int, int>();
+        // public List<PlayerData> PlayerDatasList;
     
     
-    private void Start()
-    {
-        SceneManager.LoadScene(StartingScene, LoadSceneMode.Additive);
+        private void Start()
+        {
+            SceneManager.LoadScene(StartingScene, LoadSceneMode.Additive);
         
+        }
+
+        
+
+
+       
+
+
+
     }
-    
-    
 }

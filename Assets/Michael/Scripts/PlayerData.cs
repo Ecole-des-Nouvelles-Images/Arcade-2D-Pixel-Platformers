@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Michael.Fred;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -10,64 +12,21 @@ namespace Michael.Scripts
     {
         public int Playerindex;
         public List<Sprite> CharacterVisual;
+      
         
-        //  [SerializeField] private GameObject playerArmor;
-        //  [SerializeField] private GameObject playerBall;
-        //  public GameObject colorTarget; 
-        // [SerializeField] private Image _spriteIcon;
-        // [SerializeField] private Sprite _ballSprite;
-        //  [SerializeField] private Sprite _spriteArmor;
-        //  public bool ArmorIsRed;
-        //public bool BallIsRed;
-        // public bool ArmorIsSelected; 
-
 
         private void Start()
         {
-           // gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[Playerindex - 1];
+            if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
+            { 
+                gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
+            }
+            
+            
            
+         
+         
         }
-
-
-        /*  private void Start()
-          {
-              colorTarget = playerArmor;
-
-
-          }
-
-          private void Update()
-          {
-              if (ArmorIsSelected)
-              {
-                  _spriteIcon.sprite = _spriteArmor;
-              }
-              else
-              {
-
-                  _spriteIcon.sprite = _ballSprite;
-              }
-          }
-
-          public void SwitchColorTarget()
-          {
-              if (colorTarget == playerArmor)
-              {
-                  colorTarget = playerBall;
-                  ArmorIsSelected = false;
-              }
-              else
-              {
-                  colorTarget = playerArmor;
-                  ArmorIsSelected = true;
-              }
-          }*/
-
-
-
-
-
-
-
+       
     }
 }
