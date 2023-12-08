@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager2 : MonoBehaviour
 {
     public static Action<GameObject> AddPlayerList;
     public static Action<GameObject> RemovePlayerList;
