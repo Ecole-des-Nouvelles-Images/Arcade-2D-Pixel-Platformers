@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
@@ -11,10 +12,8 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private Material flamesMat;
     [SerializeField] private Material iceMat;
-    [SerializeField] private GameObject flamesParticules;
-    [SerializeField] private GameObject iceParticules;
-    [SerializeField] private GameObject flamesLight;
-    [SerializeField] private GameObject iceLight;
+    [FormerlySerializedAs("flamesParticules")] [SerializeField] private GameObject flamesEffects;
+    [FormerlySerializedAs("iceParticules")] [SerializeField] private GameObject iceEffects;
     //[SerializeField] private GameObject impactIceParticules_1;
     [SerializeField] private GameObject impactIceParticules_2;
    //[SerializeField] private GameObject impactFlamesParticules_1;
@@ -31,19 +30,15 @@ public class Ball : MonoBehaviour
         if (CurrentColor == "bleu")
         {
             transform.GetComponent<Renderer>().material = iceMat;
-            flamesParticules.SetActive(false);
-            iceParticules.SetActive(true);
-            flamesLight.SetActive(false);
-            iceLight.SetActive(true);
+            flamesEffects.SetActive(false);
+            iceEffects.SetActive(true);
         }
 
         if (CurrentColor == "rouge")
         {
             transform.GetComponent<Renderer>().material = flamesMat;
-            flamesParticules.SetActive(true);
-            iceParticules.SetActive(false);
-            flamesLight.SetActive(true);
-            iceLight.SetActive(false);
+            flamesEffects.SetActive(true);
+            iceEffects.SetActive(false);
         }
     }
     public void SwitchBallColor()
