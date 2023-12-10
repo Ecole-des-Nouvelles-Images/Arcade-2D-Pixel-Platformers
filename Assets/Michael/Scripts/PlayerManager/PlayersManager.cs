@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Michael.Fred;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
@@ -14,7 +16,6 @@ namespace Michael.Scripts.PlayerManager
     public class PlayersManager : MonoBehaviour
 
     {
-
         public static bool[] PlayerIsReady;
         public static bool[] PlayerIsJoined;
         public int PlayerIndex = 1;
@@ -24,7 +25,8 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
-        
+        [SerializeField] private PlayerInputManager _playerInputManager;
+
         [Header("character selection")] [SerializeField]
         private List<Sprite> _characterSpriteslist;
 
@@ -32,25 +34,21 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private int _characterIndex = 0;
         [SerializeField] private TextMeshProUGUI _characterBio;
         public Image CharacterImage;
+       
         
         private void Start()
         {
             PlayerIsReady = new bool[4] { false, false, false, false };
             PlayerIsJoined = new bool[4] { false, false, false, false };
         }
-
-
-
+        
         public void PlayerJoined()
         {
-            PlayerIndex = GetComponent<PlayerInput>().playerIndex + 1;
+            PlayerIndex = GetComponent<PlayerInput>().playerIndex +1;
             PlayerIsJoined[PlayerIndex - 1] = true;
             Debug.Log("Player " + PlayerIndex + " joined");
-
         }
-
-
-
+        
         public void PlayerReady()
         {
             PlayerIsReady[PlayerIndex - 1] = true;
@@ -77,17 +75,15 @@ namespace Michael.Scripts.PlayerManager
                 }
 
             }
-
             if (allPlayersReady == true && readyCount > 1)
             {
                 SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("CharacterSelection");
                 Debug.Log("2 players ready minimum");
-
+               
             }
         }
-
-
+        
         public void OnCancel()
         {
             if (PlayerIsReady[PlayerIndex - 1] == true)
@@ -99,8 +95,6 @@ namespace Michael.Scripts.PlayerManager
                 _readyText.SetActive(false);
                 Debug.Log("Cancel Ready");
                 Debug.Log(PlayerIsReady[PlayerIndex - 1]);
-              
-
             }
             else if (PlayerIsJoined[PlayerIndex - 1] == true)
             {
@@ -111,16 +105,14 @@ namespace Michael.Scripts.PlayerManager
                 PlayerIsJoined[PlayerIndex - 1] = false;
                 Debug.Log("Cancel Join");
             }
-            else 
+            else if (PlayerIsJoined.All(element => !element))
             {
                 SceneManager.LoadScene("Proto Menu", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("CharacterSelection");
             }
 
         }
-
-
-
+        
         public void OnDeviceLost()
         {
             PlayerIsReady[PlayerIndex - 1] = false;
@@ -134,8 +126,6 @@ namespace Michael.Scripts.PlayerManager
 
             Debug.Log("deconnect");
         }
-
-
 
         public void NextCharacter()
         {
@@ -163,7 +153,7 @@ namespace Michael.Scripts.PlayerManager
 
         public void ConfirmChoice(int playerIndex, int skinIndex)
         {
-
+            
             if (DataManager.Instance.PlayerDatasDict.ContainsKey(playerIndex))
             {
                 DataManager.Instance.PlayerDatasDict[playerIndex] = skinIndex;
@@ -172,22 +162,15 @@ namespace Michael.Scripts.PlayerManager
             {
                 DataManager.Instance.PlayerDatasDict.Add(playerIndex, skinIndex);
             }
-
         }
-
         public void RemoveChoice(int playerIndex)
         {
             DataManager.Instance.PlayerDatasDict.Remove(playerIndex);
         }
         
-        
-        
-
-
     public void ChangeCharacterBio()
         {
-
-           // gameObject.GetComponent<PlayerInput>().
+            
         }
         
         

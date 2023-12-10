@@ -8,7 +8,7 @@ namespace Michael.Fred
     public class DataManager : MonoBehaviourSingleton<DataManager> {
 
         public string StartingScene;
-        public AudioSource BackgroundMusic;
+        public AudioSource CurrentMusic;
         public Dictionary<int, int> PlayerDatasDict = new Dictionary<int, int>();
         // public List<PlayerData> PlayerDatasList;
     

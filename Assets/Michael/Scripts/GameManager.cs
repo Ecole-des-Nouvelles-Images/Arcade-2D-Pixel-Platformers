@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Michael.Fred;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public static int CurrentRound;
     public List<GameObject> PlayerList;
+    [SerializeField] private UnityEvent ChangeMusic;
     public void QuitApplication()
     {
         Application.Quit();     
@@ -17,14 +21,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
-    
-    
-    
-    
-   
-    
-    
-    
+
+    private void Start()
+    {
+        ChangeMusic.Invoke();
+    }
+
+  
     
     
 }
