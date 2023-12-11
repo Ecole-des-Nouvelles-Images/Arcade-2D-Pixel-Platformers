@@ -43,7 +43,7 @@ public class GameManager2 : MonoBehaviour
         {
             if (PlayerList[i] == player)
             {
-                player.transform.GetComponent<PlayerControler>().PlayerNumber = i+1;
+                player.transform.GetComponent<PlayerControlerV1>().PlayerNumber = i+1;
                 playersPanel[i].GameObject().SetActive(true);
             }
         }
@@ -54,7 +54,7 @@ public class GameManager2 : MonoBehaviour
         for (int i = 0; i < PlayerList.Count; i++)
         {
             playersPanel[i].GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = 
-                "P" + i + 1 + ": hp_ " + PlayerList[i].transform.GetComponent<PlayerControler>().Health;
+                "P" + i + 1 + ": hp_ " + PlayerList[i].transform.GetComponent<PlayerControlerV1>().Health;
             if (PlayerList[i] == null)
             {
                 playersPanel[i].GameObject().SetActive(false);
@@ -79,7 +79,7 @@ public class GameManager2 : MonoBehaviour
             _gameStart = true;
             for (int i = 0; i < PlayerList.Count; i++)
             {
-                PlayerList[i].transform.GetComponent<PlayerControler>().HandedBall = true;
+                PlayerList[i].transform.GetComponent<PlayerControlerV1>().HandedBall = true;
             }
             _isTimerBegin = true;
             _roundNumber = 1;

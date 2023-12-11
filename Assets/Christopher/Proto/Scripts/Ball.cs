@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     public string CurrentColor;
     public GameObject MyOwner;
 
+    [SerializeField] [Range(0, 1)] public float ballSpeedSlowingImpactFactor = 0.75f;
     [SerializeField] private Material flamesMat;
     [SerializeField] private Material iceMat;
     [FormerlySerializedAs("flamesParticules")] [SerializeField] private GameObject flamesEffects;
@@ -48,9 +49,11 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        
         CollideImpactEffect();
         if (other.transform.CompareTag("Player"))
         {
+            transform.GetComponent<Rigidbody2D>().velocity *= ballSpeedSlowingImpactFactor;
             if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<PlayerRecover>().isRecovering == false)
             {
                 other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
@@ -59,7 +62,7 @@ public class Ball : MonoBehaviour
                 other.transform.GetComponent<PlayerRecover>().isRecovering = true;
                 //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
             }
-            if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor)
+            if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null)
             {
                 other.transform.GetComponent<PlayerControler>().HandedBall = true;
                 for (int i = 0; i < MyOwner.transform.GetComponent<PlayerControler>().MyBalls.Count; i++)
@@ -78,7 +81,6 @@ public class Ball : MonoBehaviour
         if (other.transform.CompareTag("Wall"))
         {
             Debug.Log("Wall!");
-            
         }
     }
 

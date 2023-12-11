@@ -149,8 +149,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.5
+      minMaxState: 0
+      scalar: 0.2
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -5013,8 +5013,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.3
+      minMaxState: 0
+      scalar: 0.1
       minScalar: 0.15
       maxCurve:
         serializedVersion: 2
@@ -9975,6 +9975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentColor: 
   MyOwner: {fileID: 0}
+  ballSpeedSlowingImpactFactor: 0.75
   flamesMat: {fileID: -876546973899608171, guid: 4904499d684933a4390d20d18b72baf2, type: 3}
   iceMat: {fileID: -876546973899608171, guid: 757e6cca8ec655648b49c3bec7502ea7, type: 3}
   flamesEffects: {fileID: 663091028743786504}
@@ -10096,8 +10097,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.5
+      minMaxState: 0
+      scalar: 0.2
       minScalar: 0.3
       maxCurve:
         serializedVersion: 2
@@ -15008,8 +15009,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.4
+      minMaxState: 0
+      scalar: 0.1
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
