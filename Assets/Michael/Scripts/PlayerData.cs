@@ -12,21 +12,20 @@ namespace Michael.Scripts
     {
         public int Playerindex;
         public List<Sprite> CharacterVisual;
-      
-        
+
+     
 
         private void Start()
         {
+            
+            
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
             { 
                 gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
             }
-            
-            
-           
-         
-         
         }
-       
+        
+        
+      
     }
 }

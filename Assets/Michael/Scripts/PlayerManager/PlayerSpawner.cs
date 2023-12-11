@@ -21,8 +21,9 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log(PlayersManager.PlayerIsReady[3]);
         for (int i = 0; i < 4; i++)
         {
-            GameObject player = Instantiate(playerPrefab); /* as GameObject;*/
-
+            GameObject player = Instantiate(playerPrefab)  as GameObject;
+            OnPlayerJoined(player.GetComponent<PlayerInput>());
+          
             player.transform.position = Spawnpoint[i].position;
 
             if (PlayersManager.PlayerIsReady[i] == false)
@@ -34,21 +35,18 @@ public class PlayerSpawner : MonoBehaviour
                 }
 
             }
-            else
-            {
-                OnPlayerJoined(player.GetComponent<PlayerInput>());
-               
-            }
+           
         }
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-       playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex = playerInput.playerIndex + 1;
-        Debug.Log(playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex);
-
-       
+       playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex = playerInput.playerIndex+1;
+        Debug.Log("index : " + playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex);
+        
     }
+
+   
     
 
     

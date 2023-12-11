@@ -26,6 +26,9 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
         [SerializeField] private PlayerInputManager _playerInputManager;
+        [SerializeField] private int _maxPlayers;
+        [SerializeField] private GameObject _choiceModePanel;
+        [SerializeField] private GameObject _playerPanel;
 
         [Header("character selection")] [SerializeField]
         private List<Sprite> _characterSpriteslist;
@@ -54,6 +57,7 @@ namespace Michael.Scripts.PlayerManager
             PlayerIsReady[PlayerIndex - 1] = true;
             bool allPlayersReady = true;
             int readyCount = 0;
+            int Maxplayer = _maxPlayers;
 
             for (int i = 0; i < PlayerIsJoined.Length; i++)
             {
@@ -71,15 +75,25 @@ namespace Michael.Scripts.PlayerManager
                         Debug.Log(readyCount);
                         Debug.Log("index is " + (GetComponent<PlayerInput>().playerIndex + 1));
                         ConfirmChoice(PlayerIndex, _characterIndex);
+                        
                     }
                 }
 
             }
-            if (allPlayersReady == true && readyCount > 1)
+            if (allPlayersReady == true && readyCount > _maxPlayers)
             {
                 SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("CharacterSelection");
                 Debug.Log("2 players ready minimum");
+                
+                
+                string logMessage = "Contenu du dictionnaire : \n";
+                foreach (var pair in DataManager.Instance.PlayerDatasDict)
+                            
+                {
+                    logMessage += $"Clé: {pair.Key}, Valeur: {pair.Value}\n";
+                }
+                Debug.Log( logMessage);
                
             }
         }
@@ -107,8 +121,10 @@ namespace Michael.Scripts.PlayerManager
             }
             else if (PlayerIsJoined.All(element => !element))
             {
-                SceneManager.LoadScene("Proto Menu", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("CharacterSelection");
+               SceneManager.LoadScene("Proto Menu", LoadSceneMode.Additive);
+               SceneManager.UnloadSceneAsync("CharacterSelection");
+               
+                 
             }
 
         }
@@ -168,11 +184,11 @@ namespace Michael.Scripts.PlayerManager
             DataManager.Instance.PlayerDatasDict.Remove(playerIndex);
         }
         
-    public void ChangeCharacterBio()
+    
+        public void ChangeCharacterBio()
         {
             
         }
-        
         
         
         
