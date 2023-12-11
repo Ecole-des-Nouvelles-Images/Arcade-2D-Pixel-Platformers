@@ -85,7 +85,7 @@ namespace Michael.Scripts.PlayerManager
                 SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("CharacterSelection");
                 Debug.Log("2 players ready minimum");
-                
+               
                 
                 string logMessage = "Contenu du dictionnaire : \n";
                 foreach (var pair in DataManager.Instance.PlayerDatasDict)

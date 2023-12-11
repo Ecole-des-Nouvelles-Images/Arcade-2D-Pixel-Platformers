@@ -19,7 +19,10 @@ namespace Michael.Fred
         
         }
 
-        
+        private void PlayerDeath()
+        {
+            
+        }
 
 
        

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -24,7 +25,11 @@ namespace Michael.Scripts.Menu
 
         private void Start()
         {
-            _playerPanelList[PlayerNumber-2].SetActive(true);
+            if (_playerPanelList.Count != 0)
+            {
+                _playerPanelList[PlayerNumber-2].SetActive(true);
+            }
+           
         }
 
         public void SetSelectedButton(GameObject button)
@@ -33,7 +38,11 @@ namespace Michael.Scripts.Menu
         }
         private void OnBack(InputAction.CallbackContext context)
         {
-            _backButton.onClick?.Invoke();
+            if (_backButton != null)
+            {
+                _backButton.onClick?.Invoke();
+            }
+
         }
 
         private void OnEnable()

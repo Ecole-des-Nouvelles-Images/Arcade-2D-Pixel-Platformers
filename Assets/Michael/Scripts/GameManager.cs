@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public static int CurrentRound;
     public List<GameObject> PlayerList;
-    [SerializeField] private UnityEvent ChangeMusic;
+    [SerializeField] public UnityEvent ChangeMusic;
     public void QuitApplication()
     {
         Application.Quit();     
@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         ChangeMusic.Invoke();
     }
+    
+    
+    
 
   
     
