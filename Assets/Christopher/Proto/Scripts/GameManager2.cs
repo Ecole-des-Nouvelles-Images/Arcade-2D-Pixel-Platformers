@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Christopher.Proto.scripts
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager2 : MonoBehaviour
 {
     public static Action<GameObject> AddPlayerList;
     public static Action<GameObject> RemovePlayerList;

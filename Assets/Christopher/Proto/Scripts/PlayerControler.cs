@@ -10,18 +10,22 @@ using Random = UnityEngine.Random;
 
 public class PlayerControler : MonoBehaviour
 {
-    //bool isalive
-    public int Health = 3;//
-    public string CurrentColor;//
-    public bool HandedBall;//
-    public int PlayerNumber;//
-    public int RoundCount;//
-    
-    public List<GameObject> MyBalls = new List<GameObject>();
-    public Sprite[] SpritesDwarf = new Sprite[4];
-    public Animator[] AnimatedDwarf = new Animator[4];
-    
+    public bool IsAlive;//datacom
+    public int Health = 3;//datacom
+    public string CurrentColor;//datacom
+    public bool HandedBall;//datacom
+    public int PlayerNumber;//datacom
+    public int RoundCount;//datacom
+    public List<GameObject> MyBalls = new List<GameObject>();//datacom
+    public int MyDwarf;//datacom
+
+    [SerializeField] private List<Animator> animList;
     [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
+    [SerializeField] private SpriteRenderer[] Dwarf_1;
+    [SerializeField] private SpriteRenderer[] Dwarf_2;
+    [SerializeField] private SpriteRenderer[] Dwarf_3;
+    [SerializeField] private SpriteRenderer[] Dwarf_4;
+    [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject projectile;
     [SerializeField] private float thriwingPower;
@@ -38,15 +42,22 @@ public class PlayerControler : MonoBehaviour
     private bool _armorSelected = true;
     private float _currentThrowingPower;
     private Rigidbody2D _rb;
-    private float _currentCooldownDash ;
-    private float _currentDashRecoveringTime ;
+    private float _currentCooldownDash;
+    private float _currentDashRecoveringTime;
     private bool _dashEnabled = true;
     private bool _dashing;
     private float Xmove;
     private float Zmove;
     private float _timeDash;
+
+    public AnimatorOverrideController AnimatorOverrideController;
+    
     private void Awake()
     {
+        GetComponent<Animator>().runtimeAnimatorController = AnimatorOverrideController;
+        
+        
+        
         _visé = transform.GetChild(0).transform;
         int randomColorIndex = Random.Range(0, _colorList.Length);
         CurrentColor = _colorList[randomColorIndex];
@@ -56,11 +67,17 @@ public class PlayerControler : MonoBehaviour
     {
         _currentDashRecoveringTime = dashRecoveringTime;
         _timeDash = dashDistanceTime;
-        //HandedBall = true;
         _currentThrowingPower = thriwingPower;
         _currentSpeed = moveSpeed;
         _currentCooldownDash = CooldownDash;
-        //GameManager.AddPlayerList.Invoke(gameObject);
+        if (MyDwarf == 0 && CurrentColor == "bleu")Dwarf_1[0].enabled = true;
+        if (MyDwarf == 0 && CurrentColor == "rouge")Dwarf_1[1].enabled = true;
+        if (MyDwarf == 1 && CurrentColor == "bleu") Dwarf_2[0].enabled = true;
+        if (MyDwarf == 1 && CurrentColor == "rouge") Dwarf_2[1].enabled = true;
+        if (MyDwarf == 2 && CurrentColor == "bleu")Dwarf_3[0].enabled = true;
+        if (MyDwarf == 2 && CurrentColor == "rouge")Dwarf_3[1].enabled = true;
+        if (MyDwarf == 3 && CurrentColor == "bleu")Dwarf_4[0].enabled = true;
+        if (MyDwarf == 3 && CurrentColor == "rouge") Dwarf_4[1].enabled = true;
     }
     public void OnMove(InputAction.CallbackContext Move)
     {
@@ -110,7 +127,23 @@ public class PlayerControler : MonoBehaviour
 
     private void Update()
     {
-        //if(_mouvementValue == Vector2.zero)_rb.velocity = Vector2.zero;
+        if (MyDwarf == 0 && CurrentColor == "bleu")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[0]);//Dwarf_1[0].enabled = true;
+        if (MyDwarf == 0 && CurrentColor == "rouge")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[1]);//Dwarf_1[1].enabled = true;
+        if (MyDwarf == 1 && CurrentColor == "bleu")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[0]);// Dwarf_2[0].enabled = true;
+        if (MyDwarf == 1 && CurrentColor == "rouge")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[1]); //Dwarf_2[1].enabled = true;
+        if (MyDwarf == 2 && CurrentColor == "bleu")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[0]);//Dwarf_3[0].enabled = true;
+        if (MyDwarf == 2 && CurrentColor == "rouge")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[1]);//Dwarf_3[1].enabled = true;
+        if (MyDwarf == 3 && CurrentColor == "bleu")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[0]);//Dwarf_4[0].enabled = true;
+        if (MyDwarf == 3 && CurrentColor == "rouge")HelperByChris.Fliper(_mouvementValue.x,-0.05f,Dwarf_1[1]); //Dwarf_4[1].enabled = true;
+        if (_mouvementValue == Vector2.zero)
+        {
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",false);
+            }
+        }
         if (_currentCooldownDash > 0 && !_dashEnabled)
         {
             _currentCooldownDash -= Time.deltaTime;
@@ -123,8 +156,8 @@ public class PlayerControler : MonoBehaviour
             Destroy(gameObject);
             //gameObject.SetActive(false);
         }
-        if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
-        if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
+        //if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
+        //if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
         LookAt();
         RecoverDash();
     }
@@ -157,52 +190,103 @@ public class PlayerControler : MonoBehaviour
         {
             _visé.position = new Vector3(transform.position.x + 1, transform.position.y + 1, transform.position.z);
             _orientation = new Vector2(1, 1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.x < -0.1f && _mouvementValue.y < -0.1f) //diag bas gauche
         {
             _visé.position = new Vector3(transform.position.x - 1, transform.position.y - 1, transform.position.z);
             _orientation = new Vector2(-1, -1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.x < -0.1f && _mouvementValue.y > 0.1f) //diag haut gauche
         {
             _visé.position = new Vector3(transform.position.x - 1, transform.position.y + 1, transform.position.z);
             _orientation = new Vector2(-1, 1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.x > 0.1f && _mouvementValue.y < -0.1f) //diag bas droit
         {
             _visé.position = new Vector3(transform.position.x + 1, transform.position.y - 1, transform.position.z);
             _orientation = new Vector2(1, -1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.y < 0.1 && _mouvementValue.y > -0.1 && _mouvementValue.x > 0.1f) //droit
         {
             _visé.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
             _orientation = new Vector2(1, 0);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.y < 0.1 && _mouvementValue.y > -0.1 && _mouvementValue.x < -0.1f) //gauche
         {
             _visé.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             _orientation = new Vector2(-1, 0);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",true);
+            }
         }
 
         if (_mouvementValue.x < 0.1 && _mouvementValue.x > -0.1 && _mouvementValue.y > 0.1f) //haut
         {
             _visé.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
             _orientation = new Vector2(0, 1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",true);
+                animList[i].SetBool("moving down",false);
+                animList[i].SetBool("moving horizontal",false);
+            }
         }
 
         if (_mouvementValue.x < 0.1 && _mouvementValue.x > -0.1 && _mouvementValue.y < -0.1f) //bas
         {
             _visé.position = new Vector3(transform.position.x , transform.position.y - 1, transform.position.z);
             _orientation = new Vector2(0, -1);
+            for (int i = 0; i < animList.Count; i++)
+            {
+                animList[i].SetBool("moving up",false);
+                animList[i].SetBool("moving down",true);
+                animList[i].SetBool("moving horizontal",false);
+            }
         }
     }
     private void PerformThrow()
     {
+        for (int i = 0; i < animList.Count; i++) {
+            animList[i].SetBool("throwing",true);
+        }
         HandedBall = false;
         var o = Instantiate(projectile);
         MyBalls.Add(o);
@@ -210,15 +294,68 @@ public class PlayerControler : MonoBehaviour
         o.transform.GetComponent<Rigidbody2D>().AddForce( _orientation * _currentThrowingPower, ForceMode2D.Impulse);
         o.transform.GetComponent<Ball>().MyOwner = gameObject;
         o.transform.GetComponent<Ball>().CurrentColor = CurrentColor;
+        for (int i = 0; i < animList.Count; i++) {
+            animList[i].SetBool("throwing",false);
+        }
     }
     private void SwitchColor()
     {
+        if (MyDwarf == 0 && CurrentColor == "bleu") {
+            CurrentColor = "rouge";
+            Dwarf_1[0].enabled = false;
+            Dwarf_1[1].enabled = true;
+        }
+        if (MyDwarf == 0 && CurrentColor == "rouge") {
+            CurrentColor = "bleu";
+            Dwarf_1[0].enabled = true;
+            Dwarf_1[1].enabled = false;
+        }
+
+        if (MyDwarf == 1 && CurrentColor == "bleu") {
+            CurrentColor = "rouge";
+            Dwarf_2[0].enabled = false;
+            Dwarf_2[1].enabled = true;
+        }
+
+        if (MyDwarf == 1 && CurrentColor == "rouge") {
+            CurrentColor = "bleu";
+            Dwarf_2[1].enabled = false;
+            Dwarf_2[0].enabled = true;
+        }
+
+        if (MyDwarf == 2 && CurrentColor == "bleu") {
+            CurrentColor = "rouge";
+            Dwarf_3[0].enabled = false;
+            Dwarf_3[1].enabled = true;
+        }
+
+        if (MyDwarf == 2 && CurrentColor == "rouge") {
+            CurrentColor = "bleu";
+            Dwarf_3[1].enabled = false;
+            Dwarf_3[0].enabled = true;
+        }
+
+        if (MyDwarf == 3 && CurrentColor == "bleu") {
+            CurrentColor = "rouge";
+            Dwarf_4[0].enabled = false;
+            Dwarf_4[1].enabled = true;
+        }
+
+        if (MyDwarf == 3 && CurrentColor == "rouge") {
+            CurrentColor = "bleu";
+            Dwarf_4[1].enabled = false;
+            Dwarf_4[0].enabled = true;
+        }
+       /* 
         if (CurrentColor == "bleu") CurrentColor = "rouge";
-        else if (CurrentColor == "rouge") CurrentColor = "bleu";
+        else if (CurrentColor == "rouge") CurrentColor = "bleu";*/
     }
 
     private void PerformDash()
     {
+        for (int i = 0; i < animList.Count; i++) {
+            animList[i].SetBool("dashing",true);
+        }
         _dashing = true;
         //_currentSpeed *= dashPower;
         /*Xmove = _orientation.x * dashPower * Time.deltaTime;//* -1;
@@ -228,6 +365,7 @@ public class PlayerControler : MonoBehaviour
         _rb.AddForce(_orientation*dashPower,ForceMode2D.Impulse);
         _currentSpeed = moveSpeed;
         _dashEnabled = false;
+        
     }
     private void RecoverDash()
     {
@@ -241,6 +379,9 @@ public class PlayerControler : MonoBehaviour
             }
             else
             {
+                for (int i = 0; i < animList.Count; i++) {
+                    animList[i].SetBool("dashing",false);
+                }
                 _rb.velocity = Vector2.zero;
                 _currentCooldownDash = CooldownDash;
                 _dashing = false;
