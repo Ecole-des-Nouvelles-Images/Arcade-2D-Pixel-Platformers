@@ -495,6 +495,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
   - {fileID: 21300000, guid: 62e1c5f7d570e0c439668996bb5932cd, type: 3}
   - {fileID: 21300000, guid: 8babb934420c95f4d8ac23a1af414088, type: 3}
+  WinRound: 0
+  Health: 0
+  MaxHealth: 3
 --- !u!114 &-3595636894905419357
 MonoBehaviour:
   m_ObjectHideFlags: 0

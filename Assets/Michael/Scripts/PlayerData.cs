@@ -16,20 +16,6 @@ namespace Michael.Scripts
         public float Health;
         public float MaxHealth = 3 ;
 
-
-        public bool IsAlive
-        {
-            get => IsAlive = true; 
-            set
-            {
-                if (Health <= 0)
-                {
-                    IsAlive = false;
-                }
-            }
-        }
-       
-       
         private void Start()
         {
             Health = MaxHealth;
@@ -38,6 +24,8 @@ namespace Michael.Scripts
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
             { 
                 gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
+              // CharacterVisual[value].enabled = true;
+               
             }
         }
 

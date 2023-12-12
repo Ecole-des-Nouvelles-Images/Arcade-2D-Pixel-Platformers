@@ -24,6 +24,8 @@ public class PlayerSpawner : MonoBehaviour
         {
             GameObject player = Instantiate(playerPrefab) ;
             
+            
+            
             OnPlayerJoined(player.GetComponent<PlayerInput>());
           
             player.transform.position = Spawnpoint[i].position;
@@ -33,13 +35,14 @@ public class PlayerSpawner : MonoBehaviour
                 foreach (Transform transform in player.transform)
                 {
                     Destroy(player.gameObject);
-                    player.GetComponent<PlayerControler>().enabled = false;
+                    player.GetComponent<PlayerControlerV1>().enabled = false;
                 }
 
             }
             else
             {
                GameManager.Instance.PlayerList.Add(player.GetComponent<PlayerData>());
+               GameManager.Instance.PlayerAlive.Add(player);
             }
            
         }
