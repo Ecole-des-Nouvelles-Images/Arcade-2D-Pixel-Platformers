@@ -5,7 +5,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager2 : MonoBehaviour
+namespace Christopher.Proto.scripts
+{
+    public class GameManager : MonoBehaviour
 {
     public static Action<GameObject> AddPlayerList;
     public static Action<GameObject> RemovePlayerList;
@@ -43,7 +45,7 @@ public class GameManager2 : MonoBehaviour
         {
             if (PlayerList[i] == player)
             {
-                player.transform.GetComponent<PlayerControlerV1>().PlayerNumber = i+1;
+                player.transform.GetComponent<PlayerControler>().PlayerNumber = i+1;
                 playersPanel[i].GameObject().SetActive(true);
             }
         }
@@ -54,7 +56,7 @@ public class GameManager2 : MonoBehaviour
         for (int i = 0; i < PlayerList.Count; i++)
         {
             playersPanel[i].GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = 
-                "P" + i + 1 + ": hp_ " + PlayerList[i].transform.GetComponent<PlayerControlerV1>().Health;
+                "P" + i + 1 + ": hp_ " + PlayerList[i].transform.GetComponent<PlayerControler>().Health;
             if (PlayerList[i] == null)
             {
                 playersPanel[i].GameObject().SetActive(false);
@@ -79,11 +81,13 @@ public class GameManager2 : MonoBehaviour
             _gameStart = true;
             for (int i = 0; i < PlayerList.Count; i++)
             {
-                PlayerList[i].transform.GetComponent<PlayerControlerV1>().HandedBall = true;
+                PlayerList[i].transform.GetComponent<PlayerControler>().HandedBall = true;
             }
             _isTimerBegin = true;
             _roundNumber = 1;
         }
     }
     
+}
+
 }

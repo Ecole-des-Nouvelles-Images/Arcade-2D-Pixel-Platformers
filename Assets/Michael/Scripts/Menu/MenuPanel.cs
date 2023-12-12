@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -11,11 +13,23 @@ namespace Michael.Scripts.Menu
         private Menunavigation _menuNavigation;
         [SerializeField] private Button _backButton;
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private List<GameObject> _playerPanelList;
+        public static int PlayerNumber;
+        
 
         private void Awake()
         {
             _menuNavigation = new Menunavigation();
             _menuNavigation.UI.Cancel.performed += OnBack;
+        }
+
+        private void Start()
+        {
+            if (_playerPanelList.Count != 0)
+            {
+                _playerPanelList[PlayerNumber-2].SetActive(true);
+            }
+           
         }
 
         public void SetSelectedButton(GameObject button)
@@ -24,7 +38,11 @@ namespace Michael.Scripts.Menu
         }
         private void OnBack(InputAction.CallbackContext context)
         {
-            _backButton.onClick?.Invoke();
+            if (_backButton != null)
+            {
+                _backButton.onClick?.Invoke();
+            }
+
         }
 
         private void OnEnable()
@@ -35,6 +53,11 @@ namespace Michael.Scripts.Menu
         private void OnDisable()
         {
             _menuNavigation.UI.Disable();
+        }
+
+        public void ModeChoice(int playerNumber)
+        {
+            PlayerNumber = playerNumber;
         }
         
         

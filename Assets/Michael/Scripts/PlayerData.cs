@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Michael.Fred;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -8,56 +10,41 @@ namespace Michael.Scripts
 {
     public class PlayerData : MonoBehaviour
     {
-        [SerializeField] private GameObject playerArmor;
-        [SerializeField] private GameObject playerBall;
-        public GameObject colorTarget; 
-        [SerializeField] private Image _spriteIcon;
-       [SerializeField] private Sprite _ballSprite;
-       [SerializeField] private Sprite _spriteArmor;
-       public bool ArmorIsRed;
-       public bool BallIsRed;
-       public bool ArmorIsSelected; 
-       
+        public int Playerindex;
+        public List<Sprite> CharacterVisual;
+        public int WinRound = 0;
+        public float Health;
+        public float MaxHealth = 3 ;
 
+
+        public bool IsAlive
+        {
+            get => IsAlive = true; 
+            set
+            {
+                if (Health <= 0)
+                {
+                    IsAlive = false;
+                }
+            }
+        }
+       
+       
         private void Start()
         {
-            colorTarget = playerArmor;
+            Health = MaxHealth;
+            WinRound = 0;
             
-            
+            if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
+            { 
+                gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
+            }
         }
 
-        private void Update()
+
+        public void ResetHealth()
         {
-            if (ArmorIsSelected)
-            {
-                _spriteIcon.sprite = _spriteArmor;
-            }
-            else
-            {
-
-                _spriteIcon.sprite = _ballSprite;
-            }
+            Health = MaxHealth;
         }
-
-        public void SwitchColorTarget()
-        {
-            if (colorTarget == playerArmor)
-            {
-                colorTarget = playerBall;
-                ArmorIsSelected = false;
-            }
-            else
-            {
-                colorTarget = playerArmor;
-                ArmorIsSelected = true;
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
     }
 }

@@ -153,8 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingScene: Proto Menu
-  Data: 
-  BackgroundMusic: {fileID: 226680486}
+  CurrentMusic: {fileID: 367436040}
 --- !u!4 &41399098
 Transform:
   m_ObjectHideFlags: 0
@@ -170,12 +169,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &226680486 stripped
+--- !u!82 &367436040 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 490446287229991013, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
-  m_PrefabInstance: {fileID: 1169769721}
+  m_PrefabInstance: {fileID: 1356446582}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1169769721
+--- !u!1001 &1356446582
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -183,6 +182,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 490446287229991013, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490446287229991013, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
+      propertyPath: m_Volume
+      value: 0.606
+      objectReference: {fileID: 0}
+    - target: {fileID: 490446287229991013, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490446287229991013, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 568689027285248401, guid: 7067765b259715b4ba13511e2fa85494, type: 3}
       propertyPath: m_Name
       value: BackgroundMusic
@@ -237,4 +252,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 41399098}
-  - {fileID: 1169769721}
+  - {fileID: 1356446582}
