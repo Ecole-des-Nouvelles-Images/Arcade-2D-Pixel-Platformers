@@ -1378,6 +1378,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  RoundDuration: 120
 --- !u!4 &1150069951
 Transform:
   m_ObjectHideFlags: 0
@@ -1406,7 +1407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CountDownTime: 5
-  CountDownDisplay: {fileID: 1382893615}
+  CountDownText: {fileID: 1382893615}
+  CountDownPanel: {fileID: 1098117046}
 --- !u!1 &1183699805
 GameObject:
   m_ObjectHideFlags: 0

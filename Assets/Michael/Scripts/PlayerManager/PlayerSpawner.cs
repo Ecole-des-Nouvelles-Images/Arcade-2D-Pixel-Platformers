@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Michael.Fred;
+using Michael.Scripts;
 using Michael.Scripts.PlayerManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,7 +39,7 @@ public class PlayerSpawner : MonoBehaviour
             }
             else
             {
-               GameManager.Instance.PlayerList.Add(player);
+               GameManager.Instance.PlayerList.Add(player.GetComponent<PlayerData>());
             }
            
         }
