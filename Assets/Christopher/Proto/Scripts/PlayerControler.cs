@@ -10,11 +10,13 @@ using Random = UnityEngine.Random;
 
 public class PlayerControler : MonoBehaviour
 {
-    public int Health = 3;
-    public string CurrentColor;
-    public bool HandedBall;
-    public int PlayerNumber;
-    public int RoundCount;
+    //bool isalive
+    public int Health = 3;//
+    public string CurrentColor;//
+    public bool HandedBall;//
+    public int PlayerNumber;//
+    public int RoundCount;//
+    
     public List<GameObject> MyBalls = new List<GameObject>();
     public Sprite[] SpritesDwarf = new Sprite[4];
     public Animator[] AnimatedDwarf = new Animator[4];
