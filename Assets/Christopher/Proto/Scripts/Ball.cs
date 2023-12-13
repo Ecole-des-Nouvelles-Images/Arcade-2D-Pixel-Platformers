@@ -42,7 +42,7 @@ namespace Christopher.Proto.Scripts
         }
         public void SwitchBallColor()
         {
-            if (CurrentColor == "bleu") CurrentColor = "rouge";
+            if ( CurrentColor == "bleu") CurrentColor = "rouge";
             else if (CurrentColor == "rouge") CurrentColor = "bleu";
         }
         private void OnCollisionEnter2D(Collision2D other)
@@ -52,12 +52,12 @@ namespace Christopher.Proto.Scripts
             if (other.transform.CompareTag("Player"))
             {
                 transform.GetComponent<Rigidbody2D>().velocity *= ballSpeedSlowingImpactFactor;
-                if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<PlayerRecover>().isRecovering == false)
+                if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<CharacterRecover>().isRecovering == false)
                 {
                     other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
                     transform.GetComponent<Rigidbody2D>().velocity *= -1;
                     other.transform.GetComponent<PlayerControler>().Health -= 1;
-                    other.transform.GetComponent<PlayerRecover>().isRecovering = true;
+                    other.transform.GetComponent<CharacterRecover>().isRecovering = true;
                     //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
                 }
                 if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null)

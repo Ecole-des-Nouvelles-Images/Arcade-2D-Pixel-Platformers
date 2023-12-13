@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class HelperByChris
 {
-    public static void Fliper(float currentValue, float limite, SpriteRenderer currentSpriteRenderer)//not a dolphin
+    public static void SpriteFliperX(float currentValue, float limite, SpriteRenderer currentSpriteRenderer)//not a dolphin
     {
         if (currentValue < limite)
         {

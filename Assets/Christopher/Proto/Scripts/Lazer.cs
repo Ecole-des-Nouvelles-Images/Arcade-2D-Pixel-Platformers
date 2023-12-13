@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Christopher.Proto.Scripts;
 using UnityEngine;
 
-public class DeadlyLazer : MonoBehaviour
+public class Lazer : MonoBehaviour
 {
     [SerializeField] private int moveSpeed = 5;
     [SerializeField] private int minLimitMove = -10;

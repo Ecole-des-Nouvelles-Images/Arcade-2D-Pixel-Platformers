@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6696620167186088839}
   - component: {fileID: 5734716959483788811}
   - component: {fileID: 3124058879618484196}
+  - component: {fileID: 5667837879426498586}
   - component: {fileID: 5231401368354803426}
   - component: {fileID: 4313651930661672335}
   - component: {fileID: 1016665446633140346}
@@ -292,6 +293,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5667837879426498586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978768878104956576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82294848ac8d3547ae1ac6096aea04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5231401368354803426
 Animator:
   serializedVersion: 5
@@ -326,8 +339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dwarf_1:
-  - {fileID: 5231401368354803426}
-  - {fileID: 0}
+  - {fileID: 22100000, guid: 14132da63cd41514fbf139d0d1c98609, type: 2}
+  - {fileID: 22100000, guid: 5c9acc57a2634a649a01be8a330e1ff9, type: 2}
   Dwarf_2: []
   Dwarf_3: []
   Dwarf_4: []
@@ -351,17 +364,20 @@ MonoBehaviour:
   RoundCount: 0
   MyBalls: []
   MyDwarf: 0
+  Projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeColor: {fileID: 1829715767865773766, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeSelect: {fileID: -296077554498403986, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Dash: {fileID: 1436546209546189881, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
-  characterDisplay: {fileID: 0}
+  characterDisplay: {fileID: 4313651930661672335}
+  characterOrientation: {fileID: 5667837879426498586}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
   moveSpeed: 8.5
-  projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
   thriwingPower: 15
+  CooldownBallColorChange: 3
+  CooldownArmorColorChange: 3
   CooldownDash: 0.1
   dashRecoveringTime: 0.15
   dashPower: 18
@@ -382,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6478584446003126705
 Transform:
   m_ObjectHideFlags: 0
