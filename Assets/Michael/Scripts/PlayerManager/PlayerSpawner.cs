@@ -40,7 +40,7 @@ public class PlayerSpawner : MonoBehaviour
             }
             else
             {
-               GameManager.Instance.PlayerList.Add(player.GetComponent<PlayerData>());
+               GameManager.Instance.PlayerList.Add(player.GetComponent<Michael.Scripts.PlayerData>());
                GameManager.Instance.PlayerAlive.Add(player);
             }
             
