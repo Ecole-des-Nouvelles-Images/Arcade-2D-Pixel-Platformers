@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CountDownController : MonoBehaviour
+public class CountDownController : MonoBehaviourSingleton<CountDownController>
 {
     public int CountDownTime;
     public TextMeshProUGUI CountDownText;
@@ -13,15 +13,20 @@ public class CountDownController : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateCountdown",0f,1f);
+       
     }
 
     void UpdateCountdown()
     {
-        CountDownPanel.gameObject.SetActive(true);
-        CountDownText.text = CountDownTime.ToString();
-        CountDownTime--;
-        //sound design
+        
+        
+            PauseControl.IsPaused = true;
+            CountDownPanel.gameObject.SetActive(true);
+            CountDownText.text = CountDownTime.ToString();
+            CountDownTime--;
+            //sound design
+        
+      
 
         if (CountDownTime < 0)
         {
@@ -35,6 +40,7 @@ public class CountDownController : MonoBehaviour
     private void HidePanel()
     {
         CountDownPanel.gameObject.SetActive(false);
+        PauseControl.IsPaused = false;
     }
     
 

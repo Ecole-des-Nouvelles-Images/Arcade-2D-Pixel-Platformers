@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Michael.Fred;
 using Michael.Scripts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -17,8 +18,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] public UnityEvent ChangeMusic;
     public int RoundDuration = 120; // 2 minutes le round
     private float _timer;
+    [SerializeField] private TextMeshProUGUI _timerText;
     public bool RoundIsFinished;
     public int RoundTarget = 2;
+    public PlayerData Winner;
+    public GameObject DeathLazer;
+    
 
     public void QuitApplication()
     {
@@ -33,36 +38,59 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void Start()
     {
-        ChangeMusic.Invoke();
-        CurrentRound = 1;
         StartRound();
+        CurrentRound = 1;
+        ChangeMusic.Invoke();
+        
     }
 
     private void Update()
     {
-        _timer = Time.deltaTime;
-        
-
-        if (!RoundIsFinished && (_timer <= 0 || DetermineRoundWinner() != null))
-        {
-            EndRound();
-            RoundIsFinished = true;
+        if (_timer > 0 && !PauseControl.IsPaused) {
+            _timer -= Time.deltaTime;
         }
+        else if (!PauseControl.IsPaused){
+            _timer = 0;
+        }
+        if (!PauseControl.IsPaused)
+        {
+            _timerText.text = "" + Mathf.Floor(_timer);
+        }
+        
+        if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
+            Debug.Log("round terminé");
+            EndRound();
+        }
+        if (_timer <= 0) {
+          //  DeathLazer.SetActive(true);
+            // +afficher "morte subite" sprite
+        }
+        
     }
-
-
     public void StartRound()
     {
+        
         RoundIsFinished = false;
         foreach (var player in PlayerList)
         {
             player.ResetHealth();
         }
         
-        Debug.Log("nouveau round : " + CurrentRound);
+        PlayerAlive.Clear();
+        foreach (var player in PlayerList)
+        {
+            PlayerAlive.Add(player.gameObject);
+            player.gameObject.SetActive(true);
+        }
         _timer = RoundDuration;
+        // //start compte a rebours
+        CountDownController.Instance.CountDownTime = 5;
+        CountDownController.Instance.InvokeRepeating("UpdateCountdown",0f,1f);
+        //lancer le timer 
+       
+        Debug.Log("nouveau round : " + CurrentRound);
+       
         //
-        //start compte a rebours
         //lancer animation transition fondu
         //replacer les players 
         //mettre a jour l'ui
@@ -71,59 +99,62 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void EndRound()
     {
-        
+
         PlayerData winner = DetermineRoundWinner();
 
-        if (winner!= null && !RoundIsFinished)
+        winner.WinRound++;
+        Debug.Log("le gagnant à gagné " + winner.WinRound + " round");
+        RoundIsFinished = true;
+        
+        if (winner.WinRound < RoundTarget)
         {
-            winner.WinRound++;
-            
-            
-            Debug.Log(winner.WinRound);
+            CurrentRound++;
+            StartRound();
         }
-        if (winner.WinRound >= RoundTarget)
+        else if (winner.WinRound >= RoundTarget)
         {
             EndGame();
             Debug.Log(winner + " à gagné");
         }
-        else
-        {
-            CurrentRound++;
-            StartRound();
-            PlayerAlive.Clear();
-            foreach (var player in PlayerList)
-            {
-                PlayerAlive.Add(player.gameObject);
-                player.gameObject.SetActive(true);
-            }
-        }
+        
+        
+           
+        
+       
+       
 
         
     }
     
     public void EndGame()
     {
-        
+        Debug.Log("partie fini, gagnant ");
         //transition fondu 
         //affichage dun podiuim avec les joueurs
         //affichage menu pause
         
     }
 
-   
-
     PlayerData DetermineRoundWinner()
     {
-        PlayerData lastPlayeralive = null;
+        PlayerData lastAlive = null;
         
         if (PlayerAlive.Count <= 1)// si il ne reste plus q'un joueur
         {
-            lastPlayeralive = PlayerAlive[0].gameObject.GetComponent<PlayerData>();
+            lastAlive = PlayerAlive[0].gameObject.GetComponent<PlayerData>();
         }
 
-        return lastPlayeralive;
+        return lastAlive;
 
     }
+    
+    
+
+   
+
+    
+        
+    
     
     
 

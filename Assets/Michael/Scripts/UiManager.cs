@@ -1,27 +1,46 @@
-using System;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+
 
 public class UiManager : MonoBehaviour
 {
-   public Image[] Hearts;
+   
    public int HeartNumber;
+   private int health;
+   [SerializeField] private int Uiindex;
+   
+   public Image[] Hearts;
    public Sprite FullHeart;
    public Sprite emptyHeart;
 
+   
+
+
    private void Update()
    {
+      ShowPlayerUI();
+      if (health > HeartNumber)
+      {
+         health = HeartNumber;
+      }
+      
       for (int i = 0; i < Hearts.Length; i++)
       {
-         if (i < HeartNumber)
+         if (i < health)
          {
-            Hearts[i].SetEnabled(true);
+            Hearts[i].sprite = FullHeart;
          }
          else
          {
-            Hearts[i].SetEnabled(false);
+            Hearts[i].sprite = emptyHeart;  
          }
       }
    }
+
+   private void ShowPlayerUI()
+   {
+      health = GameManager.Instance.PlayerList[Uiindex-1].Health;
+   }
+   
 }

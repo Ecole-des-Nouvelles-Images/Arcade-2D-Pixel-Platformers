@@ -12,7 +12,6 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject playerPrefab;
     public List<Sprite> CharacterSpriteList;
     public List<Transform> Spawnpoint;
-
     private void Start()
     {
 
@@ -37,13 +36,17 @@ public class PlayerSpawner : MonoBehaviour
                     Destroy(player.gameObject);
                     player.GetComponent<PlayerControlerV1>().enabled = false;
                 }
-
             }
             else
             {
                GameManager.Instance.PlayerList.Add(player.GetComponent<PlayerData>());
                GameManager.Instance.PlayerAlive.Add(player);
             }
+            
+            
+            
+            
+            
            
         }
     }

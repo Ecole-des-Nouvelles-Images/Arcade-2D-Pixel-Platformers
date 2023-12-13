@@ -76,6 +76,7 @@ public class Ball : MonoBehaviour
                     }
                 }
                 Destroy(gameObject);
+                
             }
         }
         if (other.transform.CompareTag("Wall"))

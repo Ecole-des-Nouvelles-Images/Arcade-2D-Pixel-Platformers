@@ -13,8 +13,8 @@ namespace Michael.Scripts
         public int Playerindex;
         public List<Sprite> CharacterVisual;
         public int WinRound = 0;
-        public float Health;
-        public float MaxHealth = 3 ;
+        public int Health;
+        public int MaxHealth = 3 ;
 
         private void Start()
         {

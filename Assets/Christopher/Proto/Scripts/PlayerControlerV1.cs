@@ -115,6 +115,7 @@ public class PlayerControlerV1 : MonoBehaviour
             //GameManager.RemovePlayerList.Invoke(gameObject);
             Destroy(gameObject);
             //gameObject.SetActive(false);
+            
         }
         if(CurrentColor == "bleu")transform.GetComponent<Renderer>().material.color = Color.blue;
         if(CurrentColor == "rouge")transform.GetComponent<Renderer>().material.color = Color.red;
