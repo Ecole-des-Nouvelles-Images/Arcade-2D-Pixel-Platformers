@@ -45,7 +45,7 @@ public class Lazer : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             isTrigger = true;
-            other.transform.GetComponent<PlayerControler>().Health -= 1;
+            other.transform.GetComponent<PlayerData>().Health -= 1;
         }
     }
     private void OnTriggerStay2D(Collider2D other)
@@ -54,7 +54,7 @@ public class Lazer : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             isTrigger = true;
-            other.transform.GetComponent<PlayerControler>().Health -= 1;
+            other.transform.GetComponent<PlayerData>().Health -= 1;
         }
     }
 }

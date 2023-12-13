@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6696620167186088839}
   - component: {fileID: 5734716959483788811}
   - component: {fileID: 3124058879618484196}
+  - component: {fileID: 4758611026257667390}
   - component: {fileID: 5667837879426498586}
   - component: {fileID: 5231401368354803426}
   - component: {fileID: 4313651930661672335}
@@ -293,6 +294,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4758611026257667390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978768878104956576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2732dd27162a9f44cb58cb678a8faaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Playerindex: 0
+  CharacterVisual: []
+  WinRound: 0
+  Health: 0
+  MaxHealth: 3
 --- !u!114 &5667837879426498586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +390,7 @@ MonoBehaviour:
   Dash: {fileID: 1436546209546189881, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   characterDisplay: {fileID: 4313651930661672335}
   characterOrientation: {fileID: 5667837879426498586}
+  playerData: {fileID: 4758611026257667390}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
   moveSpeed: 8.5
