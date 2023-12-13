@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Christopher.Proto.Scripts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Christopher.Proto.scripts
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager2 : MonoBehaviour
 {
     public static Action<GameObject> AddPlayerList;
     public static Action<GameObject> RemovePlayerList;

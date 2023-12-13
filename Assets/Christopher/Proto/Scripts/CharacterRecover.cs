@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRecover : MonoBehaviour
+public class CharacterRecover : MonoBehaviour
 {
     public bool isRecovering;
 
