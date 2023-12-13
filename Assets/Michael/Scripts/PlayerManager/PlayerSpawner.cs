@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Christopher.Proto.Scripts;
 using Michael.Fred;
 using Michael.Scripts;
 using Michael.Scripts.PlayerManager;
