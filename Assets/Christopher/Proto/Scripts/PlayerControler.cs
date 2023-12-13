@@ -134,6 +134,10 @@ namespace Christopher.Proto.Scripts
 
             if (Health <= 0)
             {
+                for (int i = 0; i < MyBalls.Count; i++)
+                {
+                    MyBalls[i].SetActive(false);
+                }
                 //GameManager.RemovePlayerList.Invoke(gameObject);
                 //Destroy(gameObject);
                 IsAlive = false;
