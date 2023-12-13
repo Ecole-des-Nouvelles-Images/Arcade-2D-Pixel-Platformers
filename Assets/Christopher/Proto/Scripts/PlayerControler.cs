@@ -8,20 +8,17 @@ namespace Christopher.Proto.Scripts
 {
     public class PlayerControler : MonoBehaviour
     {
-        public bool IsAlive;//datacom
-        public int Health = 3;//datacom
-        public string CurrentColor;//datacom
-        public bool HandedBall;//datacom
-        public int PlayerNumber;//datacom
-        public int RoundCount;//datacom
-        public List<GameObject> MyBalls = new List<GameObject>();//datacom
-        public int MyDwarf;//datacom
-        public GameObject Projectile;//datacom
+        public bool IsAlive;//datacom...?
+        public string CurrentColor;
+        public bool HandedBall;
+        public List<GameObject> MyBalls = new List<GameObject>();
+        public GameObject Projectile;
 
         //[SerializeField] private List<Animator> animList;
         [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
         [SerializeField] private CharacterDisplay characterDisplay;
-        [SerializeField] private CharacterOrientation characterOrientation;
+        //[SerializeField] private CharacterOrientation characterOrientation;
+        [SerializeField] private PlayerData playerData;
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
@@ -57,12 +54,12 @@ namespace Christopher.Proto.Scripts
             int randomColorIndex = Random.Range(0, _colorList.Length);
             CurrentColor = _colorList[randomColorIndex];
             _rb = transform.GetComponent<Rigidbody2D>();
-            _currentCooldownArmorColorChange = _currentCooldownArmorColorChange;
+            _currentCooldownArmorColorChange = CooldownArmorColorChange;
             _currentCooldownBallColorChange = CooldownBallColorChange;
         }
         void Start()
         {
-            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(MyDwarf, CurrentColor);
+            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
             _currentDashRecoveringTime = dashRecoveringTime;
             _timeDash = dashDistanceTime;
             _currentThrowingPower = thriwingPower;
@@ -132,7 +129,7 @@ namespace Christopher.Proto.Scripts
                 if (_currentCooldownDash <= 0 && !_dashing) _dashEnabled = true;
             }
 
-            if (Health <= 0)
+            if (playerData.Health <= 0)
             {
                 for (int i = 0; i < MyBalls.Count; i++)
                 {
@@ -218,7 +215,7 @@ namespace Christopher.Proto.Scripts
         {
             if (CurrentColor == "bleu") CurrentColor = "rouge";
             else if (CurrentColor == "rouge") CurrentColor = "bleu";
-            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(MyDwarf, CurrentColor);
+            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
             _currentCooldownArmorColorChange = CooldownArmorColorChange;
         }
 

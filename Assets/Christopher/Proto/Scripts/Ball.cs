@@ -56,7 +56,7 @@ namespace Christopher.Proto.Scripts
                 {
                     other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
                     transform.GetComponent<Rigidbody2D>().velocity *= -1;
-                    other.transform.GetComponent<PlayerControler>().Health -= 1;
+                    other.transform.GetComponent<PlayerData>().Health -= 1;
                     other.transform.GetComponent<CharacterRecover>().isRecovering = true;
                     //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
                 }

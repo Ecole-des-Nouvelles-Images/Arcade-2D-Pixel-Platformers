@@ -6384,8 +6384,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390507279}
-  - component: {fileID: 1390507278}
   - component: {fileID: 1390507277}
+  - component: {fileID: 1390507281}
   - component: {fileID: 1390507280}
   m_Layer: 0
   m_Name: GameManager2
@@ -6446,26 +6446,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1390507278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390507276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a305c8ec0c53e840a612e07e2d76ac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerList: []
-  GameOver: 1
-  playersPanel:
-  - {fileID: 1181319306}
-  - {fileID: 806338547}
-  - {fileID: 912983568}
-  - {fileID: 1972287294}
-  timerBegin: 3
 --- !u!4 &1390507279
 Transform:
   m_ObjectHideFlags: 0
@@ -6496,6 +6476,29 @@ MonoBehaviour:
   timerDisplay: {fileID: 266866562}
   timerMortSubite: 120
   lazerMortSubite: {fileID: 790652733}
+--- !u!114 &1390507281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390507276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df07f88fc95303649a0d1119cbf558e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerList: []
+  PlayerAlive: []
+  ChangeMusic:
+    m_PersistentCalls:
+      m_Calls: []
+  RoundDuration: 120
+  _timerText: {fileID: 0}
+  RoundIsFinished: 0
+  RoundTarget: 2
+  Winner: {fileID: 0}
+  DeathLazer: {fileID: 0}
 --- !u!1 &1712305528
 GameObject:
   m_ObjectHideFlags: 0
