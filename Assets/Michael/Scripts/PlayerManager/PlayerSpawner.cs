@@ -35,7 +35,7 @@ public class PlayerSpawner : MonoBehaviour
                 foreach (Transform transform in player.transform)
                 {
                     Destroy(player.gameObject);
-                    player.GetComponent<PlayerControlerV1>().enabled = false;
+                    player.GetComponent<PlayerControler>().enabled = false;
                 }
             }
             else
