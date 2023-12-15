@@ -9,7 +9,7 @@ public class Lazer : MonoBehaviour
     [SerializeField] private int moveSpeed = 5;
     [SerializeField] private int minLimitMove = -10;
     [SerializeField] private int maxLimitMove = 10;
-    [SerializeField] private bool isTrigger;
+    private bool _isTrigger;
     private bool _goForward = true;
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class Lazer : MonoBehaviour
         
         if (other.transform.CompareTag("Player"))
         {
-            isTrigger = true;
+            _isTrigger = true;
             other.transform.GetComponent<PlayerData>().Health -= 1;
         }
     }
@@ -53,7 +53,7 @@ public class Lazer : MonoBehaviour
         
         if (other.transform.CompareTag("Player"))
         {
-            isTrigger = true;
+            _isTrigger = true;
             other.transform.GetComponent<PlayerData>().Health -= 1;
         }
     }
