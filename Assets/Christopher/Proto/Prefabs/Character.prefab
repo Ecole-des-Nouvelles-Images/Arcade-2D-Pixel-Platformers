@@ -40,6 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6478584446003126705}
+  - {fileID: 662759563190037083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &391800970867382576
@@ -309,7 +310,7 @@ MonoBehaviour:
   Playerindex: 0
   CharacterVisual: []
   WinRound: 0
-  Health: 0
+  Health: 3
   MaxHealth: 3
 --- !u!114 &5667837879426498586
 MonoBehaviour:
@@ -375,13 +376,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAlive: 0
-  Health: 3
   CurrentColor: 
   HandedBall: 1
-  PlayerNumber: 0
-  RoundCount: 0
   MyBalls: []
-  MyDwarf: 0
   Projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
@@ -389,7 +386,6 @@ MonoBehaviour:
   ChangeSelect: {fileID: -296077554498403986, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Dash: {fileID: 1436546209546189881, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   characterDisplay: {fileID: 4313651930661672335}
-  characterOrientation: {fileID: 5667837879426498586}
   playerData: {fileID: 4758611026257667390}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
@@ -485,3 +481,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9096006886139961326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662759563190037083}
+  m_Layer: 0
+  m_Name: foot
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662759563190037083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9096006886139961326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3738721587810699175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,6 +7,7 @@ using Michael.Scripts;
 using Michael.Scripts.PlayerManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PlayerData = Michael.Scripts.PlayerData;
 
 public class PlayerSpawner : MonoBehaviour
 {
