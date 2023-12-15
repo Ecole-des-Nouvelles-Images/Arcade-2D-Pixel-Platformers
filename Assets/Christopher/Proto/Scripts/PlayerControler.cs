@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Michael.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -8,11 +10,11 @@ namespace Christopher.Proto.Scripts
 {
     public class PlayerControler : MonoBehaviour
     {
-        public bool IsAlive;//datacom...?
         public string CurrentColor;
         public bool HandedBall;
         public List<GameObject> MyBalls = new List<GameObject>();
         public GameObject Projectile;
+        public float CurrentCooldownColorChange;
 
         //[SerializeField] private List<Animator> animList;
         [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
@@ -23,8 +25,8 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float thriwingPower;
-        [SerializeField] private float CooldownBallColorChange = 3f;
-        [SerializeField] private float CooldownArmorColorChange = 3f;
+        [SerializeField] private float CooldownColorChange = 3f;
+       // [SerializeField] private float CooldownArmorColorChange = 3f;
         [SerializeField] private float CooldownDash = 5f;
         [SerializeField] private float dashRecoveringTime = 1f;
         [SerializeField] private float dashPower = 2f;
@@ -45,8 +47,8 @@ namespace Christopher.Proto.Scripts
         private float Xmove;
         private float Zmove;
         private float _timeDash;
-        private float _currentCooldownArmorColorChange;
-        private float _currentCooldownBallColorChange;
+        
+        //private float _currentCooldownBallColorChange;
     
         private void Awake()
         {
@@ -54,8 +56,8 @@ namespace Christopher.Proto.Scripts
             int randomColorIndex = Random.Range(0, _colorList.Length);
             CurrentColor = _colorList[randomColorIndex];
             _rb = transform.GetComponent<Rigidbody2D>();
-            _currentCooldownArmorColorChange = CooldownArmorColorChange;
-            _currentCooldownBallColorChange = CooldownBallColorChange;
+            //_currentCooldownColorChange = CooldownColorChange;
+            //_currentCooldownBallColorChange = CooldownBallColorChange;
         }
         void Start()
         {
@@ -68,6 +70,7 @@ namespace Christopher.Proto.Scripts
         }
         public void OnMove(InputAction.CallbackContext Move)
         {
+            
             _mouvementValue = Move.action.ReadValue<Vector2>();
         }
         public void OnThrow(InputAction.CallbackContext Throw)
@@ -84,19 +87,19 @@ namespace Christopher.Proto.Scripts
         }
         public void OnChangeColor(InputAction.CallbackContext ChangeColor)
         { 
-            if (ChangeColor.started && _armorSelected && _currentCooldownArmorColorChange <= 0)
+            if (ChangeColor.started && _armorSelected && CurrentCooldownColorChange <= 0)
             {
                 SwitchColor();
-                _currentCooldownArmorColorChange = CooldownArmorColorChange;
+                CurrentCooldownColorChange = CooldownColorChange;
             }
-            if (ChangeColor.started && !_armorSelected && MyBalls.Count > 0 && _currentCooldownBallColorChange <= 0)
+            if (ChangeColor.started && !_armorSelected && MyBalls.Count > 0 && CurrentCooldownColorChange <= 0)
             {
                 for (int i = 0; i < MyBalls.Count; i++)
                 {
                     MyBalls[i].transform.GetComponent<Ball>().SwitchBallColor();
                 }
 
-                _currentCooldownBallColorChange = CooldownBallColorChange;
+                CurrentCooldownColorChange = CooldownColorChange;
             }
         }
         public void OnDash(InputAction.CallbackContext Dash)
@@ -114,14 +117,12 @@ namespace Christopher.Proto.Scripts
 
         private void Update()
         {
-            HelperByChris.SpriteFliperX(_mouvementValue.x,-0.05f,spriteRenderer);
-            if (_currentCooldownArmorColorChange > 0) _currentCooldownArmorColorChange -= Time.deltaTime;
-            if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= Time.deltaTime;
+            HelperByChris.SpriteFliperX(_mouvementValue.x,0,spriteRenderer);
+            if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= Time.deltaTime;
+            //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= Time.deltaTime;
             if (_mouvementValue == Vector2.zero)
             {
-                animator.SetBool("moving up",false);
-                animator.SetBool("moving down",false);
-                animator.SetBool("moving horizontal",false);
+                animator.SetBool("moving",false);
             }
             if (_currentCooldownDash > 0 && !_dashEnabled)
             {
@@ -131,14 +132,9 @@ namespace Christopher.Proto.Scripts
 
             if (playerData.Health <= 0)
             {
-                for (int i = 0; i < MyBalls.Count; i++)
-                {
-                    MyBalls[i].SetActive(false);
-                }
-                //GameManager.RemovePlayerList.Invoke(gameObject);
-                //Destroy(gameObject);
-                IsAlive = false;
+                ResetBall();
                 gameObject.SetActive(false);
+                GameManager.Instance.PlayerAlive.Remove(gameObject);
             }
             //characterOrientation.SetOrientation(_mouvementValue,_visé,_orientation,animator);
             LookAt();
@@ -161,17 +157,18 @@ namespace Christopher.Proto.Scripts
                 case <-0.1f :
                     _visé.position = new Vector3(transform.position.x - 1, _visé.position.y, 0);
                     _orientation.x = -1;
-                    animator.SetBool("moving horizontal",true);
+                    animator.SetBool("moving",true);
+                    
                     break;
                 case >0.1f:
                     _visé.position = new Vector3(transform.position.x + 1, _visé.position.y, 0);
                     _orientation.x = 1;
-                    animator.SetBool("moving horizontal",true);
+                    animator.SetBool("moving",true);
                     break;
                 default:
                     _visé.position = new Vector3(transform.position.x, _visé.position.y, 0);
                     _orientation.x = 0;
-                    animator.SetBool("moving horizontal",false);
+                   
                     break;
             }
             switch (_mouvementValue.y )
@@ -179,29 +176,29 @@ namespace Christopher.Proto.Scripts
                 case <-0.1f :
                     _visé.position = new Vector3(_visé.position.x, transform.position.y-1, 0);
                     _orientation.y = -1;
-                    animator.SetBool("moving down",true);
+                    animator.SetBool("moving",true);
                     break;
                 case >0.1f:
                     _visé.position = new Vector3(_visé.position.x, transform.position.y+1, 0);
                     _orientation.y = 1;
-                    animator.SetBool("moving up",true);
+                    animator.SetBool("moving",true);
                     break;
                 default:
                     _visé.position = new Vector3(_visé.position.x, transform.position.y, 0);
                     _orientation.y = 0;
-                    animator.SetBool("moving down",false);
-                    animator.SetBool("moving up",false);
+                    
+                   
                     break;
             }
 
-            if (_mouvementValue.x == 0 && _mouvementValue.y == 0)
+           if (_mouvementValue.x == 0 && _mouvementValue.y == 0)
             {
                 _orientation.x = 1;
             }
         }
         private void PerformThrow()
         {
-            animator.SetBool("throwing",true);
+            animator.SetTrigger("throwing");
             HandedBall = false;
             var o = Instantiate(Projectile);
             MyBalls.Add(o);
@@ -209,14 +206,14 @@ namespace Christopher.Proto.Scripts
             o.transform.GetComponent<Rigidbody2D>().AddForce( _orientation * _currentThrowingPower, ForceMode2D.Impulse);
             o.transform.GetComponent<Ball>().MyOwner = gameObject;
             o.transform.GetComponent<Ball>().CurrentColor = CurrentColor;
-            animator.SetBool("throwing",false);
+           
         }
         private void SwitchColor()
         {
             if (CurrentColor == "bleu") CurrentColor = "rouge";
             else if (CurrentColor == "rouge") CurrentColor = "bleu";
             animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
-            _currentCooldownArmorColorChange = CooldownArmorColorChange;
+            CurrentCooldownColorChange = CooldownColorChange;
         }
 
         private void PerformDash()
@@ -248,5 +245,18 @@ namespace Christopher.Proto.Scripts
                 }
             }
         }
+
+        public void ResetBall()
+        {
+            for (int i = 0; i < MyBalls.Count; i++)
+            {
+                Destroy(MyBalls[i]);
+                MyBalls.Remove(MyBalls[0]);
+            }
+        }
+        
+        
+        
+        
     }
 }

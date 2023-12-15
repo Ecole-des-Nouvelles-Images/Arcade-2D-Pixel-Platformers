@@ -37,6 +37,15 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""StartPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1fc4146-8246-464d-971f-155e4026d306"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ChangeSelect"",
                     ""type"": ""Button"",
                     ""id"": ""a9bbcbf2-975a-496a-bdb5-4c668ed1d08f"",
@@ -139,6 +148,17 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59a0c39f-3ccb-4481-996a-4d89fec215df"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -188,6 +208,7 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
         // CharacterControler
         m_CharacterControler = asset.FindActionMap("CharacterControler", throwIfNotFound: true);
         m_CharacterControler_Move = m_CharacterControler.FindAction("Move", throwIfNotFound: true);
+        m_CharacterControler_StartPause = m_CharacterControler.FindAction("StartPause", throwIfNotFound: true);
         m_CharacterControler_ChangeSelect = m_CharacterControler.FindAction("ChangeSelect", throwIfNotFound: true);
         m_CharacterControler_ChangeColor = m_CharacterControler.FindAction("ChangeColor", throwIfNotFound: true);
         m_CharacterControler_Throw = m_CharacterControler.FindAction("Throw", throwIfNotFound: true);
@@ -257,6 +278,7 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterControler;
     private List<ICharacterControlerActions> m_CharacterControlerActionsCallbackInterfaces = new List<ICharacterControlerActions>();
     private readonly InputAction m_CharacterControler_Move;
+    private readonly InputAction m_CharacterControler_StartPause;
     private readonly InputAction m_CharacterControler_ChangeSelect;
     private readonly InputAction m_CharacterControler_ChangeColor;
     private readonly InputAction m_CharacterControler_Throw;
@@ -266,6 +288,7 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
         private @Mapping m_Wrapper;
         public CharacterControlerActions(@Mapping wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControler_Move;
+        public InputAction @StartPause => m_Wrapper.m_CharacterControler_StartPause;
         public InputAction @ChangeSelect => m_Wrapper.m_CharacterControler_ChangeSelect;
         public InputAction @ChangeColor => m_Wrapper.m_CharacterControler_ChangeColor;
         public InputAction @Throw => m_Wrapper.m_CharacterControler_Throw;
@@ -282,6 +305,9 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @StartPause.started += instance.OnStartPause;
+            @StartPause.performed += instance.OnStartPause;
+            @StartPause.canceled += instance.OnStartPause;
             @ChangeSelect.started += instance.OnChangeSelect;
             @ChangeSelect.performed += instance.OnChangeSelect;
             @ChangeSelect.canceled += instance.OnChangeSelect;
@@ -301,6 +327,9 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @StartPause.started -= instance.OnStartPause;
+            @StartPause.performed -= instance.OnStartPause;
+            @StartPause.canceled -= instance.OnStartPause;
             @ChangeSelect.started -= instance.OnChangeSelect;
             @ChangeSelect.performed -= instance.OnChangeSelect;
             @ChangeSelect.canceled -= instance.OnChangeSelect;
@@ -388,6 +417,7 @@ public partial class @Mapping: IInputActionCollection2, IDisposable
     public interface ICharacterControlerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnStartPause(InputAction.CallbackContext context);
         void OnChangeSelect(InputAction.CallbackContext context);
         void OnChangeColor(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);

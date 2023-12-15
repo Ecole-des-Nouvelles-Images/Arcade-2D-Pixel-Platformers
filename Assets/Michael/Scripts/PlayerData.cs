@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Michael.Fred;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -15,18 +16,22 @@ namespace Michael.Scripts
         public int WinRound = 0;
         public int Health;
         public int MaxHealth = 3 ;
+        public TextMeshProUGUI PlayerNumberText;
 
         private void Start()
         {
             Health = MaxHealth;
             WinRound = 0;
+            PlayerNumberText.text = "J" + Playerindex;
             
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
             { 
                 gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
               // CharacterVisual[value].enabled = true;
-               
             }
+            
+            
+            
         }
 
 
@@ -34,5 +39,10 @@ namespace Michael.Scripts
         {
             Health = MaxHealth;
         }
+        
+        
+        
+        
+        
     }
 }

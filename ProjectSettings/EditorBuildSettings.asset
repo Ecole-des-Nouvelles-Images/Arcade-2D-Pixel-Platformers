@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Michael/Scenes/Scene Shared.unity
-    guid: 387a2cf70041ff14b8ca1d84745ce522
+    path: "Assets/int\xE9gration/Scenes/Shared.unity"
+    guid: e1ed54635591abf40a8c460816c48851
   - enabled: 1
-    path: Assets/Michael/Scenes/Proto Menu.unity
-    guid: cf1f704bbd6e3384e8bef86338a8b854
+    path: "Assets/int\xE9gration/Scenes/Menu.unity"
+    guid: b16ec3cc238490d459cfaec06d7d9c83
   - enabled: 1
-    path: Assets/Michael/Scenes/CharacterSelection.unity
-    guid: 6ddb050e8c5d5f5498df53f89d4a6ece
+    path: "Assets/int\xE9gration/Scenes/Character Selection.unity"
+    guid: 73438469e9474844bae04d4da4aa979b
   - enabled: 1
-    path: Assets/Michael/Scenes/Prototype game.unity
-    guid: 6255138dc4c6e134a9d5b01c20786778
+    path: "Assets/int\xE9gration/Scenes/Game.unity"
+    guid: 3f5713e82fa422c45b5ba1e9140ca80e
   m_configObjects: {}

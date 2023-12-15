@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "StartPause",
+                    "type": "Button",
+                    "id": "d1fc4146-8246-464d-971f-155e4026d306",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ChangeSelect",
                     "type": "Button",
                     "id": "a9bbcbf2-975a-496a-bdb5-4c668ed1d08f",
@@ -115,6 +124,17 @@
                     "processors": "",
                     "groups": "BasicControl",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59a0c39f-3ccb-4481-996a-4d89fec215df",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

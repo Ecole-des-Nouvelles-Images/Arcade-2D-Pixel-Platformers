@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -25,10 +26,10 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
-        [SerializeField] private PlayerInputManager _playerInputManager;
         [SerializeField] private int _maxPlayers;
         [SerializeField] private GameObject _choiceModePanel;
         [SerializeField] private GameObject _playerPanel;
+        [SerializeField] private TextMeshProUGUI _playerNumber;
 
         [Header("character selection")] [SerializeField]
         private List<Sprite> _characterSpriteslist;
@@ -43,6 +44,8 @@ namespace Michael.Scripts.PlayerManager
         {
             PlayerIsReady = new bool[4] { false, false, false, false };
             PlayerIsJoined = new bool[4] { false, false, false, false };
+
+            _playerNumber.text = "P" + PlayerIndex;
         }
         
         public void PlayerJoined()
@@ -82,8 +85,8 @@ namespace Michael.Scripts.PlayerManager
             }
             if (allPlayersReady == true && readyCount > _maxPlayers)
             {
-                SceneManager.LoadScene("Prototype game", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("CharacterSelection");
+                SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("Character Selection");
                 Debug.Log("2 players ready minimum");
                
                 
@@ -121,8 +124,8 @@ namespace Michael.Scripts.PlayerManager
             }
             else if (PlayerIsJoined.All(element => !element))
             {
-               SceneManager.LoadScene("Proto Menu", LoadSceneMode.Additive);
-               SceneManager.UnloadSceneAsync("CharacterSelection");
+               SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+               SceneManager.UnloadSceneAsync("Character Selection");
                
                  
             }
@@ -139,8 +142,9 @@ namespace Michael.Scripts.PlayerManager
             GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_joinButton);
             PlayerIsJoined[PlayerIndex - 1] = false;
             RemoveChoice(PlayerIndex);
-
+            
             Debug.Log("deconnect");
+         //   _playerPanel.SetActive(false);
         }
 
         public void NextCharacter()
@@ -189,6 +193,8 @@ namespace Michael.Scripts.PlayerManager
         {
             
         }
+
+       
         
         
         

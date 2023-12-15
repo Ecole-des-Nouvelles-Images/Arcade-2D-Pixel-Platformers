@@ -1,3 +1,4 @@
+using Michael.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -58,6 +59,7 @@ namespace Christopher.Proto.Scripts
                     transform.GetComponent<Rigidbody2D>().velocity *= -1;
                     other.transform.GetComponent<PlayerData>().Health -= 1;
                     other.transform.GetComponent<CharacterRecover>().isRecovering = true;
+                    
                     //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
                 }
                 if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null)

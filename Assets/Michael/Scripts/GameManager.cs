@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Christopher.Proto.Scripts;
 using Michael.Fred;
 using Michael.Scripts;
 using TMPro;
@@ -48,23 +49,27 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         if (_timer > 0 && !PauseControl.IsPaused) {
             _timer -= Time.deltaTime;
+            UpdateTimerText();
         }
         else if (!PauseControl.IsPaused){
             _timer = 0;
+            _timerText.text = "00:00";
         }
-        if (!PauseControl.IsPaused)
-        {
-            _timerText.text = "" + Mathf.Floor(_timer);
-        }
+      
         
         if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
             Debug.Log("round terminé");
             EndRound();
         }
         if (_timer <= 0) {
-          //  DeathLazer.SetActive(true);
-            // +afficher "morte subite" sprite
+          DeathLazer.SetActive(true); 
+          //transition tete de mort 
         }
+        else
+        {
+            DeathLazer.SetActive(false);
+        }
+        
         
     }
     public void StartRound()
@@ -74,6 +79,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         foreach (var player in PlayerList)
         {
             player.ResetHealth();
+            player.GetComponent<PlayerControler>().ResetBall();
+            player.GetComponent<PlayerControler>().HandedBall = true;
+          
         }
         
         PlayerAlive.Clear();
@@ -148,8 +156,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     }
     
-    
-
+    void UpdateTimerText()
+    {
+        int minutes = Mathf.FloorToInt(_timer / 60);
+        int seconds = Mathf.FloorToInt(_timer % 60);
+        
+        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+}
    
 
     
@@ -159,7 +173,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
 
 
-}
+
 
 
 

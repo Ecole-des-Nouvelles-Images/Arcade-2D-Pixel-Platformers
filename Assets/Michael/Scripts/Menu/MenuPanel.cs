@@ -24,7 +24,7 @@ namespace Michael.Scripts.Menu
         }
 
         private void Start()
-        {
+        { 
             if (_playerPanelList.Count != 0)
             {
                 _playerPanelList[PlayerNumber-2].SetActive(true);

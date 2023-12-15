@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Christopher.Proto.Scripts;
+using Michael.Scripts;
 using UnityEngine;
 
 public class Lazer : MonoBehaviour
@@ -45,10 +46,10 @@ public class Lazer : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             isTrigger = true;
-            other.transform.GetComponent<PlayerData>().Health -= 1;
+            other.transform.GetComponent<PlayerData>().Health = 0;
         }
     }
-    private void OnTriggerStay2D(Collider2D other)
+   /* private void OnTriggerStay2D(Collider2D other)
     {
         
         if (other.transform.CompareTag("Player"))
@@ -56,5 +57,5 @@ public class Lazer : MonoBehaviour
             isTrigger = true;
             other.transform.GetComponent<PlayerData>().Health -= 1;
         }
-    }
+    }*/
 }
