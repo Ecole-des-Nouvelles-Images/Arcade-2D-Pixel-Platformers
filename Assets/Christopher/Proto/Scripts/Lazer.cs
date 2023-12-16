@@ -39,10 +39,8 @@ public class Lazer : MonoBehaviour
             _goForward = true;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.transform.CompareTag("Player"))
         {
             isTrigger = true;
