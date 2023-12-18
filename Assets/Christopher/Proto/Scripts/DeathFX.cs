@@ -11,7 +11,7 @@ public class DeathFX : MonoBehaviour
         _deathFX = transform.GetComponent<SpriteRenderer>().material;
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
        // _deathFX.shader.= transform.GetComponent<SpriteRenderer>().sprite;

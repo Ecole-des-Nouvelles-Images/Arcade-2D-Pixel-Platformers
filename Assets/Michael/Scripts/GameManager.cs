@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public static int CurrentRound;
     public List<PlayerData> PlayerList;
     public List<GameObject> PlayerAlive;
-    [SerializeField] public UnityEvent ChangeMusic;
     public int RoundDuration = 120; // 2 minutes le round
     private float _timer;
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -24,6 +23,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public int RoundTarget = 2;
     public PlayerData Winner;
     public GameObject DeathLazer;
+    public AudioClip MusicToload;
+    
     
 
     public void QuitApplication()
@@ -41,17 +42,25 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         StartRound();
         CurrentRound = 1;
-      // ChangeMusic.Invoke();
         
+       //ChangeMusic(MusicToload);
+      DataManager.Instance.StopMusic();
+
+    }
+    
+    public void ChangeMusic(AudioClip musicToLoad) 
+    { 
+        DataManager.Instance.CurrentMusic.clip = musicToLoad;
+        DataManager.Instance.CurrentMusic.Play();
     }
 
     private void Update()
     {
-        if (_timer > 0 && !PauseControl.IsPaused) {
+        if (_timer > 0 && !PauseControl.IsPaused && CountDownController.CanPlay) {
             _timer -= Time.deltaTime;
             UpdateTimerText();
         }
-        else if (!PauseControl.IsPaused){
+        else if (!PauseControl.IsPaused && CountDownController.CanPlay ){
             _timer = 0;
             _timerText.text = "00:00";
         }
@@ -81,6 +90,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             player.ResetHealth();
             player.GetComponent<PlayerControler>().ResetBall();
             player.GetComponent<PlayerControler>().HandedBall = true;
+            
+            //respawn des joueurs 
+            if (CurrentRound > 1)
+            {
+                player.transform.position = player.GetComponent<PlayerData>().InitialPosition;
+            }
+           
+            
           
         }
         
@@ -90,6 +107,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             PlayerAlive.Add(player.gameObject);
             player.gameObject.SetActive(true);
         }
+        
+      
+
+      
+        
         _timer = RoundDuration;
         // //start compte a rebours
         CountDownController.Instance.CountDownTime = 5;
@@ -104,6 +126,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         //mettre a jour l'ui
     }
 
+    
 
     public void EndRound()
     {

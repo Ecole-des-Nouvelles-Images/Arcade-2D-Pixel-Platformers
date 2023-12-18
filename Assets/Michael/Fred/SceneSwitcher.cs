@@ -14,8 +14,19 @@ public class SceneSwitcher : MonoBehaviour
     public void Switch() {
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(sceneToUnload);
+        
     }
-
+    
+    
+    public void SwitchMenu(string sceneName)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(sceneName);
+    }
+    
+    
+    
+    
     private void Start()
     {
         inputsystem.GetComponent<InputSystemUIInputModule>().enabled = true;

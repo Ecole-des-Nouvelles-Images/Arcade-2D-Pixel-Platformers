@@ -66,14 +66,15 @@ public class PauseControl : MonoBehaviour
             OnPausePressed.Invoke();
             Time.timeScale = 0;
             IsPaused = true;
-            DataManager.Instance.CurrentMusic.Pause();
+          //  DataManager.Instance.CurrentMusic.Pause();
+            
         }
         else if (Time.timeScale == 0)
         {
             OnPausePressed.Invoke();
             Time.timeScale = 1;
             IsPaused = false;
-            DataManager.Instance.CurrentMusic.UnPause();
+          //  DataManager.Instance.CurrentMusic.UnPause();
         }
         
     }

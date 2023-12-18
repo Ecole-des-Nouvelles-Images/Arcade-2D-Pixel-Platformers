@@ -154,6 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingScene: Menu
   CurrentMusic: {fileID: 490446288024306451}
+  AudioMixer: {fileID: 24100000, guid: 5d6768be09548154c9b07efb5c606bcd, type: 2}
+  SfxVolume: 0.5
+  MusicVolume: 0.5
 --- !u!4 &41399098
 Transform:
   m_ObjectHideFlags: 0

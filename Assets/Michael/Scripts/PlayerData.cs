@@ -17,6 +17,7 @@ namespace Michael.Scripts
         public int Health;
         public int MaxHealth = 3 ;
         public TextMeshProUGUI PlayerNumberText;
+        public Vector3 InitialPosition;
 
         private void Start()
         {
@@ -29,9 +30,11 @@ namespace Michael.Scripts
                 gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
               // CharacterVisual[value].enabled = true;
             }
-            
-            
-            
+
+            InitialPosition = transform.position;
+
+
+
         }
 
 

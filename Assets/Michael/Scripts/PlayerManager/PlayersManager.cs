@@ -30,6 +30,7 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _readyText;
         [SerializeField] private GameObject _choiceModePanel;
         [SerializeField] private GameObject _playerPanel;
+        [SerializeField] private TextMeshProUGUI _playerName;
         [SerializeField] private TextMeshProUGUI _playerNumber;
 
         [Header("character selection")] [SerializeField]
@@ -49,7 +50,12 @@ namespace Michael.Scripts.PlayerManager
 
             _playerNumber.text = "P" + PlayerIndex;
         }
-        
+
+        private void Update()
+        {
+           // ChangeCharacterBio();
+        }
+
         public void PlayerJoined()
         {
             PlayerIndex = GetComponent<PlayerInput>().playerIndex +1;
@@ -202,6 +208,8 @@ namespace Michael.Scripts.PlayerManager
             {
                 DataManager.Instance.PlayerDatasDict.Add(playerIndex, skinIndex);
             }
+            
+            
         }
         public void RemoveChoice(int playerIndex)
         {
@@ -211,6 +219,26 @@ namespace Michael.Scripts.PlayerManager
     
         public void ChangeCharacterBio()
         {
+             if(_characterIndex == 0)
+             {
+                 _playerName.text = "maximadok"; 
+             }
+             else if (_characterIndex == 1)
+             {
+                 _playerName.text = "mathisruk"; 
+             }
+             else if (_characterIndex == 2)
+             {
+                 _playerName.text = "Christorar"; 
+             }
+             else if (_characterIndex == 3)
+             {
+                 _playerName.text = "Mikaralik"; 
+             }
+               
+                 
+                 
+                
             
         }
 

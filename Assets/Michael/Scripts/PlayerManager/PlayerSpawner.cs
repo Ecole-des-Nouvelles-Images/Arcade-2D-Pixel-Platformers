@@ -7,6 +7,7 @@ using Michael.Scripts;
 using Michael.Scripts.PlayerManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using PlayerData = Michael.Scripts.PlayerData;
 
 public class PlayerSpawner : MonoBehaviour
@@ -24,7 +25,7 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log(PlayersManager.PlayerIsReady[3]);
         for (int i = 0; i < 4; i++) 
         {
-            GameObject player = Instantiate(playerPrefab) ;
+            GameObject player = Instantiate(playerPrefab);
             OnPlayerJoined(player.GetComponent<PlayerInput>());
             player.transform.position = Spawnpoint[i].position;
             

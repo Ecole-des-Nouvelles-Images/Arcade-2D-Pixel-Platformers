@@ -10,6 +10,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
     public int CountDownTime;
     public TextMeshProUGUI CountDownText;
     public GameObject CountDownPanel;
+    public static bool CanPlay; 
 
     void Start()
     {
@@ -18,9 +19,9 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
 
     void UpdateCountdown()
     {
-        
-        
-            PauseControl.IsPaused = true;
+
+
+            CanPlay = false;
             CountDownPanel.gameObject.SetActive(true);
             CountDownText.text = CountDownTime.ToString();
             CountDownTime--;
@@ -40,7 +41,8 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
     private void HidePanel()
     {
         CountDownPanel.gameObject.SetActive(false);
-        PauseControl.IsPaused = false;
+        CanPlay = true;
+
     }
     
 
