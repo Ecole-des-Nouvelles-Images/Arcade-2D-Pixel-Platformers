@@ -1607,16 +1607,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 2
+  _maxPlayers: 2
   PlayerPanel: {fileID: 2050184}
   _selectionPanel: {fileID: 262505530}
   _joinPanel: {fileID: 760220468}
   _joinButton: {fileID: 1740739551}
   _readyButton: {fileID: 1607457403}
   _readyText: {fileID: 1989770482}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 2
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -1754,16 +1754,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 4
+  _maxPlayers: 2
   PlayerPanel: {fileID: 765049987}
   _selectionPanel: {fileID: 1712026888}
   _joinPanel: {fileID: 1605361365}
   _joinButton: {fileID: 1482248663}
   _readyButton: {fileID: 643657619}
   _readyText: {fileID: 202581696}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 2
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -3802,16 +3802,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
+  _maxPlayers: 2
   PlayerPanel: {fileID: 808368038}
   _selectionPanel: {fileID: 1472882470}
   _joinPanel: {fileID: 1043942195}
   _joinButton: {fileID: 1470392259}
   _readyButton: {fileID: 633783454}
   _readyText: {fileID: 1113457536}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 2
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -6549,16 +6549,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 2
+  _maxPlayers: 1
   PlayerPanel: {fileID: 216907793}
   _selectionPanel: {fileID: 1350995019}
   _joinPanel: {fileID: 1123710142}
   _joinButton: {fileID: 1242469583}
   _readyButton: {fileID: 1724448527}
   _readyText: {fileID: 506250436}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 1
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 417190355}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -10438,16 +10438,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
+  _maxPlayers: 3
   PlayerPanel: {fileID: 1010423863}
   _selectionPanel: {fileID: 970401297}
   _joinPanel: {fileID: 1939102898}
   _joinButton: {fileID: 761670529}
   _readyButton: {fileID: 1869940239}
   _readyText: {fileID: 224458397}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 3
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -11909,16 +11909,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 2
+  _maxPlayers: 3
   PlayerPanel: {fileID: 283521733}
   _selectionPanel: {fileID: 2107096823}
   _joinPanel: {fileID: 379467845}
   _joinButton: {fileID: 1292711201}
   _readyButton: {fileID: 1035051999}
   _readyText: {fileID: 55695311}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 3
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -12292,16 +12292,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 4
+  _maxPlayers: 3
   PlayerPanel: {fileID: 1889998420}
   _selectionPanel: {fileID: 638693938}
   _joinPanel: {fileID: 636635333}
   _joinButton: {fileID: 1227683231}
   _readyButton: {fileID: 1829160038}
   _readyText: {fileID: 161290100}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 3
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -14288,16 +14288,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
+  _maxPlayers: 1
   PlayerPanel: {fileID: 1556045920}
   _selectionPanel: {fileID: 2051529784}
   _joinPanel: {fileID: 1423081435}
   _joinButton: {fileID: 1723085320}
   _readyButton: {fileID: 1611259897}
   _readyText: {fileID: 1743478654}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 1
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 417190355}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
@@ -16039,16 +16039,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 3
+  _maxPlayers: 3
   PlayerPanel: {fileID: 1700528046}
   _selectionPanel: {fileID: 1966721472}
   _joinPanel: {fileID: 1083922847}
   _joinButton: {fileID: 562046197}
   _readyButton: {fileID: 698005882}
   _readyText: {fileID: 554377742}
-  _playerInputManager: {fileID: 0}
-  _maxPlayers: 3
   _choiceModePanel: {fileID: 0}
   _playerPanel: {fileID: 0}
+  _playerNumber: {fileID: 0}
   _characterSpriteslist:
   - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
   - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}

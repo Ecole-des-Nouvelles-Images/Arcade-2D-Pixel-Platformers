@@ -19,14 +19,15 @@ namespace Michael.Scripts.PlayerManager
     {
         public static bool[] PlayerIsReady;
         public static bool[] PlayerIsJoined;
+        public static bool CanStart;
         public int PlayerIndex = 1;
+        public int _maxPlayers;
         public GameObject PlayerPanel;
         [SerializeField] private GameObject _selectionPanel;
         [SerializeField] private GameObject _joinPanel;
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
-        [SerializeField] private int _maxPlayers;
         [SerializeField] private GameObject _choiceModePanel;
         [SerializeField] private GameObject _playerPanel;
         [SerializeField] private TextMeshProUGUI _playerNumber;
@@ -42,6 +43,7 @@ namespace Michael.Scripts.PlayerManager
         
         private void Start()
         {
+            CanStart = false;
             PlayerIsReady = new bool[4] { false, false, false, false };
             PlayerIsJoined = new bool[4] { false, false, false, false };
 
@@ -85,20 +87,38 @@ namespace Michael.Scripts.PlayerManager
             }
             if (allPlayersReady == true && readyCount > _maxPlayers)
             {
-                SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+                CanStart = true;
+                /*SceneManager.LoadScene("Game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("Character Selection");
                 Debug.Log("2 players ready minimum");
-               
-                
                 string logMessage = "Contenu du dictionnaire : \n";
                 foreach (var pair in DataManager.Instance.PlayerDatasDict)
-                            
                 {
                     logMessage += $"Clé: {pair.Key}, Valeur: {pair.Value}\n";
                 }
-                Debug.Log( logMessage);
-               
+                Debug.Log( logMessage);*/
             }
+            else
+            {
+                CanStart = false;
+            }
+        }
+
+
+
+        public void OnStartPause()
+        {
+            if (CanStart)
+            {
+                SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync("Character Selection");
+                Debug.Log("ledqgfqeggoooo");
+            }
+            else
+            {
+                Debug.Log("pas pret");
+            }
+           
         }
         
         public void OnCancel()
