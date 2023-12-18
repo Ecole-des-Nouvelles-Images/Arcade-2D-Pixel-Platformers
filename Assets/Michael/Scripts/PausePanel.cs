@@ -8,6 +8,7 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _controllerWarningPanel;
     [SerializeField] private GameObject _eventSystem;
+    [SerializeField] private GameObject OptionsPanel;
     private void OnEnable()
     {
        PauseControl.OnPausePressed += OpenPanel;
@@ -25,6 +26,7 @@ public class PausePanel : MonoBehaviour
         if (PauseControl.IsPaused)
         {
             _pausePanel.SetActive(false);
+            OptionsPanel.SetActive(false);
         }
         else if (!PauseControl.IsPaused)
         {

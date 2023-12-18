@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         StartRound();
         CurrentRound = 1;
-        ChangeMusic.Invoke();
+      // ChangeMusic.Invoke();
         
     }
 
