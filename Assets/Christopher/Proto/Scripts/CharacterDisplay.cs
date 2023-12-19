@@ -8,6 +8,11 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private AnimatorOverrideController[] Dwarf_2;
         [SerializeField] private AnimatorOverrideController[] Dwarf_3;
         [SerializeField] private AnimatorOverrideController[] Dwarf_4;
+        [SerializeField] private GameObject[] ballAbsorbedFX;
+        [SerializeField] private GameObject[] armorChangeFX;
+        [SerializeField] private GameObject[] deathFX;
+        [SerializeField] private GameObject moveFX;
+        [SerializeField] private GameObject dashFX;
 
         private AnimatorOverrideController[][] Dwarfs = new AnimatorOverrideController[4][];
 

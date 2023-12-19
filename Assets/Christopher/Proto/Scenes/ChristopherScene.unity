@@ -15032,7 +15032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &584066789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45647,6 +45647,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1466444360850798324, guid: cb37c1194050e8646ae8bdf4a0458316, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 3502091502598257362, guid: cb37c1194050e8646ae8bdf4a0458316, type: 3}
       propertyPath: m_Name
       value: "Bras\xE9ro_2"
