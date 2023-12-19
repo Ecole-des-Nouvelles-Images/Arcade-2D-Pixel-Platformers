@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Christopher.Proto.Scripts;
-using Michael.Fred;
-using Michael.Scripts;
 using Michael.Scripts.PlayerManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using PlayerData = Michael.Scripts.PlayerData;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -16,6 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     public List<Sprite> CharacterSpriteList;
     public List<Transform> Spawnpoint;
     public List<GameObject> PlayerUiList; 
+    
     private void Start()
     {
         
@@ -25,15 +20,13 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log(PlayersManager.PlayerIsReady[3]);
         for (int i = 0; i < 4; i++) 
         {
-            GameObject player = Instantiate(playerPrefab);
+            GameObject player = Instantiate(playerPrefab, transform);
             OnPlayerJoined(player.GetComponent<PlayerInput>());
             player.transform.position = Spawnpoint[i].position;
             
             if (PlayersManager.PlayerIsReady[i] == false) {
-                foreach (Transform transform in player.transform) {
-                    Destroy(player.gameObject);
-                    player.GetComponent<PlayerControler>().enabled = false;
-                }
+                Destroy(player.gameObject);
+                player.GetComponent<PlayerControler>().enabled = false;
             }
             else {
                GameManager.Instance.PlayerList.Add(player.GetComponent<Michael.Scripts.PlayerData>());

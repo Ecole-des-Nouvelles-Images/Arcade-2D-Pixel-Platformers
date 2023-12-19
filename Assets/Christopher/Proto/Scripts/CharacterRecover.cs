@@ -25,7 +25,7 @@ public class CharacterRecover : MonoBehaviour
     {
         if (isRecovering && _currentRecoveringTime > 0)
         {
-            _currentRecoveringTime -= Time.deltaTime;
+            _currentRecoveringTime -= TimeManager.Instance.deltaTime;
         }
 
         if (_currentRecoveringTime <= 0)

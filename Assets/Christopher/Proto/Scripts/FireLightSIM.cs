@@ -26,7 +26,7 @@ public class FireLightSIM : MonoBehaviour
         }
         else
         {
-            _currentTimerValue -= Time.deltaTime;
+            _currentTimerValue -= TimeManager.Instance.deltaTime;
         }
     }
 }

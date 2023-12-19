@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Michael.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Christopher.Proto.Scripts
@@ -120,25 +118,29 @@ namespace Christopher.Proto.Scripts
 
         private void Update()
         {
+            animator.speed = TimeManager.Instance.timeScale;
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
                 HelperByChris.SpriteFliperX(_mouvementValue.x,0,spriteRenderer);
-                if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= Time.deltaTime;
-                //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= Time.deltaTime;
+                if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= TimeManager.Instance.deltaTime;
+                //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= TimeManager.Instance.deltaTime;
                 if (_mouvementValue == Vector2.zero)
                 {
                     animator.SetBool("moving",false);
                 }
                 if (_currentCooldownDash > 0 && !_dashEnabled)
                 {
-                    _currentCooldownDash -= Time.deltaTime;
+                    _currentCooldownDash -= TimeManager.Instance.deltaTime;
                     if (_currentCooldownDash <= 0 && !_dashing) _dashEnabled = true;
                 }
 
                 if (playerData.Health <= 0)
                 {
                     ResetBall();
+                   //explosion
                     gameObject.SetActive(false);
+                  
+                   
                     GameManager.Instance.PlayerAlive.Remove(gameObject);
                 }
                 //characterOrientation.SetOrientation(_mouvementValue,_visé,_orientation,animator);
@@ -151,8 +153,8 @@ namespace Christopher.Proto.Scripts
         {
             if (_mouvementValue != Vector2.zero && !_dashing && !PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                Xmove = _orientation.x * _currentSpeed * Time.deltaTime;//* -1;
-                Zmove = _orientation.y * _currentSpeed * Time.deltaTime;
+                Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.deltaTime;//* -1;
+                Zmove = _orientation.y * _currentSpeed * TimeManager.Instance.deltaTime;
                 Vector2 dep = new Vector2(Xmove, Zmove);
                 transform.Translate(dep);
             }
@@ -251,12 +253,12 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                if (_timeDash > 0 && _dashing) _timeDash -= Time.deltaTime;
+                if (_timeDash > 0 && _dashing) _timeDash -= TimeManager.Instance.deltaTime;
                 if (_timeDash <= 0 && _dashing && dashRecoveringTime != 0)
                 {
                     if (_currentDashRecoveringTime > 0)
                     {
-                        _currentDashRecoveringTime -= Time.deltaTime;
+                        _currentDashRecoveringTime -= TimeManager.Instance.deltaTime;
                         _rb.velocity = Vector2.zero;
                     }
                     else

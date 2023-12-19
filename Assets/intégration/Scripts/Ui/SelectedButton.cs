@@ -40,6 +40,16 @@ public class SelectedButton : MonoBehaviour
     }
 
 
+    public void LoadScene(string SceneToLoad)
+    {
+        CustomSceneManager.Instance.LoadScene(SceneToLoad);
+    }
+    
+    public void ReloadScene()
+    {
+        CustomSceneManager.Instance.ReloadActiveScene();
+    }
+
   
     
     

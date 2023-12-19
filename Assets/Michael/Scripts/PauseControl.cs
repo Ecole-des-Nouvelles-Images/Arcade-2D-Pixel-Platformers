@@ -19,7 +19,7 @@ public class PauseControl : MonoBehaviour
     {
         ControllerDisconnected = 0;
         IsPaused = false;
-        Time.timeScale = 1;
+        TimeManager.Instance.timeScale = 1;
         
         
     }
@@ -28,7 +28,7 @@ public class PauseControl : MonoBehaviour
 
     public void OnStartPause()
     {
-        if (ControllerDisconnected <= 0)
+        if (ControllerDisconnected <= 0 && CountDownController.CanPlay)
         {
           TogglePause();
         }
@@ -39,10 +39,10 @@ public class PauseControl : MonoBehaviour
         ControllerDisconnected++;
        Debug.Log("device deconnected : " + ControllerDisconnected);
        
-       if (Time.timeScale > 0)
+       if (TimeManager.Instance.timeScale > 0)
        {
            OnPausePressed.Invoke();
-           Time.timeScale = 0;
+           TimeManager.Instance.timeScale = 0;
            IsPaused = true;
            DataManager.Instance.CurrentMusic.Pause();
        }
@@ -59,23 +59,24 @@ public class PauseControl : MonoBehaviour
     
     
 
-    private void TogglePause()
+    private static void TogglePause()
     {
-        if (Time.timeScale > 0)
+        if (TimeManager.Instance.timeScale > 0)
         {
             OnPausePressed.Invoke();
-            Time.timeScale = 0;
+            TimeManager.Instance.timeScale = 0;
             IsPaused = true;
           //  DataManager.Instance.CurrentMusic.Pause();
             
         }
-        else if (Time.timeScale == 0)
+        else if (TimeManager.Instance.timeScale == 0)
         {
             OnPausePressed.Invoke();
-            Time.timeScale = 1;
+            TimeManager.Instance.timeScale = 1;
             IsPaused = false;
           //  DataManager.Instance.CurrentMusic.UnPause();
         }
         
     }
+    
 }

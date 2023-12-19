@@ -28,7 +28,7 @@ public class SuddenDeath : MonoBehaviour
     private void TimerMortSubite()
     {
         
-        if (_currentTimer > 0) _currentTimer -= Time.deltaTime;
+        if (_currentTimer > 0) _currentTimer -= TimeManager.Instance.deltaTime;
         if (_currentTimer < 0)
         {
             _currentTimer = 0;

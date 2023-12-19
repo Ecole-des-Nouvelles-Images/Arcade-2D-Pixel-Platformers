@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: fccf762bfb69edf4f966569172c84ca9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -616,7 +616,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: fccf762bfb69edf4f966569172c84ca9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -731,13 +731,13 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 8.5
-  thriwingPower: 15
+  moveSpeed: 12
+  thriwingPower: 14
   CooldownColorChange: 3
   CooldownDash: 0.1
   dashRecoveringTime: 0.15
-  dashPower: 18
-  dashDistanceTime: 0.4
+  dashPower: 10
+  dashDistanceTime: 0.5
 --- !u!114 &686862759398890443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +760,7 @@ MonoBehaviour:
   Health: 3
   MaxHealth: 3
   PlayerNumberText: {fileID: 294607509058846000}
+  InitialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &-2003240890592298397
 MonoBehaviour:
   m_ObjectHideFlags: 0

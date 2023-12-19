@@ -1,3 +1,4 @@
+using System;
 using Michael.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,8 +19,9 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private GameObject impactIceParticules_2;
         //[SerializeField] private GameObject impactFlamesParticules_1;
         [SerializeField] private GameObject impactFlamesParticules_2;
-    
+        
         private string[] _colorList = new string[] { "bleu", "rouge" };
+        private Vector2 _currentVelocity;
 
         private void Start()
         {

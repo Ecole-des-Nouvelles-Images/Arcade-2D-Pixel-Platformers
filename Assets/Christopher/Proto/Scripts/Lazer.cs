@@ -22,20 +22,20 @@ public class Lazer : MonoBehaviour
     {
         if (_goForward && transform.position.x < maxLimitMove)
         {
-            transform.Translate(Vector3.right * (moveSpeed * Time.deltaTime));
+            transform.Translate(Vector3.right * (moveSpeed * TimeManager.Instance.deltaTime));
         }
         else if (_goForward && transform.position.x >= maxLimitMove)
         {
-            transform.Translate(Vector3.left * (moveSpeed * Time.deltaTime));
+            transform.Translate(Vector3.left * (moveSpeed * TimeManager.Instance.deltaTime));
             _goForward = false;
         }
         if (!_goForward && transform.position.x > minLimitMove)
         {
-            transform.Translate(Vector3.left * (moveSpeed * Time.deltaTime));
+            transform.Translate(Vector3.left * (moveSpeed * TimeManager.Instance.deltaTime));
         }
         else if (!_goForward && transform.position.x <= minLimitMove)
         {
-            transform.Translate(Vector3.right * (moveSpeed * Time.deltaTime));
+            transform.Translate(Vector3.right * (moveSpeed * TimeManager.Instance.deltaTime));
             _goForward = true;
         }
     }

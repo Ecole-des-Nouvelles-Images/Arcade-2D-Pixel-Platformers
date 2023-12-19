@@ -1,15 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Christopher.Proto.Scripts;
 using Michael.Fred;
 using Michael.Scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -24,22 +18,19 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public PlayerData Winner;
     public GameObject DeathLazer;
     public AudioClip MusicToload;
+    public Animator FadeAnimator;
     
-    
+
 
     public void QuitApplication()
     {
         Application.Quit();
         Debug.Log("à quitté le jeu");
     }
-
-    public void ChangeScene(string sceneName)
-    {
-        SceneManager.LoadSceneAsync(sceneName);
-    }
-
+    
     private void Start()
     {
+        FadeAnimator.SetTrigger("FadeOut");
         StartRound();
         CurrentRound = 1;
         
@@ -56,11 +47,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void Update()
     {
-        if (_timer > 0 && !PauseControl.IsPaused && CountDownController.CanPlay) {
-            _timer -= Time.deltaTime;
+        if (_timer > 0 ) {
+            _timer -= TimeManager.Instance.deltaTime;
             UpdateTimerText();
         }
-        else if (!PauseControl.IsPaused && CountDownController.CanPlay ){
+        else  {
             _timer = 0;
             _timerText.text = "00:00";
         }
@@ -83,7 +74,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     }
     public void StartRound()
     {
-        
+        CountDownController.Instance.RoundAnimator.SetBool("ShowRoundPanel ", true);
         RoundIsFinished = false;
         foreach (var player in PlayerList)
         {
@@ -96,9 +87,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             {
                 player.transform.position = player.GetComponent<PlayerData>().InitialPosition;
             }
-           
-            
-          
         }
         
         PlayerAlive.Clear();
@@ -108,18 +96,18 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             player.gameObject.SetActive(true);
         }
         
-      
-
-      
-        
+       
+        CountDownController.Instance.CountDownTime = 5;
         _timer = RoundDuration;
         // //start compte a rebours
-        CountDownController.Instance.CountDownTime = 5;
         CountDownController.Instance.InvokeRepeating("UpdateCountdown",0f,1f);
+        
+      
+        
         //lancer le timer 
        
         Debug.Log("nouveau round : " + CurrentRound);
-       
+        
         //
         //lancer animation transition fondu
         //replacer les players 
@@ -130,7 +118,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void EndRound()
     {
-
+       
         PlayerData winner = DetermineRoundWinner();
 
         winner.WinRound++;
@@ -139,12 +127,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         
         if (winner.WinRound < RoundTarget)
         {
+            FadeAnimator.SetTrigger("FadeOut");
             CurrentRound++;
-            StartRound();
+            Invoke("StartRound",1.9f);
         }
         else if (winner.WinRound >= RoundTarget)
         {
             EndGame();
+            
+            
             Debug.Log(winner + " à gagné");
         }
         
