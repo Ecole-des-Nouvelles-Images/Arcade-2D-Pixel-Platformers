@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Christopher.Proto.Scripts
 {
-    public class PlayerControler : MonoBehaviour
+    public class PlayerControlerCopie : MonoBehaviour
     {
         public string CurrentColor;
         public bool HandedBall;
@@ -25,10 +25,7 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float thriwingPower;
-<<<<<<< HEAD
-=======
-        public float CooldownColorChange = 3f;
->>>>>>> Intégration
+        //public float CooldownColorChange = 3f;
        // [SerializeField] private float CooldownArmorColorChange = 3f;
         [SerializeField] private float CooldownDash = 5f;
         [SerializeField] private float dashRecoveringTime = 1f;
@@ -40,10 +37,7 @@ namespace Christopher.Proto.Scripts
         private float _currentSpeed;
         private Vector2 _mouvementValue;
         private Vector2 _orientation;
-<<<<<<< HEAD
-=======
-        public bool _armorSelected = true;
->>>>>>> Intégration
+        //public bool _armorSelected = true;
         private float _currentThrowingPower;
         private Rigidbody2D _rb;                    
         private float _currentCooldownDash;
@@ -145,11 +139,7 @@ namespace Christopher.Proto.Scripts
                 if (playerData.Health <= 0)
                 {
                     ResetBall();
-<<<<<<< HEAD
                     characterDisplay.PlayDeathFX(CurrentColor);
-=======
-                   //explosion
->>>>>>> Intégration
                     gameObject.SetActive(false);
                   
                    

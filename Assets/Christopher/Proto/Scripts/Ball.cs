@@ -21,12 +21,10 @@ namespace Christopher.Proto.Scripts
     
         private string[] _colorList = new string[] { "bleu", "rouge" };
 
-        private void Awake()
-        {
-            CurrentColor = MyOwner.transform.GetComponent<PlayerControler>().CurrentColor;
-        }
+        
         private void Start()
         {
+            CurrentColor = MyOwner.transform.GetComponent<PlayerControler>().CurrentColor;
             OnThrow();
         }
         private void Update()

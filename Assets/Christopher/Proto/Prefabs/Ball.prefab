@@ -9980,8 +9980,10 @@ MonoBehaviour:
   iceMat: {fileID: -876546973899608171, guid: 757e6cca8ec655648b49c3bec7502ea7, type: 3}
   flamesEffects: {fileID: 663091028743786504}
   iceEffects: {fileID: 3577582510083156878}
-  impactIceParticules_2: {fileID: 5538956322403960257, guid: f26a4b02cb0c0904c94ad2db90dd3894, type: 3}
-  impactFlamesParticules_2: {fileID: 1493937699112709926, guid: 52218625ab8bb7f49b20956e1b43a918, type: 3}
+  throwIceParticules: {fileID: 6978116561618298278, guid: 0c57e3c39c25c6147851efd7cea67a0a, type: 3}
+  impactIceParticules: {fileID: 5538956322403960257, guid: f26a4b02cb0c0904c94ad2db90dd3894, type: 3}
+  throwFlamesParticules: {fileID: 4953413159251220517, guid: c82f3084cbbc0bc4283913da8569f925, type: 3}
+  impactFlamesParticules: {fileID: 1493937699112709926, guid: 52218625ab8bb7f49b20956e1b43a918, type: 3}
 --- !u!1 &7925763863915918877
 GameObject:
   m_ObjectHideFlags: 0

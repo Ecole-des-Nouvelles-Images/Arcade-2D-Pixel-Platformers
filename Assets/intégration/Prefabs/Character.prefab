@@ -102,6 +102,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3173565168098626014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9686286165562467}
+  m_Layer: 0
+  m_Name: foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9686286165562467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173565168098626014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3738721587810699175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5890178241768511768
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +385,7 @@ Transform:
   m_Children:
   - {fileID: 6478584446003126705}
   - {fileID: 7133934425443895956}
+  - {fileID: 9686286165562467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &391800970867382576
@@ -693,6 +725,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91b398113ed43c46b4832c6d494e55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballAbsorbedFX:
+  - {fileID: 3563432415568273953, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
+  - {fileID: 5867952696154409598, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
+  armorChangeFX:
+  - {fileID: 7277110612173225203, guid: 78222c0f9a408934ba0ed4e26646b7a6, type: 3}
+  - {fileID: 1243868550691573015, guid: 2d3e887a094e2a744b112715d2c00a5b, type: 3}
+  deathFX:
+  - {fileID: 614693232471796609, guid: 7e5145d6a4b5d3a4981e299778d82499, type: 3}
+  - {fileID: 5770364434720178674, guid: 2e82bdc1f9852c7469cd5887f8d096b5, type: 3}
+  moveFX: {fileID: 6315571871776223553, guid: fc5016ab89dab1a40be5f69343fbc0f6, type: 3}
+  dashFX: {fileID: 8508195959227291919, guid: 291fb76d025d5a24bb8228b3ed341f08, type: 3}
+  characterFoot: {fileID: 3173565168098626014}
+  timerWalkFX: 0.3
   Dwarf_1:
   - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
   - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
