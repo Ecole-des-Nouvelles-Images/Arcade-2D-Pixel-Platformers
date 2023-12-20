@@ -15,6 +15,8 @@ namespace Christopher.Proto.Scripts
         public List<GameObject> MyBalls = new List<GameObject>();
         public GameObject Projectile;
         public float CurrentCooldownColorChange;
+        public bool _armorSelected = true;//à rename
+        public float CooldownColorChange = 3f;//à rename
 
         //[SerializeField] private List<Animator> animList;
         [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
@@ -25,7 +27,6 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float thriwingPower;
-        [SerializeField] private float CooldownColorChange = 3f;
        // [SerializeField] private float CooldownArmorColorChange = 3f;
         [SerializeField] private float CooldownDash = 5f;
         [SerializeField] private float dashRecoveringTime = 1f;
@@ -37,7 +38,6 @@ namespace Christopher.Proto.Scripts
         private float _currentSpeed;
         private Vector2 _mouvementValue;
         private Vector2 _orientation;
-        private bool _armorSelected = true;
         private float _currentThrowingPower;
         private Rigidbody2D _rb;                    
         private float _currentCooldownDash;
@@ -138,6 +138,7 @@ namespace Christopher.Proto.Scripts
                 if (playerData.Health <= 0)
                 {
                     ResetBall();
+                    characterDisplay.PlayDeathFX(CurrentColor);
                     gameObject.SetActive(false);
                     GameManager.Instance.PlayerAlive.Remove(gameObject);
                 }
@@ -154,7 +155,9 @@ namespace Christopher.Proto.Scripts
                 Xmove = _orientation.x * _currentSpeed * Time.deltaTime;//* -1;
                 Zmove = _orientation.y * _currentSpeed * Time.deltaTime;
                 Vector2 dep = new Vector2(Xmove, Zmove);
+                characterDisplay.PlayWalkingFX();
                 transform.Translate(dep);
+                
             }
         }
         private void LookAt()
@@ -227,8 +230,20 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                if (CurrentColor == "bleu") CurrentColor = "rouge";
-                else if (CurrentColor == "rouge") CurrentColor = "bleu";
+                if (CurrentColor == "bleu")
+                {
+                    CurrentColor = "rouge";
+                    var o = Instantiate(characterDisplay.armorChangeFX[0]);
+                    o.transform.position = transform.position;
+                    Destroy(o,2);
+                }
+                else if (CurrentColor == "rouge")
+                {
+                    CurrentColor = "bleu";
+                    var o = Instantiate(characterDisplay.armorChangeFX[1]);
+                    o.transform.position = transform.position;
+                    Destroy(o,2);
+                }
                 animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
                 CurrentCooldownColorChange = CooldownColorChange;
             }
@@ -239,6 +254,7 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
+                characterDisplay.PlayDashFX();
                 animator.SetBool("dashing",true);
                 _dashing = true;
                 _rb.AddForce(_orientation*dashPower,ForceMode2D.Impulse);

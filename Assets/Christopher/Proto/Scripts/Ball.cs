@@ -12,18 +12,22 @@ namespace Christopher.Proto.Scripts
         [SerializeField] [Range(0, 1)] public float ballSpeedSlowingImpactFactor = 0.75f;
         [SerializeField] private Material flamesMat;
         [SerializeField] private Material iceMat;
-        [FormerlySerializedAs("flamesParticules")] [SerializeField] private GameObject flamesEffects;
-        [FormerlySerializedAs("iceParticules")] [SerializeField] private GameObject iceEffects;
-        //[SerializeField] private GameObject impactIceParticules_1;
-        [SerializeField] private GameObject impactIceParticules_2;
-        //[SerializeField] private GameObject impactFlamesParticules_1;
-        [SerializeField] private GameObject impactFlamesParticules_2;
+        [SerializeField] private GameObject flamesEffects;
+        [SerializeField] private GameObject iceEffects;
+        [SerializeField] private GameObject throwIceParticules;
+        [SerializeField] private GameObject impactIceParticules;
+        [SerializeField] private GameObject throwFlamesParticules;
+        [SerializeField] private GameObject impactFlamesParticules;
     
         private string[] _colorList = new string[] { "bleu", "rouge" };
 
-        private void Start()
+        private void Awake()
         {
             CurrentColor = MyOwner.transform.GetComponent<PlayerControler>().CurrentColor;
+        }
+        private void Start()
+        {
+            OnThrow();
         }
         private void Update()
         {
@@ -53,7 +57,7 @@ namespace Christopher.Proto.Scripts
             if (other.transform.CompareTag("Player"))
             {
                 transform.GetComponent<Rigidbody2D>().velocity *= ballSpeedSlowingImpactFactor;
-                if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<CharacterRecover>().isRecovering == false)
+                if (CurrentColor != other.transform.GetComponent<PlayerControler>().CurrentColor && other.transform.GetComponent<CharacterRecover>().isRecovering == false) // blessable?
                 {
                     other.transform.GetComponent<Rigidbody2D>().velocity += transform.GetComponent<Rigidbody2D>().velocity;
                     transform.GetComponent<Rigidbody2D>().velocity *= -1;
@@ -62,9 +66,10 @@ namespace Christopher.Proto.Scripts
                     
                     //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
                 }
-                if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null)
+                if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null) // absorbe?
                 {
                     other.transform.GetComponent<PlayerControler>().HandedBall = true;
+                    other.transform.GetComponent<CharacterDisplay>().BallAbsorbed(CurrentColor);
                     for (int i = 0; i < MyOwner.transform.GetComponent<PlayerControler>().MyBalls.Count; i++)
                     {
                         if (MyOwner.transform.GetComponent<PlayerControler>().MyBalls[i] == gameObject)
@@ -88,12 +93,26 @@ namespace Christopher.Proto.Scripts
         {
             if (CurrentColor == "bleu")
             {
-                var o = Instantiate(impactIceParticules_2);
+                var o = Instantiate(impactIceParticules);
                 o.transform.position = transform.position;
             }
             if (CurrentColor == "rouge")
             {
-                var o = Instantiate(impactFlamesParticules_2);
+                var o = Instantiate(impactFlamesParticules);
+                o.transform.position = transform.position;
+            }
+        }
+
+        private void OnThrow()
+        {
+            if (CurrentColor == "bleu")
+            {
+                var o = Instantiate(throwIceParticules);
+                o.transform.position = transform.position;
+            }
+            else if (CurrentColor == "rouge")
+            {
+                var o = Instantiate(throwFlamesParticules);
                 o.transform.position = transform.position;
             }
         }
