@@ -18,6 +18,8 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private GameObject impactIceParticules;
         [SerializeField] private GameObject throwFlamesParticules;
         [SerializeField] private GameObject impactFlamesParticules;
+        [SerializeField] private AudioSource src;
+        [SerializeField] private AudioClip[] sfx;// 0:feu ; 1:glace
     
         private string[] _colorList = new string[] { "bleu", "rouge" };
 
@@ -25,6 +27,7 @@ namespace Christopher.Proto.Scripts
         private void Start()
         {
             CurrentColor = MyOwner.transform.GetComponent<PlayerControler>().CurrentColor;
+            AudioAttributor();
             OnThrow();
         }
         private void Update()
@@ -42,6 +45,7 @@ namespace Christopher.Proto.Scripts
                 flamesEffects.SetActive(true);
                 iceEffects.SetActive(false);
             }
+            AudioAttributor();
         }
         public void SwitchBallColor()
         {
@@ -112,6 +116,20 @@ namespace Christopher.Proto.Scripts
             {
                 var o = Instantiate(throwFlamesParticules);
                 o.transform.position = transform.position;
+            }
+        }
+
+        private void AudioAttributor()
+        {
+            if (CurrentColor == "bleu")
+            {
+                src.clip = sfx[1];
+                src.Play();
+            }
+            if (CurrentColor == "rouge")
+            {
+                src.clip = sfx[0];
+                src.Play();
             }
         }
     }

@@ -137,7 +137,7 @@ namespace Christopher.Proto.Scripts
                 if (playerData.Health <= 0)
                 {
                     ResetBall();
-                   //explosion
+                    characterDisplay.PlayDeathFX(CurrentColor);
                     gameObject.SetActive(false);
                   
                    
@@ -156,6 +156,7 @@ namespace Christopher.Proto.Scripts
                 Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.deltaTime;//* -1;
                 Zmove = _orientation.y * _currentSpeed * TimeManager.Instance.deltaTime;
                 Vector2 dep = new Vector2(Xmove, Zmove);
+                characterDisplay.PlayWalkingFX();
                 transform.Translate(dep);
             }
         }
@@ -229,8 +230,20 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                if (CurrentColor == "bleu") CurrentColor = "rouge";
-                else if (CurrentColor == "rouge") CurrentColor = "bleu";
+                if (CurrentColor == "bleu")
+                {
+                    CurrentColor = "rouge";
+                    var o = Instantiate(characterDisplay.armorChangeFX[0]);
+                    o.transform.position = transform.position;
+                    Destroy(o,2);
+                }
+                else if (CurrentColor == "rouge")
+                {
+                    CurrentColor = "bleu";
+                    var o = Instantiate(characterDisplay.armorChangeFX[1]);
+                    o.transform.position = transform.position;
+                    Destroy(o,2);
+                }
                 animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
                 CurrentCooldownColorChange = CooldownColorChange;
             }
@@ -241,6 +254,7 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
+                characterDisplay.PlayDashFX();
                 animator.SetBool("dashing",true);
                 _dashing = true;
                 _rb.AddForce(_orientation*dashPower,ForceMode2D.Impulse);
