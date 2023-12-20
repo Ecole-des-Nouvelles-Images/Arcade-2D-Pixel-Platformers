@@ -4286,7 +4286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Maximus
+  m_text: maximadok
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bbe57aab29b64b4bb1718a1fc147e38, type: 2}
   m_sharedMaterial: {fileID: 3068691695466023916, guid: 6bbe57aab29b64b4bb1718a1fc147e38, type: 2}

@@ -26,7 +26,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
             CanPlay = false;
             RoundText.text = "Round " + GameManager.CurrentRound;
             CountDownText.text = CountDownTime.ToString();
-            CountDownTime--;
+            CountDownTime --;
             //sound design
         
       
