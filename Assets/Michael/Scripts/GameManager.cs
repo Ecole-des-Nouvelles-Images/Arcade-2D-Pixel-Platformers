@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public GameObject EndGamePanel;
     public GameObject EventSystem;
     public GameObject RestartButton;
-
+    public Animator EndPanelAnimator;
+    public TextMeshProUGUI PlayerName;
+    public TextMeshProUGUI PlayerNumber;
     public void QuitApplication()
     {
         Application.Quit();
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         else
         {
             DeathLazer.SetActive(false);
+            // ui tete de mort 
         }
         
         
@@ -120,7 +123,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void EndRound()
     {
-       
         PlayerData winner = DetermineRoundWinner();
         CountDownController.CanPlay = false;
         winner.WinRound++;
@@ -137,19 +139,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             
           FadeAnimator.SetTrigger("FadeOut");
-          Invoke("EndGame",1f);
+          Invoke("EndGame",1.5f);
             
             
             Debug.Log(winner + " à gagné");
+            
+              PlayerName.text = winner.PlayerPseudo;
+              PlayerNumber.text = "Joueur " + winner.Playerindex;
         }
-        
-        
-           
-        
        
-       
-
-        
     }
     
     public void EndGame()
@@ -188,6 +186,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
        
+    }
+
+    public void ChangeEndPanel()
+    {
+        EndPanelAnimator.SetBool("Continue",true);
     }
 }
    

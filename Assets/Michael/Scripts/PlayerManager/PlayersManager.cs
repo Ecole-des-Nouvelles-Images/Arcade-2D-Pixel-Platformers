@@ -232,9 +232,6 @@ namespace Michael.Scripts.PlayerManager
                  _playerName.text = "Mikaralik"; 
              }
                
-                 
-                 
-                
             
         }
 

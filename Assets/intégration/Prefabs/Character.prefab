@@ -776,7 +776,7 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 10
+  moveSpeed: 8
   thriwingPower: 10
   CooldownColorChange: 3
   CooldownDash: 0.1
@@ -807,6 +807,12 @@ MonoBehaviour:
   MaxHealth: 3
   PlayerNumberText: {fileID: 294607509058846000}
   InitialPosition: {x: 0, y: 0, z: 0}
+  PlayerPseudo: 
+  PlayerNames:
+  - maximadok
+  - mathisruk
+  - Christorar
+  - Mikaralik
 --- !u!114 &-2003240890592298397
 MonoBehaviour:
   m_ObjectHideFlags: 0

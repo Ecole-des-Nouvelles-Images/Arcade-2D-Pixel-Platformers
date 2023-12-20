@@ -18,6 +18,9 @@ namespace Michael.Scripts
         public int MaxHealth = 3 ;
         public TextMeshProUGUI PlayerNumberText;
         public Vector3 InitialPosition;
+        public string PlayerPseudo;
+        public List<string> PlayerNames = new List<string> { "maximadok", "mathisruk", "Christorar", "Mikaralik" };
+        
 
         private void Start()
         {
@@ -28,7 +31,9 @@ namespace Michael.Scripts
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
             { 
                 gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
-              // CharacterVisual[value].enabled = true;
+                PlayerPseudo = PlayerNames[value]; 
+
+                // CharacterVisual[value].enabled = true;
             }
 
             InitialPosition = transform.position;
@@ -43,7 +48,7 @@ namespace Michael.Scripts
             Health = MaxHealth;
         }
         
-        
+       
         
         
         
