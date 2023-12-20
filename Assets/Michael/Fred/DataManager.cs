@@ -14,17 +14,14 @@ namespace Michael.Fred
         public AudioMixer AudioMixer;
         public float SfxVolume;
         public float MusicVolume;
-
-
-        private void Start()
-        {
-            SceneManager.LoadScene(StartingScene, LoadSceneMode.Additive);
         
-        }
-
         public void StopMusic()
         {
-          CurrentMusic.Stop();
+            if (CurrentMusic)
+            {
+                CurrentMusic.Stop();
+            }
+         
         }
        
 

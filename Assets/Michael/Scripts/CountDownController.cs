@@ -9,20 +9,22 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
 {
     public int CountDownTime;
     public TextMeshProUGUI CountDownText;
-    public GameObject CountDownPanel;
-    public static bool CanPlay; 
-
+    public TextMeshProUGUI RoundText;
+    public static bool CanPlay;
+    public Animator RoundAnimator;
     void Start()
     {
        
     }
 
+   
+
     void UpdateCountdown()
     {
 
-
+        
             CanPlay = false;
-            CountDownPanel.gameObject.SetActive(true);
+            RoundText.text = "Round " + GameManager.CurrentRound;
             CountDownText.text = CountDownTime.ToString();
             CountDownTime--;
             //sound design
@@ -31,6 +33,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
 
         if (CountDownTime < 0)
         {
+            RoundAnimator.SetBool("ShowRoundPanel ", false);
             CountDownText.text = "GO";
             //sound design
             CancelInvoke("UpdateCountdown");
@@ -40,7 +43,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
 
     private void HidePanel()
     {
-        CountDownPanel.gameObject.SetActive(false);
+        //GameManager.Instance.FadeAnimator.SetBool("FadeIn", true);
         CanPlay = true;
 
     }

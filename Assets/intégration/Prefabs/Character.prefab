@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: fccf762bfb69edf4f966569172c84ca9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -354,7 +354,6 @@ Transform:
   m_Children:
   - {fileID: 6478584446003126705}
   - {fileID: 7133934425443895956}
-  - {fileID: 9074417404756904606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &391800970867382576
@@ -617,7 +616,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: fccf762bfb69edf4f966569172c84ca9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -694,19 +693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91b398113ed43c46b4832c6d494e55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballAbsorbedFX:
-  - {fileID: 3563432415568273953, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
-  - {fileID: 5867952696154409598, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
-  armorChangeFX:
-  - {fileID: 7277110612173225203, guid: 78222c0f9a408934ba0ed4e26646b7a6, type: 3}
-  - {fileID: 1243868550691573015, guid: 2d3e887a094e2a744b112715d2c00a5b, type: 3}
-  deathFX:
-  - {fileID: 614693232471796609, guid: 7e5145d6a4b5d3a4981e299778d82499, type: 3}
-  - {fileID: 5770364434720178674, guid: 2e82bdc1f9852c7469cd5887f8d096b5, type: 3}
-  moveFX: {fileID: 6315571871776223553, guid: fc5016ab89dab1a40be5f69343fbc0f6, type: 3}
-  dashFX: {fileID: 8508195959227291919, guid: 291fb76d025d5a24bb8228b3ed341f08, type: 3}
-  characterFoot: {fileID: 8812659300463668326}
-  timerWalkFX: 0.3
   Dwarf_1:
   - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
   - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
@@ -736,8 +722,6 @@ MonoBehaviour:
   MyBalls: []
   Projectile: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
   CurrentCooldownColorChange: 0
-  _armorSelected: 1
-  CooldownColorChange: 3
   Move: {fileID: 8550527838768415149, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   Throw: {fileID: -7247716004364888741, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
   ChangeColor: {fileID: 1829715767865773766, guid: e54b34d1f93d00c46bd88da0cce64d40, type: 3}
@@ -747,12 +731,14 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 8.5
-  thriwingPower: 15
+  moveSpeed: 10
+  thriwingPower: 10
+  CooldownColorChange: 3
   CooldownDash: 0.1
-  dashRecoveringTime: 0.15
-  dashPower: 18
-  dashDistanceTime: 0.4
+  dashRecoveringTime: 0.12
+  dashPower: 12
+  dashDistanceTime: 0.5
+  _armorSelected: 1
 --- !u!114 &686862759398890443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,34 +858,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8812659300463668326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9074417404756904606}
-  m_Layer: 0
-  m_Name: foot
-  m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9074417404756904606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8812659300463668326}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3738721587810699175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

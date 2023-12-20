@@ -83,7 +83,6 @@ namespace Michael.Scripts.PlayerManager
                         readyCount++;
                         GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(null);
                         Debug.Log("player " + PlayerIndex + " Is Ready");
-                        Debug.Log(readyCount);
                         Debug.Log("index is " + (GetComponent<PlayerInput>().playerIndex + 1));
                         ConfirmChoice(PlayerIndex, _characterIndex);
                         
@@ -94,6 +93,7 @@ namespace Michael.Scripts.PlayerManager
             if (allPlayersReady == true && readyCount > _maxPlayers)
             {
                 CanStart = true;
+                
                 /*SceneManager.LoadScene("Game", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("Character Selection");
                 Debug.Log("2 players ready minimum");
@@ -116,8 +116,7 @@ namespace Michael.Scripts.PlayerManager
         {
             if (CanStart)
             {
-                SceneManager.LoadScene("Game", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("Character Selection");
+                CustomSceneManager.Instance.LoadScene("Game");
                 Debug.Log("ledqgfqeggoooo");
             }
             else
@@ -150,10 +149,7 @@ namespace Michael.Scripts.PlayerManager
             }
             else if (PlayerIsJoined.All(element => !element))
             {
-               SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
-               SceneManager.UnloadSceneAsync("Character Selection");
-               
-                 
+               CustomSceneManager.Instance.LoadScene("Menu");
             }
 
         }

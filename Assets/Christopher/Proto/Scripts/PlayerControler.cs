@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Michael.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Christopher.Proto.Scripts
@@ -15,8 +13,6 @@ namespace Christopher.Proto.Scripts
         public List<GameObject> MyBalls = new List<GameObject>();
         public GameObject Projectile;
         public float CurrentCooldownColorChange;
-        public bool _armorSelected = true;//à rename
-        public float CooldownColorChange = 3f;//à rename
 
         //[SerializeField] private List<Animator> animList;
         [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
@@ -27,6 +23,7 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float thriwingPower;
+        public float CooldownColorChange = 3f;
        // [SerializeField] private float CooldownArmorColorChange = 3f;
         [SerializeField] private float CooldownDash = 5f;
         [SerializeField] private float dashRecoveringTime = 1f;
@@ -38,6 +35,7 @@ namespace Christopher.Proto.Scripts
         private float _currentSpeed;
         private Vector2 _mouvementValue;
         private Vector2 _orientation;
+        public bool _armorSelected = true;
         private float _currentThrowingPower;
         private Rigidbody2D _rb;                    
         private float _currentCooldownDash;
@@ -120,26 +118,29 @@ namespace Christopher.Proto.Scripts
 
         private void Update()
         {
+            animator.speed = TimeManager.Instance.timeScale;
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
                 HelperByChris.SpriteFliperX(_mouvementValue.x,0,spriteRenderer);
-                if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= Time.deltaTime;
-                //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= Time.deltaTime;
+                if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= TimeManager.Instance.deltaTime;
+                //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= TimeManager.Instance.deltaTime;
                 if (_mouvementValue == Vector2.zero)
                 {
                     animator.SetBool("moving",false);
                 }
                 if (_currentCooldownDash > 0 && !_dashEnabled)
                 {
-                    _currentCooldownDash -= Time.deltaTime;
+                    _currentCooldownDash -= TimeManager.Instance.deltaTime;
                     if (_currentCooldownDash <= 0 && !_dashing) _dashEnabled = true;
                 }
 
                 if (playerData.Health <= 0)
                 {
                     ResetBall();
-                    characterDisplay.PlayDeathFX(CurrentColor);
+                   //explosion
                     gameObject.SetActive(false);
+                  
+                   
                     GameManager.Instance.PlayerAlive.Remove(gameObject);
                 }
                 //characterOrientation.SetOrientation(_mouvementValue,_visé,_orientation,animator);
@@ -152,12 +153,10 @@ namespace Christopher.Proto.Scripts
         {
             if (_mouvementValue != Vector2.zero && !_dashing && !PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                Xmove = _orientation.x * _currentSpeed * Time.deltaTime;//* -1;
-                Zmove = _orientation.y * _currentSpeed * Time.deltaTime;
+                Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.deltaTime;//* -1;
+                Zmove = _orientation.y * _currentSpeed * TimeManager.Instance.deltaTime;
                 Vector2 dep = new Vector2(Xmove, Zmove);
-                characterDisplay.PlayWalkingFX();
                 transform.Translate(dep);
-                
             }
         }
         private void LookAt()
@@ -230,20 +229,8 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                if (CurrentColor == "bleu")
-                {
-                    CurrentColor = "rouge";
-                    var o = Instantiate(characterDisplay.armorChangeFX[0]);
-                    o.transform.position = transform.position;
-                    Destroy(o,2);
-                }
-                else if (CurrentColor == "rouge")
-                {
-                    CurrentColor = "bleu";
-                    var o = Instantiate(characterDisplay.armorChangeFX[1]);
-                    o.transform.position = transform.position;
-                    Destroy(o,2);
-                }
+                if (CurrentColor == "bleu") CurrentColor = "rouge";
+                else if (CurrentColor == "rouge") CurrentColor = "bleu";
                 animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
                 CurrentCooldownColorChange = CooldownColorChange;
             }
@@ -254,7 +241,6 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                characterDisplay.PlayDashFX();
                 animator.SetBool("dashing",true);
                 _dashing = true;
                 _rb.AddForce(_orientation*dashPower,ForceMode2D.Impulse);
@@ -267,12 +253,12 @@ namespace Christopher.Proto.Scripts
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                if (_timeDash > 0 && _dashing) _timeDash -= Time.deltaTime;
+                if (_timeDash > 0 && _dashing) _timeDash -= TimeManager.Instance.deltaTime;
                 if (_timeDash <= 0 && _dashing && dashRecoveringTime != 0)
                 {
                     if (_currentDashRecoveringTime > 0)
                     {
-                        _currentDashRecoveringTime -= Time.deltaTime;
+                        _currentDashRecoveringTime -= TimeManager.Instance.deltaTime;
                         _rb.velocity = Vector2.zero;
                     }
                     else

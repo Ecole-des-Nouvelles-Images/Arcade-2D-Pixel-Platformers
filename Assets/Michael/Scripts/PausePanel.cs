@@ -23,6 +23,14 @@ public class PausePanel : MonoBehaviour
         PauseControl.OnPausePressed  -= OpenPanel;
         PauseControl.OnControllerDisconnected -= OpenWarningPanel;
     }
+    
+    public void OnStartPause()
+    {
+        if (PauseControl.ControllerDisconnected <= 0)
+        {
+            
+        }
+    }
 
     private void OpenPanel()
     {
