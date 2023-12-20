@@ -4,6 +4,7 @@ using Michael.Fred;
 using Michael.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -19,8 +20,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public GameObject DeathLazer;
     public AudioClip MusicToload;
     public Animator FadeAnimator;
-    
-
+    public GameObject EndGamePanel;
+    public GameObject EventSystem;
+    public GameObject RestartButton;
 
     public void QuitApplication()
     {
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     private void Start()
     {
-        FadeAnimator.SetTrigger("FadeOut");
+       // FadeAnimator.SetTrigger("FadeOut");
         StartRound();
         CurrentRound = 1;
         
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
        
         PlayerData winner = DetermineRoundWinner();
-
+        CountDownController.CanPlay = false;
         winner.WinRound++;
         Debug.Log("le gagnant à gagné " + winner.WinRound + " round");
         RoundIsFinished = true;
@@ -133,7 +135,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
         else if (winner.WinRound >= RoundTarget)
         {
-            EndGame();
+            
+          FadeAnimator.SetTrigger("FadeOut");
+          Invoke("EndGame",1f);
             
             
             Debug.Log(winner + " à gagné");
@@ -150,10 +154,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     public void EndGame()
     {
+        CountDownController.CanPlay = false;
+        EndGamePanel.SetActive(true);
+        EventSystem.SetActive(true);
+        EventSystem.GetComponent<EventSystem>().SetSelectedGameObject(RestartButton);
         Debug.Log("partie fini, gagnant ");
         //transition fondu 
         //affichage dun podiuim avec les joueurs
-        //affichage menu pause
+       
         
     }
 
@@ -172,10 +180,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     void UpdateTimerText()
     {
-        int minutes = Mathf.FloorToInt(_timer / 60);
-        int seconds = Mathf.FloorToInt(_timer % 60);
+        if (CountDownController.CanPlay)
+        {
+            int minutes = Mathf.FloorToInt(_timer / 60);
+            int seconds = Mathf.FloorToInt(_timer % 60);
         
-        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+       
     }
 }
    

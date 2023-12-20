@@ -23,7 +23,7 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float thriwingPower;
-        [SerializeField] private float CooldownColorChange = 3f;
+        public float CooldownColorChange = 3f;
        // [SerializeField] private float CooldownArmorColorChange = 3f;
         [SerializeField] private float CooldownDash = 5f;
         [SerializeField] private float dashRecoveringTime = 1f;
@@ -35,7 +35,7 @@ namespace Christopher.Proto.Scripts
         private float _currentSpeed;
         private Vector2 _mouvementValue;
         private Vector2 _orientation;
-        private bool _armorSelected = true;
+        public bool _armorSelected = true;
         private float _currentThrowingPower;
         private Rigidbody2D _rb;                    
         private float _currentCooldownDash;
