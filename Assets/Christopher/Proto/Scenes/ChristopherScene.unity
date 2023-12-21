@@ -25084,6 +25084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 7336257450125778540, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9216064958260153977, guid: d6ceed2c75446c4488ba886e36a8ffc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -40585,6 +40589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: moveEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 6315571871776223553, guid: fc5016ab89dab1a40be5f69343fbc0f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7136741113606598297, guid: fc5016ab89dab1a40be5f69343fbc0f6, type: 3}
       propertyPath: looping
       value: 0
@@ -40690,25 +40698,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 52001543}
     m_Modifications:
-    - target: {fileID: 2111265811328924202, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
-      propertyPath: m_Volume
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2111265811328924202, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f67df7d9fdb7ddf41aaf03f05520d0ed, type: 3}
     - target: {fileID: 3563432415568273953, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
       propertyPath: m_Name
       value: Reception(Fire)
       objectReference: {fileID: 0}
-    - target: {fileID: 3563432415568273953, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8531232289999662946, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8531232289999662946, guid: 87f9e0c16f19aed498ce1e54a8a74dc3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45634,7 +45630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4503874941560652692, guid: 2d3e887a094e2a744b112715d2c00a5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4503874941560652692, guid: 2d3e887a094e2a744b112715d2c00a5b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45875,13 +45871,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 52001543}
     m_Modifications:
-    - target: {fileID: 4248281346576405210, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
-      propertyPath: m_Volume
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 5517903784540183057, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5517903784540183057, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45922,10 +45914,6 @@ PrefabInstance:
     - target: {fileID: 5867952696154409598, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
       propertyPath: m_Name
       value: Reception(Ice)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5867952696154409598, guid: ce12cb83678b7d04c9930fd6a3da7e2e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46454,7 +46442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4579882931304569909, guid: 78222c0f9a408934ba0ed4e26646b7a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4579882931304569909, guid: 78222c0f9a408934ba0ed4e26646b7a6, type: 3}
       propertyPath: m_LocalPosition.y
