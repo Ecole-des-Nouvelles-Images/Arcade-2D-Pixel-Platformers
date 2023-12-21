@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void QuitApplication()
     {
         Application.Quit();
-        Debug.Log("à quitté le jeu");
     }
     
     private void Start()
@@ -65,7 +64,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
       
         
         if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
-            Debug.Log("round terminé");
             EndRound();
         }
         if (_timer <= 0) {
@@ -113,8 +111,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
       
         
         //lancer le timer 
-       
-        Debug.Log("nouveau round : " + CurrentRound);
+        
         
         //
         //lancer animation transition fondu
@@ -129,7 +126,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         PlayerData winner = DetermineRoundWinner();
         CountDownController.CanPlay = false;
         winner.WinRound++;
-        Debug.Log("le gagnant à gagné " + winner.WinRound + " round");
         RoundIsFinished = true;
         
         if (winner.WinRound < RoundTarget)
@@ -142,12 +138,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             
          // FadeAnimator.SetTrigger("FadeOut");
-          Invoke("EndGame",2f);
-            
-            
-            Debug.Log(winner + " à gagné");
-            
-              PlayerName.text = winner.PlayerPseudo;
+          Invoke("EndGame",3f);
+
+          PlayerName.text = winner.PlayerPseudo;
               PlayerNumber.text = "Joueur " + winner.Playerindex;
               EndWinnerVisual.GetComponent<Image>().sprite = winner.EndGameVisual;
 
@@ -161,7 +154,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         EndGamePanel.SetActive(true);
         EventSystem.SetActive(true);
         EventSystem.GetComponent<EventSystem>().SetSelectedGameObject(RestartButton);
-        Debug.Log("partie fini, gagnant ");
         //transition fondu 
         //affichage dun podiuim avec les joueurs
        

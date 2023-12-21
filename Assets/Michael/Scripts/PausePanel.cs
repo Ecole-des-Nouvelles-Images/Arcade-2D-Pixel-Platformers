@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.UI;
 
 public class PausePanel : MonoBehaviour
 {
+    [SerializeField] private GameObject _commandPanel;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _controllerWarningPanel;
     [SerializeField] private GameObject _eventSystem;
@@ -26,18 +27,18 @@ public class PausePanel : MonoBehaviour
     
     public void OnStartPause()
     {
-        if (PauseControl.ControllerDisconnected <= 0)
+        if (PauseControl.ControllerDisconnected <= 0 && CountDownController.CanPlay)
         {
-            
+            PauseControl.TogglePause();
         }
     }
-
     private void OpenPanel()
     {
         if (PauseControl.IsPaused)
         {
             _pausePanel.SetActive(false);
             OptionsPanel.SetActive(false);
+            _commandPanel.SetActive(false);
             _eventSystem.SetActive(false);
         }
         else if (!PauseControl.IsPaused)

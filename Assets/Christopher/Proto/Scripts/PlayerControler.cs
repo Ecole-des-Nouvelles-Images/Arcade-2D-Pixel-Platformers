@@ -118,7 +118,15 @@ namespace Christopher.Proto.Scripts
 
         private void Update()
         {
-            animator.speed = TimeManager.Instance.timeScale;
+          
+            if (!CountDownController.CanPlay)
+            {
+                animator.speed = 0;
+            }
+            else
+            {
+                animator.speed = TimeManager.Instance.timeScale;
+            }
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
                 HelperByChris.SpriteFliperX(_mouvementValue.x,0,spriteRenderer);

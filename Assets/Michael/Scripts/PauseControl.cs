@@ -59,7 +59,7 @@ public class PauseControl : MonoBehaviour
     
     
 
-    private static void TogglePause()
+    public static void TogglePause()
     {
         if (TimeManager.Instance.timeScale > 0)
         {

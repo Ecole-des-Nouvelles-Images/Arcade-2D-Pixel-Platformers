@@ -51,16 +51,13 @@ namespace Michael.Scripts.PlayerManager
             _playerNumber.text = "P" + PlayerIndex;
         }
 
-        private void Update()
-        {
-           // ChangeCharacterBio();
-        }
+      
 
         public void PlayerJoined()
         {
             PlayerIndex = GetComponent<PlayerInput>().playerIndex +1;
             PlayerIsJoined[PlayerIndex - 1] = true;
-            Debug.Log("Player " + PlayerIndex + " joined");
+
         }
         
         public void PlayerReady()
@@ -82,8 +79,6 @@ namespace Michael.Scripts.PlayerManager
                     {
                         readyCount++;
                         GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(null);
-                        Debug.Log("player " + PlayerIndex + " Is Ready");
-                        Debug.Log("index is " + (GetComponent<PlayerInput>().playerIndex + 1));
                         ConfirmChoice(PlayerIndex, _characterIndex);
                         
                     }
@@ -93,16 +88,6 @@ namespace Michael.Scripts.PlayerManager
             if (allPlayersReady == true && readyCount > _maxPlayers)
             {
                 CanStart = true;
-                
-                /*SceneManager.LoadScene("Game", LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync("Character Selection");
-                Debug.Log("2 players ready minimum");
-                string logMessage = "Contenu du dictionnaire : \n";
-                foreach (var pair in DataManager.Instance.PlayerDatasDict)
-                {
-                    logMessage += $"Clé: {pair.Key}, Valeur: {pair.Value}\n";
-                }
-                Debug.Log( logMessage);*/
             }
             else
             {
@@ -117,11 +102,11 @@ namespace Michael.Scripts.PlayerManager
             if (CanStart)
             {
                 CustomSceneManager.Instance.LoadScene("Game");
-                Debug.Log("ledqgfqeggoooo");
+               
             }
             else
             {
-                Debug.Log("pas pret");
+               
             }
            
         }
@@ -135,8 +120,6 @@ namespace Michael.Scripts.PlayerManager
                 GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_readyButton);
                 _readyButton.SetActive(true);
                 _readyText.SetActive(false);
-                Debug.Log("Cancel Ready");
-                Debug.Log(PlayerIsReady[PlayerIndex - 1]);
             }
             else if (PlayerIsJoined[PlayerIndex - 1] == true)
             {
@@ -145,7 +128,6 @@ namespace Michael.Scripts.PlayerManager
                 _joinPanel.SetActive(true);
                 GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_joinButton);
                 PlayerIsJoined[PlayerIndex - 1] = false;
-                Debug.Log("Cancel Join");
             }
             else if (PlayerIsJoined.All(element => !element))
             {
@@ -164,9 +146,7 @@ namespace Michael.Scripts.PlayerManager
             GetComponent<MultiplayerEventSystem>().SetSelectedGameObject(_joinButton);
             PlayerIsJoined[PlayerIndex - 1] = false;
             RemoveChoice(PlayerIndex);
-            
-            Debug.Log("deconnect");
-         //   _playerPanel.SetActive(false);
+            //   _playerPanel.SetActive(false);
         }
 
         public void NextCharacter()

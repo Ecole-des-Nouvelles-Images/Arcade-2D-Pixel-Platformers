@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -14,12 +15,23 @@ namespace Michael.Fred
         public AudioMixer AudioMixer;
         public float SfxVolume;
         public float MusicVolume;
-        
+
+      
+
         public void StopMusic()
         {
             if (CurrentMusic)
             {
                 CurrentMusic.Stop();
+            }
+         
+        }
+        
+        public void playMusic()
+        {
+            if (CurrentMusic)
+            {
+                CurrentMusic.Play();
             }
          
         }

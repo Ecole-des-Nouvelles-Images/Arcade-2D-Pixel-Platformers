@@ -1,4 +1,5 @@
 using System;
+using Michael.Fred;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
@@ -28,6 +29,7 @@ public class SceneSwitcher : MonoBehaviour
     
     private void Start()
     {
+        DataManager.Instance.playMusic();
         inputsystem.GetComponent<InputSystemUIInputModule>().enabled = true;
     }
 }
