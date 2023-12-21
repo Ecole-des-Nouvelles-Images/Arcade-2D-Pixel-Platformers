@@ -151,6 +151,7 @@ namespace Christopher.Proto.Scripts
         }
         private void PerformDepalecement()
         {
+            _currentSpeed = moveSpeed;
             if (_mouvementValue != Vector2.zero && !_dashing && !PauseControl.IsPaused && CountDownController.CanPlay)
             {
                 Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.deltaTime;//* -1;

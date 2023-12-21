@@ -48,13 +48,13 @@ namespace Christopher.Proto.Scripts
         {
             if (color == "rouge")
             {
-                var o = Instantiate(ballAbsorbedFX[0]);
+                var o = Instantiate(ballAbsorbedFX[0],transform);
                 o.transform.position = transform.position;
                 Destroy(o,2);
             }
             if (color == "bleu")
             {
-                var o = Instantiate(ballAbsorbedFX[1]);
+                var o = Instantiate(ballAbsorbedFX[1],transform);
                 o.transform.position = transform.position;
                 Destroy(o,2);
             }
