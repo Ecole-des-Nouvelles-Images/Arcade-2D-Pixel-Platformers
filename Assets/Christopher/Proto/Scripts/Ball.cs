@@ -124,12 +124,12 @@ namespace Christopher.Proto.Scripts
             if (CurrentColor == "bleu")
             {
                 src.clip = sfx[1];
-                src.Play();
+                if(!src.isPlaying) src.Play();
             }
             if (CurrentColor == "rouge")
             {
                 src.clip = sfx[0];
-                src.Play();
+                if(!src.isPlaying) src.Play();
             }
         }
     }

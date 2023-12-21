@@ -130,3 +130,5 @@ MonoBehaviour:
   fireLight2D: {fileID: 7686224225576527955}
   timerChangingIntensityLight_min: 0.1
   timerChangingIntensityLight_max: 0.4
+  IntensityLight_min: 0.2
+  IntensityLight_max: 0.4
