@@ -20,7 +20,7 @@ namespace Michael.Scripts
         public Vector3 InitialPosition;
         public string PlayerPseudo;
         public List<string> PlayerNames = new List<string> { "maximadok", "mathisruk", "Christorar", "Mikaralik" };
-        
+        public Sprite EndGameVisual;
 
         private void Start()
         {
@@ -30,7 +30,7 @@ namespace Michael.Scripts
             
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
             { 
-                gameObject.GetComponent<SpriteRenderer>().sprite = CharacterVisual[value];
+              EndGameVisual = CharacterVisual[value];
                 PlayerPseudo = PlayerNames[value]; 
 
                 // CharacterVisual[value].enabled = true;

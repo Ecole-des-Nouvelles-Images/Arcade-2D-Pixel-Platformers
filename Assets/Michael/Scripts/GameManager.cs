@@ -5,6 +5,8 @@ using Michael.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Animator EndPanelAnimator;
     public TextMeshProUGUI PlayerName;
     public TextMeshProUGUI PlayerNumber;
+    [SerializeField] private GameObject EndWinnerVisual;
     public void QuitApplication()
     {
         Application.Quit();
@@ -138,14 +141,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         else if (winner.WinRound >= RoundTarget)
         {
             
-          FadeAnimator.SetTrigger("FadeOut");
-          Invoke("EndGame",1.5f);
+         // FadeAnimator.SetTrigger("FadeOut");
+          Invoke("EndGame",2f);
             
             
             Debug.Log(winner + " à gagné");
             
               PlayerName.text = winner.PlayerPseudo;
               PlayerNumber.text = "Joueur " + winner.Playerindex;
+              EndWinnerVisual.GetComponent<Image>().sprite = winner.EndGameVisual;
+
         }
        
     }

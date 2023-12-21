@@ -776,7 +776,7 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 8
+  moveSpeed: 15
   thriwingPower: 10
   CooldownColorChange: 3
   CooldownDash: 0.1
@@ -798,10 +798,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Playerindex: 0
   CharacterVisual:
-  - {fileID: 21300000, guid: 1f9c163a948bb36448d6e398d8a41197, type: 3}
-  - {fileID: 21300000, guid: 848e0b25aec21ab46b980ed77aa32fef, type: 3}
-  - {fileID: 21300000, guid: 62e1c5f7d570e0c439668996bb5932cd, type: 3}
-  - {fileID: 21300000, guid: 8babb934420c95f4d8ac23a1af414088, type: 3}
+  - {fileID: 21300000, guid: 48cbe766952d87549bf9aecaacece034, type: 3}
+  - {fileID: 21300000, guid: 86d07718f0b3a214fa2f2369a6cd6081, type: 3}
+  - {fileID: 21300000, guid: 5ce92d03af2589c41952c42fda834176, type: 3}
+  - {fileID: 21300000, guid: 8af2b7f9af49b6f40aa087a787348130, type: 3}
   WinRound: 0
   Health: 3
   MaxHealth: 3
@@ -813,6 +813,7 @@ MonoBehaviour:
   - mathisruk
   - Christorar
   - Mikaralik
+  EndGameVisual: {fileID: 0}
 --- !u!114 &-2003240890592298397
 MonoBehaviour:
   m_ObjectHideFlags: 0

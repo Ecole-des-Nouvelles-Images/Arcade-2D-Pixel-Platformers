@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 1
   deltaTime: 0
-  fixedDeltaTime: 0
+  fixedDeltaTime: 0.02
   time: 0
 --- !u!114 &41399100
 MonoBehaviour:
