@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public bool RoundIsFinished;
     public int RoundTarget = 2;
     public PlayerData Winner;
-    public GameObject DeathLazer;
     public AudioClip MusicToload;
     public Animator FadeAnimator;
     public GameObject EndGamePanel;
@@ -29,6 +28,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public TextMeshProUGUI PlayerName;
     public TextMeshProUGUI PlayerNumber;
     [SerializeField] private GameObject EndWinnerVisual;
+    [SerializeField] private AudioSource CrowndReactSound;
+    public GameObject DeathLazer;
     public void QuitApplication()
     {
         Application.Quit();
@@ -66,14 +67,17 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
             EndRound();
         }
-        if (_timer <= 0) {
-          DeathLazer.SetActive(true); 
-          //transition tete de mort 
+        if (_timer <= 0)
+        {
+         
+            DeathLazer.SetActive(true);
         }
         else
         {
-            DeathLazer.SetActive(false);
-            // ui tete de mort 
+         
+          
+          DeathLazer.SetActive(false);
+           
         }
         
         
@@ -150,6 +154,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     public void EndGame()
     {
+        foreach (var player in PlayerList)
+        {
+            player.GetComponent<PlayerControler>().ResetBall();
+        }
+
+        CrowndReactSound.Play();
         CountDownController.CanPlay = false;
         EndGamePanel.SetActive(true);
         EventSystem.SetActive(true);

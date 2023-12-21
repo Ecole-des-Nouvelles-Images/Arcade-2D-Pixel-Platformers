@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 1016665446633140346}
   - component: {fileID: 686862759398890443}
   - component: {fileID: -2003240890592298397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 15
+  moveSpeed: 60
   thriwingPower: 10
   CooldownColorChange: 3
   CooldownDash: 0.1

@@ -12,6 +12,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
     public TextMeshProUGUI RoundText;
     public static bool CanPlay;
     public Animator RoundAnimator;
+    public AudioSource GoSound;
     void Start()
     {
        
@@ -35,6 +36,7 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
         {
             RoundAnimator.SetBool("ShowRoundPanel ", false);
             CountDownText.text = "GO";
+            GoSound.Play();
             //sound design
             CancelInvoke("UpdateCountdown");
            Invoke(nameof(HidePanel),1f);

@@ -27,9 +27,10 @@ public class SceneSwitcher : MonoBehaviour
     
     
     
-    private void Start()
+    private void Awake()
     {
-        DataManager.Instance.playMusic();
+      
         inputsystem.GetComponent<InputSystemUIInputModule>().enabled = true;
+        DataManager.Instance.playMusic();
     }
 }

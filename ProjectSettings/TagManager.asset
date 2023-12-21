@@ -12,9 +12,9 @@ TagManager:
   - Ball
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Wall
+  - WallBall
+  - Player
   - 
   - 
   - 

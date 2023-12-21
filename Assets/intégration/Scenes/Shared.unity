@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 1
   deltaTime: 0
-  fixedDeltaTime: 0.02
+  fixedDeltaTime: 0
   time: 0
 --- !u!114 &41399100
 MonoBehaviour:
@@ -213,7 +213,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1864575764212917278, guid: 5d6768be09548154c9b07efb5c606bcd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: dfb84e11f42e92343997b6491948e4b9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 05efe0253a4a8164f85a5055721369ca, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.606
   m_Pitch: 1

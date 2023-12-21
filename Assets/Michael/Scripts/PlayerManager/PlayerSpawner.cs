@@ -14,10 +14,7 @@ public class PlayerSpawner : MonoBehaviour
     private void Start()
     {
         
-        Debug.Log(PlayersManager.PlayerIsReady[0]);
-        Debug.Log(PlayersManager.PlayerIsReady[1]);
-        Debug.Log(PlayersManager.PlayerIsReady[2]);
-        Debug.Log(PlayersManager.PlayerIsReady[3]);
+      
         for (int i = 0; i < 4; i++) 
         {
             GameObject player = Instantiate(playerPrefab, transform);
@@ -39,7 +36,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput) {
        playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex = playerInput.playerIndex+1;
-        Debug.Log("index : " + playerInput.gameObject.GetComponent<Michael.Scripts.PlayerData>().Playerindex);
+        
     }
 
    
