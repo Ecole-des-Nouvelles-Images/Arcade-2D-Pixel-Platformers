@@ -44,6 +44,7 @@ public class Lazer : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             isTrigger = true;
+            other.transform.GetComponent<PlayerData>().PlayHurtSound();
             other.transform.GetComponent<PlayerData>().Health = 0;
         }
     }

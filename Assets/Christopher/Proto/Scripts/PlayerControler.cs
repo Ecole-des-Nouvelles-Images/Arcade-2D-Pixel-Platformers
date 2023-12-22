@@ -171,8 +171,8 @@ namespace Christopher.Proto.Scripts
             _currentSpeed = moveSpeed;
             if (_mouvementValue != Vector2.zero && !_dashing && !PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.deltaTime;//* -1;
-                Zmove = _orientation.y * _currentSpeed * TimeManager.Instance.deltaTime;
+                Xmove = _orientation.x * _currentSpeed * TimeManager.Instance.fixedDeltaTime;//* -1;
+                Zmove = _orientation.y * _currentSpeed * TimeManager.Instance.fixedDeltaTime;
                 Vector2 dep = new Vector2(Xmove, Zmove);
                 characterDisplay.PlayWalkingFX();
                 transform.Translate(dep);

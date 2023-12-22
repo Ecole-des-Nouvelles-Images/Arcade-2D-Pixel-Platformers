@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Michael.Scripts
 {
@@ -22,6 +23,8 @@ namespace Michael.Scripts
         public List<string> PlayerNames = new List<string> { "maximadok", "mathisruk", "Christorar", "Mikaralik" };
         public Sprite EndGameVisual;
         public int characterChoice;
+        public AudioClip[] HurtSound;
+        public AudioSource CurrentHurtSound;
 
         private void Start()
         {
@@ -49,7 +52,17 @@ namespace Michael.Scripts
         {
             Health = MaxHealth;
         }
-        
+
+        public void PlayHurtSound()
+        {
+            if (HurtSound.Length > 0)
+            {
+                int indiceAleatoire = Random.Range(0, HurtSound.Length);
+
+                CurrentHurtSound.clip = HurtSound[indiceAleatoire];
+                CurrentHurtSound.Play();
+            }
+        }
        
         
         

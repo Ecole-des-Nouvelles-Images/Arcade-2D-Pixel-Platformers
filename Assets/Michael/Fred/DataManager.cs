@@ -29,8 +29,7 @@ namespace Michael.Fred
         
         public void playMusic()
         {
-            
-                CurrentMusic.Play();
+            CurrentMusic.Play();
 
         }
        
