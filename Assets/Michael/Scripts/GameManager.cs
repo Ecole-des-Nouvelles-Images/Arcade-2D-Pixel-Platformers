@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         PlayerData lastAlive = null;
         
-        if (PlayerAlive.Count <= 1)// si il ne reste plus q'un joueur
+        if (PlayerAlive.Count == 1)// si il ne reste plus q'un joueur
         {
             lastAlive = PlayerAlive[0].gameObject.GetComponent<PlayerData>();
         }

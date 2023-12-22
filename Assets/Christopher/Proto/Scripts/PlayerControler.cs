@@ -275,7 +275,7 @@ namespace Christopher.Proto.Scripts
                 characterDisplay.PlayDashFX();
                 animator.SetBool("dashing",true);
                 _dashing = true;
-                _rb.AddForce(_orientation*dashPower,ForceMode2D.Impulse);
+                _rb.AddForce(_orientation.normalized * dashPower,ForceMode2D.Impulse);
                 _currentSpeed = moveSpeed;
                 _dashEnabled = false; 
             }

@@ -21,7 +21,7 @@ public class PlayerSpawner : MonoBehaviour
             OnPlayerJoined(player.GetComponent<PlayerInput>());
             player.transform.position = Spawnpoint[i].position;
             
-            if (PlayersManager.PlayerIsReady[i] == false) {
+            if (PlayersManager.PlayerIsReady != null && PlayersManager.PlayerIsReady[i] == false) {
                 Destroy(player.gameObject);
                 player.GetComponent<PlayerControler>().enabled = false;
             }

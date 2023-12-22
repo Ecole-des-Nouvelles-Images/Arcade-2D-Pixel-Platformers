@@ -777,7 +777,7 @@ MonoBehaviour:
   playerData: {fileID: 686862759398890443}
   animator: {fileID: 5231401368354803426}
   spriteRenderer: {fileID: 3124058879618484196}
-  moveSpeed: 60
+  moveSpeed: 5
   thriwingPower: 10
   CooldownColorChange: 3
   CooldownDash: 0.1
@@ -815,6 +815,7 @@ MonoBehaviour:
   - Christorar
   - Mikaralik
   EndGameVisual: {fileID: 0}
+  characterChoice: 0
 --- !u!114 &-2003240890592298397
 MonoBehaviour:
   m_ObjectHideFlags: 0
