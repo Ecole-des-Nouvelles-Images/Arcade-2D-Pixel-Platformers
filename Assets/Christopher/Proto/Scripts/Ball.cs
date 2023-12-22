@@ -54,8 +54,6 @@ namespace Christopher.Proto.Scripts
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
-        
-            CollideImpactEffect();
             if (other.transform.CompareTag("Player"))
             {
                 transform.GetComponent<Rigidbody2D>().velocity *= ballSpeedSlowingImpactFactor;
@@ -65,7 +63,7 @@ namespace Christopher.Proto.Scripts
                     transform.GetComponent<Rigidbody2D>().velocity *= -1;
                     other.transform.GetComponent<PlayerData>().Health -= 1;
                     other.transform.GetComponent<CharacterRecover>().isRecovering = true;
-                    
+                    CollideImpactEffect();
                     //Debug.Log(other.transform.GetComponent<PlayerControler>().Health);
                 }
                 if(!other.transform.GetComponent<PlayerControler>().HandedBall && CurrentColor == other.transform.GetComponent<PlayerControler>().CurrentColor && MyOwner.transform.GetComponent<PlayerControler>().MyBalls != null) // absorbe?
@@ -85,9 +83,9 @@ namespace Christopher.Proto.Scripts
                     Destroy(gameObject);
                 }
             }
-            if (other.transform.CompareTag("Wall"))
+            if (!other.transform.CompareTag("Player"))
             {
-                Debug.Log("Wall!");
+                CollideImpactEffect();
             }
         }
 
