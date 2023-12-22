@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 3
-  _maxPlayers: 1
+  _maxPlayers: 2
   PlayerPanel: {fileID: 1687945529}
   _selectionPanel: {fileID: 386043451}
   _joinPanel: {fileID: 1320043648}
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 3
-  _maxPlayers: 1
+  _maxPlayers: 3
   PlayerPanel: {fileID: 176319720}
   _selectionPanel: {fileID: 62316676}
   _joinPanel: {fileID: 1802187977}
@@ -7914,7 +7914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 2
-  _maxPlayers: 1
+  _maxPlayers: 2
   PlayerPanel: {fileID: 418929690}
   _selectionPanel: {fileID: 1629036987}
   _joinPanel: {fileID: 1600324219}
@@ -8609,7 +8609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 4
-  _maxPlayers: 1
+  _maxPlayers: 3
   PlayerPanel: {fileID: 745652050}
   _selectionPanel: {fileID: 186843287}
   _joinPanel: {fileID: 1535514654}
@@ -11249,7 +11249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
-  _maxPlayers: 1
+  _maxPlayers: 2
   PlayerPanel: {fileID: 1503979772}
   _selectionPanel: {fileID: 787560958}
   _joinPanel: {fileID: 1040044359}
@@ -15813,7 +15813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 2
-  _maxPlayers: 1
+  _maxPlayers: 3
   PlayerPanel: {fileID: 1237324190}
   _selectionPanel: {fileID: 2056297958}
   _joinPanel: {fileID: 87006337}
@@ -20154,7 +20154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
-  _maxPlayers: 1
+  _maxPlayers: 3
   PlayerPanel: {fileID: 1177397831}
   _selectionPanel: {fileID: 46332713}
   _joinPanel: {fileID: 2126212179}
