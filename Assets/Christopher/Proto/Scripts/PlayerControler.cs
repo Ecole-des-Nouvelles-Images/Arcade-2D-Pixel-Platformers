@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Michael.Scripts;
 using UnityEngine;
@@ -13,7 +14,6 @@ namespace Christopher.Proto.Scripts
         public List<GameObject> MyBalls = new List<GameObject>();
         public GameObject Projectile;
         public float CurrentCooldownColorChange;
-
         //[SerializeField] private List<Animator> animList;
         [SerializeField] private InputActionReference Move, Throw, ChangeColor, ChangeSelect, Dash;
         [SerializeField] private CharacterDisplay characterDisplay;
@@ -56,16 +56,26 @@ namespace Christopher.Proto.Scripts
             _rb = transform.GetComponent<Rigidbody2D>();
             //_currentCooldownColorChange = CooldownColorChange;
             //_currentCooldownBallColorChange = CooldownBallColorChange;
+            
         }
         void Start()
         {
-            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
+            Invoke(nameof(configureAnimator),0.2f);
             _currentDashRecoveringTime = dashRecoveringTime;
             _timeDash = dashDistanceTime;
             _currentThrowingPower = thriwingPower;
             _currentSpeed = moveSpeed;
             _currentCooldownDash = CooldownDash;
+           
         }
+
+        void configureAnimator()
+        {
+            animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.characterChoice, CurrentColor);
+            
+        }
+        
+        
         public void OnMove(InputAction.CallbackContext Move)
         {
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
@@ -118,10 +128,9 @@ namespace Christopher.Proto.Scripts
 
         private void Update()
         {
-          
             if (!CountDownController.CanPlay)
             {
-                animator.speed = 0;
+                animator.speed = 0f;
             }
             else
             {
@@ -253,7 +262,7 @@ namespace Christopher.Proto.Scripts
                     o.transform.position = transform.position;
                     Destroy(o,2);
                 }
-                animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.Playerindex, CurrentColor);
+                animator.runtimeAnimatorController = characterDisplay.CharacterAnimatorSelection(playerData.characterChoice, CurrentColor);
                 CurrentCooldownColorChange = CooldownColorChange;
             }
             

@@ -96,6 +96,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7a3c4fad-99d2-4897-aab5-7a3f6da8b15b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2046648c-0af5-4a88-9bf4-c5dd955d4fdf",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",

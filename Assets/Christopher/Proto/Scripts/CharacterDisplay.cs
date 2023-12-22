@@ -1,3 +1,4 @@
+using Michael.Scripts;
 using UnityEngine;
 
 namespace Christopher.Proto.Scripts
@@ -29,6 +30,8 @@ namespace Christopher.Proto.Scripts
                 Dwarfs[2] = Dwarf_3;
                 Dwarfs[3] = Dwarf_4;
             }
+
+            
 
             //_currentWalkTime = timerWalkFX;
         }

@@ -21,6 +21,7 @@ namespace Michael.Scripts
         public string PlayerPseudo;
         public List<string> PlayerNames = new List<string> { "maximadok", "mathisruk", "Christorar", "Mikaralik" };
         public Sprite EndGameVisual;
+        public int characterChoice;
 
         private void Start()
         {
@@ -29,7 +30,8 @@ namespace Michael.Scripts
             PlayerNumberText.text = "J" + Playerindex;
             
             if (  DataManager.Instance.PlayerDatasDict.TryGetValue(Playerindex, out int value))
-            { 
+            {
+                characterChoice = value;
               EndGameVisual = CharacterVisual[value];
                 PlayerPseudo = PlayerNames[value]; 
 

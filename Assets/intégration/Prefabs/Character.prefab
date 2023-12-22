@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.36}
+  m_AnchoredPosition: {x: 0.112, y: 1.059}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4113557247011957559
@@ -380,7 +380,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6478584446003126705}
@@ -740,17 +740,17 @@ MonoBehaviour:
   characterFoot: {fileID: 3173565168098626014}
   timerWalkFX: 0.3
   Dwarf_1:
-  - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
-  - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
+  - {fileID: 22100000, guid: 6a787955d67245c4ea3c8f551ca7a5b9, type: 2}
+  - {fileID: 22100000, guid: b0a26746ce3067647a4e20985fe32087, type: 2}
   Dwarf_2:
-  - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
-  - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
+  - {fileID: 22100000, guid: 010d3454e6cd8bc4c9b68bc6a3b3687c, type: 2}
+  - {fileID: 22100000, guid: 3c45ea9c73745ce45a29295f21db61bb, type: 2}
   Dwarf_3:
-  - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
-  - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
+  - {fileID: 22100000, guid: 7b01dc18f7874c7419b77cb2efd9ec53, type: 2}
+  - {fileID: 22100000, guid: f55e76084e09c4f439cf613d06728387, type: 2}
   Dwarf_4:
-  - {fileID: 22100000, guid: 67dad8cd12c94fa42b777f6cd1364fff, type: 2}
-  - {fileID: 22100000, guid: 401556d4af75e6b47bf5fe401914cbf8, type: 2}
+  - {fileID: 22100000, guid: bf2e9df797b1f1e4a9fc2e108ef99c50, type: 2}
+  - {fileID: 22100000, guid: e673c49c4982bc64798cb67d56bab43e, type: 2}
 --- !u!114 &1016665446633140346
 MonoBehaviour:
   m_ObjectHideFlags: 0
