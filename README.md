@@ -1,7 +1,4 @@
 <h1 align="center"> <a href="https://ibb.co/7vXQTxW"><img src="https://i.ibb.co/317v85N/Pitch-PROjet-Arcade.png" alt="Pitch-PROjet-Arcade" border="0"></a>
-
- 
-<h1 align="center"> Page Itch.io </h1><p  <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
 <h1 align="center">| FORGE BOWL |</h1><p
                                        
 <h2 align="center"> Projet de 2eme de Jeux vidéo, fait en 4 semaines.</h2>
@@ -20,10 +17,6 @@ sportif magique. Quatre champions ont été choisis, maniant la magie avec honne
 Maximadok, Mathisruk, Christorar et Mikaralik. Mais un seul gagnera... Que le Forge Bowl
 commence ! </h5>
 
-
-
-
-
-
 https://github.com/Ecole-des-Nouvelles-Images/Arcade-2D-Pixel-Platformers/assets/120110492/f58d62fc-5362-4ccc-bcb5-1ea260427dc1
 
+<h1 align="center"> Page Itch.io </h2><p  <h1 align="center"> <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
