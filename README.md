@@ -4,7 +4,7 @@
 <h2 align="center"> Projet de 2eme de Jeux vidéo, fait en 4 semaines. </h2>
 
 <h4 align="Left"> Conçu par le groupe "Pixel Platformers" : 
-ELIE Michael, SOUDAY Maxime, GANZ Mathis, BARRERA Christopher </h4>
+ELIE Michael, SOUDAY Maxime, GANZ Mathis et BARRERA Christopher </h4>
 
 <h3 align="Left"> |PITCH| </h3>
 <h5 align="left"> Forge Bowl est un jeu 2D en multijoueur local en point de vue TopDown.
