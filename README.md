@@ -4,13 +4,10 @@
 <h2 align="center"> Projet de 2eme de Jeux vidéo, fait en 4 semaines.</h2>
 
 <h3 align="center"> Conçu par le groupe Pixel Platformer : 
-ELIE Michael
-SOUDAY Maxime
-GANZ Mathis
-BARRERA Christopher
+ELIE Michael, SOUDAY Maxime, GANZ Mathis, BARRERA Christopher </h3>
 
 
- </h3>
+
 
 
 
