@@ -11,7 +11,7 @@ ELIE Michael, SOUDAY Maxime, GANZ Mathis, BARRERA Christopher </h3>
 Le dernier en vie gagne un round, il faut gagner 2 round pour remporter la partie.</h5>
 
 <p align="right">
-<a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="30" width="40" /></a> </p>
+<a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
 
 
 
