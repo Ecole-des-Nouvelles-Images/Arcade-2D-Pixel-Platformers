@@ -3,12 +3,15 @@
 <h1 align="center">FORGE BOWL</h1>
 <h2 align="center"> Projet de 2eme de Jeux vidéo, fait en 4 semaines.</h2>
 
-<h3 align="center"> Conçu par le groupe Pixel Platformer : 
+<h3 align="center"> Conçu par le groupe "Pixel Platformers" : 
 ELIE Michael, SOUDAY Maxime, GANZ Mathis, BARRERA Christopher </h3>
 
+<h5 align="center"> Forge Bowl est un jeu 2D en multijoueur local en point de vue TopDown.
+  Chaque joueur incarne un nain dans une arène équipé d'une boule magique et d'une armure.
+Le dernier en vie gagne un round, il faut gagner 2 round pour remporter la partie.</h5>
 
-
-
+<p align="right">
+<a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="30" width="40" /></a> </p>
 
 
 
