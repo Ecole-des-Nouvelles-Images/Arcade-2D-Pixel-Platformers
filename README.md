@@ -19,4 +19,4 @@ commence ! </h5>
 
 https://github.com/Ecole-des-Nouvelles-Images/Arcade-2D-Pixel-Platformers/assets/120110492/f58d62fc-5362-4ccc-bcb5-1ea260427dc1
 
-<h1 align="center"> Page Itch.io </h2><p  <h1 align="center"> <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
+<h1 align="center"> Disponible sur Itch.io </h2><p  <h1 align="center"> <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
