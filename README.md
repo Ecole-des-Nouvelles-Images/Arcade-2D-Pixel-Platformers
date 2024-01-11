@@ -1,7 +1,7 @@
 <h1 align="center"> <a href="https://ibb.co/7vXQTxW"><img src="https://i.ibb.co/317v85N/Pitch-PROjet-Arcade.png" alt="Pitch-PROjet-Arcade" border="0"></a>
 
  
-<h1 align="center"> Page Itch.io <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
+<h1 align="center"> Page Itch.io </h1><p  <a href="https://michael-elie.itch.io/forge-bowl" target="blank"><img align="center" src="https://cdn.solo.to/images/link/itch.io.svg" height="100" width="70" /></a> </p>
 <h1 align="center">| FORGE BOWL |</h1><p
                                        
 <h2 align="center"> Projet de 2eme de Jeux vidéo, fait en 4 semaines.</h2>
