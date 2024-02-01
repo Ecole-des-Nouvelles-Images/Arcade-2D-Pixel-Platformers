@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] private GameObject EndWinnerVisual;
     [SerializeField] private AudioSource CrowndReactSound;
     public GameObject DeathLazer;
+    [SerializeField] private GameObject OverTimePanel;
+    [SerializeField]private bool TutoIsFinished = false; 
+    public AudioSource ChainSound;
+    public AudioSource HornSound;
     public void QuitApplication()
     {
         Application.Quit();
@@ -37,13 +41,24 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     private void Start()
     {
-       // FadeAnimator.SetTrigger("FadeOut");
-        StartRound();
+        TutoIsFinished = false;
+        //FadeAnimator.SetTrigger("FadeOut");
+       //StartRound();
         CurrentRound = 1;
         
        //ChangeMusic(MusicToload);
       DataManager.Instance.StopMusic();
 
+    }
+
+    public void FinishTutorial()
+    {
+        if (TutoIsFinished == false)
+        {
+            StartRound();
+            TutoIsFinished = true;
+        }
+       
     }
     
     public void ChangeMusic(AudioClip musicToLoad) 
@@ -67,16 +82,20 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
             EndRound();
         }
-        if (_timer <= 0)
+        if (_timer <= 0 && TutoIsFinished == true)
         {
-         
-            DeathLazer.SetActive(true);
+            HornSound.Play();
+           OverTimePanel.SetActive(true);
+           ChainSound.Play();
+           
+          //  DeathLazer.SetActive(true);
         }
         else
         {
-         
+            OverTimePanel.SetActive(false);
+            ChainSound.Stop();
           
-          DeathLazer.SetActive(false);
+          //DeathLazer.SetActive(false);
            
         }
         
@@ -84,6 +103,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     }
     public void StartRound()
     {
+        
         CountDownController.Instance.RoundAnimator.SetBool("ShowRoundPanel ", true);
         RoundIsFinished = false;
         foreach (var player in PlayerList)
@@ -107,7 +127,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
         
        
-        CountDownController.Instance.CountDownTime = 5;
+        CountDownController.Instance.CountDownTime = 3;
         _timer = RoundDuration;
         // //start compte a rebours
         CountDownController.Instance.InvokeRepeating("UpdateCountdown",0f,1f);
@@ -127,6 +147,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void EndRound()
     {
+        DeathLazer.SetActive(false);
         PlayerData winner = DetermineRoundWinner();
         CountDownController.CanPlay = false;
         winner.WinRound++;

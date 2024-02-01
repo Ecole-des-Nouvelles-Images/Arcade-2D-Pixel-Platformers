@@ -11,6 +11,7 @@ namespace Christopher.Proto.Scripts
         public GameObject moveFX;
         public GameObject dashFX;
 
+       // [SerializeField] private AudioSource DashSound;
         [SerializeField] private GameObject characterFoot;
         [SerializeField] private float timerWalkFX;
         [SerializeField] private AnimatorOverrideController[] Dwarf_1;
@@ -97,6 +98,7 @@ namespace Christopher.Proto.Scripts
         {
             var o = Instantiate(dashFX,transform);
             o.transform.position = transform.position;
+            //DashSound.Play();
             Destroy(o,2);
         }
     }

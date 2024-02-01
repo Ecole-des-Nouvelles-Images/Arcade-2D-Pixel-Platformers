@@ -28,18 +28,19 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private GameObject _readyText;
-        [SerializeField] private GameObject _choiceModePanel;
-        [SerializeField] private GameObject _playerPanel;
         [SerializeField] private TextMeshProUGUI _playerName;
         [SerializeField] private TextMeshProUGUI _playerNumber;
 
         [Header("character selection")] [SerializeField]
         private List<Sprite> _characterSpriteslist;
-
+        public Image CharacterImage;
         [SerializeField] private GameObject _currentCharacter;
         [SerializeField] private int _characterIndex = 0;
         [SerializeField] private TextMeshProUGUI _characterBio;
-        public Image CharacterImage;
+        [SerializeField] private Button NextButton;
+        [SerializeField] private Button PreviousButton;
+       
+        
        
         
         private void Start()
@@ -149,6 +150,26 @@ namespace Michael.Scripts.PlayerManager
             //   _playerPanel.SetActive(false);
         }
 
+        public void OnNavigateLeft()
+        {
+         
+          if (PlayerIsJoined[PlayerIndex - 1] && !PlayerIsReady[PlayerIndex - 1])
+          {
+              PreviousButton.onClick?.Invoke();
+              PreviousButton.GetComponent<Animator>().SetTrigger("ArrowPress");
+          }
+        }
+        
+        public void OnNavigateRight()
+        {
+            if (PlayerIsJoined[PlayerIndex - 1] && !PlayerIsReady[PlayerIndex - 1])
+            {
+                NextButton.onClick?.Invoke();
+                NextButton.GetComponent<Animator>().SetTrigger("ArrowPress");
+            }
+        }
+        
+        
         public void NextCharacter()
         {
             _characterIndex += 1;

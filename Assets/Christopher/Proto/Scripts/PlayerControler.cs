@@ -29,7 +29,8 @@ namespace Christopher.Proto.Scripts
         [SerializeField] private float dashRecoveringTime = 1f;
         [SerializeField] private float dashPower = 2f;
         [SerializeField] private float dashDistanceTime = 2f;
-    
+        [SerializeField] private AudioSource ThrowSound;
+        
         private string[] _colorList = new string[] { "bleu", "rouge" };
         private Transform _visé;
         private float _currentSpeed;
@@ -233,6 +234,7 @@ namespace Christopher.Proto.Scripts
             if (!PauseControl.IsPaused && CountDownController.CanPlay )
             {
                 animator.SetTrigger("throwing");
+                ThrowSound.Play();
                 HandedBall = false;
                 var o = Instantiate(Projectile);
                 MyBalls.Add(o);

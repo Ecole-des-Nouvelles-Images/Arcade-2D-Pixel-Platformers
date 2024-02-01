@@ -46,6 +46,24 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""NavigateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb2664e1-bab7-4aa9-a174-0571e930426b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavigateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c181579-d3ec-4203-bc23-7234d9b0bdfc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""StartPause"",
                     ""type"": ""Button"",
                     ""id"": ""58cf7b28-a73e-4d20-9e6c-7e96177be894"",
@@ -316,105 +334,6 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""919dee4f-640e-43e5-b832-defbb22a4ef4"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""db55d4ec-4624-4ec4-acc9-84eae677a6a9"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c4f8bed4-0ed2-4c7b-83cc-32dba7f0de0a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1c4e9087-d30e-4246-96e2-e4e8e62863d6"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""421f76fc-e8ab-4bd1-b00f-0e645606c02d"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""c6f49993-fb8e-43fd-a690-de55fde2dbdc"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e49d6e14-7227-499c-a3b0-746f3db5c9d0"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""3f4ffdff-c4d1-4101-b9f4-19de4303da22"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""dd4131fd-9c74-4be7-b57c-d80ad9fce4bf"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""096a85fc-fda6-420d-af0d-20ba6f38e5c7"",
                     ""path"": ""<Mouse>/position"",
@@ -556,6 +475,28 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""action"": ""StartPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b623fc7-edc4-46a0-b04e-a63b4c1e92f1"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""680afda7-f26d-4493-86bb-57f8e72d92e3"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -578,6 +519,8 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_NavigateRight = m_UI.FindAction("NavigateRight", throwIfNotFound: true);
+        m_UI_NavigateLeft = m_UI.FindAction("NavigateLeft", throwIfNotFound: true);
         m_UI_StartPause = m_UI.FindAction("StartPause", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -650,6 +593,8 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_NavigateRight;
+    private readonly InputAction m_UI_NavigateLeft;
     private readonly InputAction m_UI_StartPause;
     private readonly InputAction m_UI_Submit;
     private readonly InputAction m_UI_Point;
@@ -665,6 +610,8 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
         public UIActions(@MenuControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @NavigateRight => m_Wrapper.m_UI_NavigateRight;
+        public InputAction @NavigateLeft => m_Wrapper.m_UI_NavigateLeft;
         public InputAction @StartPause => m_Wrapper.m_UI_StartPause;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Point => m_Wrapper.m_UI_Point;
@@ -689,6 +636,12 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @NavigateRight.started += instance.OnNavigateRight;
+            @NavigateRight.performed += instance.OnNavigateRight;
+            @NavigateRight.canceled += instance.OnNavigateRight;
+            @NavigateLeft.started += instance.OnNavigateLeft;
+            @NavigateLeft.performed += instance.OnNavigateLeft;
+            @NavigateLeft.canceled += instance.OnNavigateLeft;
             @StartPause.started += instance.OnStartPause;
             @StartPause.performed += instance.OnStartPause;
             @StartPause.canceled += instance.OnStartPause;
@@ -726,6 +679,12 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @NavigateRight.started -= instance.OnNavigateRight;
+            @NavigateRight.performed -= instance.OnNavigateRight;
+            @NavigateRight.canceled -= instance.OnNavigateRight;
+            @NavigateLeft.started -= instance.OnNavigateLeft;
+            @NavigateLeft.performed -= instance.OnNavigateLeft;
+            @NavigateLeft.canceled -= instance.OnNavigateLeft;
             @StartPause.started -= instance.OnStartPause;
             @StartPause.performed -= instance.OnStartPause;
             @StartPause.canceled -= instance.OnStartPause;
@@ -783,6 +742,8 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
     {
         void OnCancel(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnNavigateRight(InputAction.CallbackContext context);
+        void OnNavigateLeft(InputAction.CallbackContext context);
         void OnStartPause(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);

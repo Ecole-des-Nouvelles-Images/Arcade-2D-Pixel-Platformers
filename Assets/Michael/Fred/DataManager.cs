@@ -11,10 +11,12 @@ namespace Michael.Fred
 
         public string StartingScene;
         public AudioSource CurrentMusic;
+        public AudioSource AmbientMusic;
         public Dictionary<int, int> PlayerDatasDict = new Dictionary<int, int>();
         public AudioMixer AudioMixer;
         public float SfxVolume;
         public float MusicVolume;
+        public bool MenuMusicIsStop = true;
 
       
 
@@ -23,14 +25,21 @@ namespace Michael.Fred
             if (CurrentMusic)
             {
                 CurrentMusic.Stop();
+                AmbientMusic.Stop();
+                MenuMusicIsStop = true;
             }
          
         }
         
         public void playMusic()
         {
-            CurrentMusic.Play();
-
+            if (MenuMusicIsStop)
+            {
+                CurrentMusic.Play();
+                AmbientMusic.Play();
+                MenuMusicIsStop = false;
+            }
+           
         }
        
 

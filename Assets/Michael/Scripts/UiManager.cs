@@ -25,9 +25,9 @@ public class UiManager : MonoBehaviour
    public Image ImageSkill;
    public float cooldown ;
    public float cooldownDuration;
-   public Image ImageBackButtons;
-   public Color BlueColor;
-   public Color RedColor;
+  // public Image ImageBackButtons;
+  // public Color BlueColor;
+  // public Color RedColor;
 
    public Sprite RedArmorSprites;
    public Sprite RedBallSprites;
@@ -55,13 +55,13 @@ public class UiManager : MonoBehaviour
          {
             ImageSkill.sprite = RedArmorSprites;
             ImageCooldown.sprite = RedArmorSprites;
-            ImageBackButtons.color = BlueColor;
+          //  ImageBackButtons.color = BlueColor;
          }
          else if (GameManager.Instance.PlayerList[Uiindex - 1].GetComponent<PlayerControler>().CurrentColor == "bleu")
          {
             ImageSkill.sprite = BlueArmorSprites;
             ImageCooldown.sprite = BlueArmorSprites;
-            ImageBackButtons.color = RedColor;
+           // ImageBackButtons.color = RedColor;
          }
       }
       if (!GameManager.Instance.PlayerList[Uiindex - 1].GetComponent<PlayerControler>()._armorSelected)
@@ -71,13 +71,13 @@ public class UiManager : MonoBehaviour
          {
             ImageSkill.sprite = RedBallSprites;
             ImageCooldown.sprite = RedBallSprites;
-            ImageBackButtons.color = BlueColor;
+            //ImageBackButtons.color = BlueColor;
          }
          else if (GameManager.Instance.PlayerList[Uiindex - 1].GetComponent<PlayerControler>().CurrentColor == "bleu")
          {
             ImageSkill.sprite = BlueBallSprites;
             ImageCooldown.sprite = BlueBallSprites;
-            ImageBackButtons.color = RedColor;
+            //ImageBackButtons.color = RedColor;
          }
       }
       
