@@ -46,6 +46,7 @@ namespace Christopher.Proto.Scripts
         private float Xmove;
         private float Zmove;
         private float _timeDash;
+        private float CurrentOrientation;
         
         //private float _currentCooldownBallColorChange;
     
@@ -131,15 +132,13 @@ namespace Christopher.Proto.Scripts
         {
             if (!CountDownController.CanPlay)
             {
-                animator.speed = 0f;
+                //animator.speed = 0f;
+                animator.SetBool("moving",false);
             }
-            else
-            {
-                animator.speed = TimeManager.Instance.timeScale;
-            }
+          
             if (!PauseControl.IsPaused && CountDownController.CanPlay)
             {
-                HelperByChris.SpriteFliperX(_mouvementValue.x,0,spriteRenderer);
+                HelperByChris.SpriteFliperX(CurrentOrientation,0,spriteRenderer);
                 if (CurrentCooldownColorChange > 0) CurrentCooldownColorChange -= TimeManager.Instance.deltaTime;
                 //if (_currentCooldownBallColorChange > 0) _currentCooldownBallColorChange -= TimeManager.Instance.deltaTime;
                 if (_mouvementValue == Vector2.zero)
@@ -189,12 +188,14 @@ namespace Christopher.Proto.Scripts
                     case <-0.1f :
                         _visé.position = new Vector3(transform.position.x - 1, _visé.position.y, 0);
                         _orientation.x = -1;
+                        CurrentOrientation = -1;
                         animator.SetBool("moving",true);
                     
                         break;
                     case >0.1f:
                         _visé.position = new Vector3(transform.position.x + 1, _visé.position.y, 0);
                         _orientation.x = 1;
+                        CurrentOrientation = 1;
                         animator.SetBool("moving",true);
                         break;
                     default:
@@ -223,9 +224,9 @@ namespace Christopher.Proto.Scripts
                         break;
                 }
 
-                if (_mouvementValue.x == 0 && _mouvementValue.y == 0)
+                if (_mouvementValue.x == 0 && _mouvementValue.y == 0 )//afk
                 {
-                    _orientation.x = 1;
+                    _orientation.x = CurrentOrientation;
                 } 
             }
         }

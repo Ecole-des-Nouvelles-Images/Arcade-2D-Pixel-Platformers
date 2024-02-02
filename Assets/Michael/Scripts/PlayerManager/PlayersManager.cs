@@ -39,7 +39,7 @@ namespace Michael.Scripts.PlayerManager
         [SerializeField] private TextMeshProUGUI _characterBio;
         [SerializeField] private Button NextButton;
         [SerializeField] private Button PreviousButton;
-       
+        
         
        
         
@@ -55,6 +55,7 @@ namespace Michael.Scripts.PlayerManager
       
 
         public void PlayerJoined()
+        
         {
             PlayerIndex = GetComponent<PlayerInput>().playerIndex +1;
             PlayerIsJoined[PlayerIndex - 1] = true;
@@ -89,6 +90,7 @@ namespace Michael.Scripts.PlayerManager
             if (allPlayersReady == true && readyCount > _maxPlayers)
             {
                 CanStart = true;
+                
             }
             else
             {
@@ -96,19 +98,17 @@ namespace Michael.Scripts.PlayerManager
             }
         }
 
-
+        
+        
 
         public void OnStartPause()
-        {
+        { 
             if (CanStart)
             {
                 CustomSceneManager.Instance.LoadScene("Game");
                
             }
-            else
-            {
-               
-            }
+            
            
         }
         

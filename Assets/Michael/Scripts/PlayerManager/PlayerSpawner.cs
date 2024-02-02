@@ -13,8 +13,8 @@ public class PlayerSpawner : MonoBehaviour
     
     private void Start()
     {
-        
-      
+
+       
         for (int i = 0; i < 4; i++) 
         {
             GameObject player = Instantiate(playerPrefab, transform);

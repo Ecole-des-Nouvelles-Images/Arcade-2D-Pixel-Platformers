@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeathLazerManager : MonoBehaviour
 {
     public GameObject DeathLazer;
+    public AudioSource HornSound;
   
     
 
@@ -13,6 +14,14 @@ public class DeathLazerManager : MonoBehaviour
         DeathLazer.SetActive(true);
     }
     
+    public void PlayHornsound()
+    {
+        HornSound.Play();
+    }
 
+    public void PlayersMovement()
+    {
+        CountDownController.CanPlay = true;
+    }
    
 }

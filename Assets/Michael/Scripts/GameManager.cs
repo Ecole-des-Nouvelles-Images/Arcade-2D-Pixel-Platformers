@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Christopher.Proto.Scripts;
 using Michael.Fred;
@@ -31,16 +32,28 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] private AudioSource CrowndReactSound;
     public GameObject DeathLazer;
     [SerializeField] private GameObject OverTimePanel;
-    [SerializeField]private bool TutoIsFinished = false; 
-    public AudioSource ChainSound;
-    public AudioSource HornSound;
+    public bool TutoIsFinished = false;
+    public GameObject TutoPanel;
+    public GameObject TutoPanel2;
+    public bool Overtime = false;
+    public GameObject TimerPanel;
     public void QuitApplication()
     {
         Application.Quit();
     }
-    
-    private void Start()
+
+
+    private void Awake()
+    { 
+        CountDownController.CanPlay = false;
+        TutoIsFinished = false;
+        CurrentRound = 1;
+        DataManager.Instance.StopMusic();
+    }
+
+    /*private void Start()
     {
+        CountDownController.CanPlay = false;
         TutoIsFinished = false;
         //FadeAnimator.SetTrigger("FadeOut");
        //StartRound();
@@ -49,14 +62,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
        //ChangeMusic(MusicToload);
       DataManager.Instance.StopMusic();
 
-    }
+    }*/
 
     public void FinishTutorial()
     {
         if (TutoIsFinished == false)
         {
-            StartRound();
+            //CountDownController.CanPlay = true;
             TutoIsFinished = true;
+            StartRound();
         }
        
     }
@@ -82,65 +96,69 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if (!RoundIsFinished &&  DetermineRoundWinner() != null) {
             EndRound();
         }
-        if (_timer <= 0 && TutoIsFinished == true)
+        if (_timer <= 0 && TutoIsFinished == true )
         {
-            HornSound.Play();
-           OverTimePanel.SetActive(true);
-           ChainSound.Play();
-           
-          //  DeathLazer.SetActive(true);
+            if (!Overtime)
+            {
+                StartDeathRound();
+                Overtime = true;
+            }
+            
         }
         else
         {
+            Overtime = false;
             OverTimePanel.SetActive(false);
-            ChainSound.Stop();
-          
-          //DeathLazer.SetActive(false);
            
         }
-        
-        
     }
+
+
+    public void StartDeathRound()
+    {
+        TimerPanel.gameObject.SetActive(false);
+        OverTimePanel.SetActive(true);
+        CountDownController.CanPlay = false;
+        
+            foreach (var player in PlayerList)
+            {
+                player.GetComponent<PlayerControler>().ResetBall();
+                player.GetComponent<PlayerControler>().HandedBall = true;
+            
+                player.transform.position = player.GetComponent<PlayerData>().InitialPosition;
+            }  
+    }
+    
+    
+    
     public void StartRound()
     {
-        
-        CountDownController.Instance.RoundAnimator.SetBool("ShowRoundPanel ", true);
-        RoundIsFinished = false;
-        foreach (var player in PlayerList)
-        {
-            player.ResetHealth();
-            player.GetComponent<PlayerControler>().ResetBall();
-            player.GetComponent<PlayerControler>().HandedBall = true;
-            
-            //respawn des joueurs 
-            if (CurrentRound > 1)
+            TimerPanel.gameObject.SetActive(true);
+            CountDownController.Instance.RoundAnimator.SetBool("ShowRoundPanel ", true);
+            RoundIsFinished = false;
+            foreach (var player in PlayerList)
             {
-                player.transform.position = player.GetComponent<PlayerData>().InitialPosition;
+                player.ResetHealth();
+                player.GetComponent<PlayerControler>().ResetBall();
+                player.GetComponent<PlayerControler>().HandedBall = true;
+            
+                //respawn des joueurs 
+                if (CurrentRound > 1)
+                {
+                    player.transform.position = player.GetComponent<PlayerData>().InitialPosition;
+                }
             }
-        }
+            PlayerAlive.Clear();
+            foreach (var player in PlayerList)
+            {
+                PlayerAlive.Add(player.gameObject);
+                player.gameObject.SetActive(true);
+            }
+            CountDownController.Instance.CountDownTime = 3;
+            _timer = RoundDuration;
+            // //start compte a rebours
+            CountDownController.Instance.InvokeRepeating("UpdateCountdown",0f,1f);
         
-        PlayerAlive.Clear();
-        foreach (var player in PlayerList)
-        {
-            PlayerAlive.Add(player.gameObject);
-            player.gameObject.SetActive(true);
-        }
-        
-       
-        CountDownController.Instance.CountDownTime = 3;
-        _timer = RoundDuration;
-        // //start compte a rebours
-        CountDownController.Instance.InvokeRepeating("UpdateCountdown",0f,1f);
-        
-      
-        
-        //lancer le timer 
-        
-        
-        //
-        //lancer animation transition fondu
-        //replacer les players 
-        //mettre a jour l'ui
     }
 
     

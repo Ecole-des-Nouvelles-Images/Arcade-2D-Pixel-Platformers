@@ -24,7 +24,7 @@ public class SelectedButton : MonoBehaviour
     void Update()
     {
         if (_eventSystem.currentSelectedGameObject == _selectedButton) {
-            _selectedButton.GetComponent<Button>().interactable = true;
+           // _selectedButton.GetComponent<Button>().interactable = true;
             _selectedOutline.GetComponent<Image>().enabled = true;
             _buttonAnimator.SetBool("IsSelected",true);
             _SelectionAnimator.SetBool("IsSelected",true);
@@ -33,7 +33,7 @@ public class SelectedButton : MonoBehaviour
         }
         else {
             _selectedOutline.GetComponent<Image>().enabled = false;
-            _selectedButton.GetComponent<Button>().interactable = false;
+           // _selectedButton.GetComponent<Button>().interactable = false;
             _buttonAnimator.SetBool("IsSelected",false);
            _SelectionAnimator.SetBool("IsSelected",false);
         }

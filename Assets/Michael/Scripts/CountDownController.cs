@@ -18,7 +18,6 @@ public class CountDownController : MonoBehaviourSingleton<CountDownController>
        
     }
 
-   
 
     void UpdateCountdown()
     {

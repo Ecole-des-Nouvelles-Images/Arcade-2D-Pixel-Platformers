@@ -10,6 +10,7 @@ namespace Christopher.Proto.Scripts
         public GameObject[] deathFX; // 0 = rouge ; 1 = bleu
         public GameObject moveFX;
         public GameObject dashFX;
+        //public GameObject dashFX2;
 
        // [SerializeField] private AudioSource DashSound;
         [SerializeField] private GameObject characterFoot;
@@ -97,9 +98,12 @@ namespace Christopher.Proto.Scripts
         public void PlayDashFX()
         {
             var o = Instantiate(dashFX,transform);
-            o.transform.position = transform.position;
+            var position = transform.position;
+            o.transform.position = position;
+            
             //DashSound.Play();
             Destroy(o,2);
+         
         }
     }
 }

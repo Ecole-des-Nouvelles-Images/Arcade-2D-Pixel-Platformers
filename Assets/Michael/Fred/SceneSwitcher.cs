@@ -23,14 +23,17 @@ public class SceneSwitcher : MonoBehaviour
         TimeManager.Instance.timeScale = 1;
         CustomSceneManager.Instance.LoadScene(sceneName);
     }
-    
-    
-    
-    
+
+    private void Start()
+    {
+        DataManager.Instance.playMusic();
+    }
+
+
     private void Awake()
     {
       
         inputsystem.GetComponent<InputSystemUIInputModule>().enabled = true;
-        DataManager.Instance.playMusic();
+       
     }
 }

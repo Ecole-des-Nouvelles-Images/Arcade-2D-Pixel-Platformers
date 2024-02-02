@@ -74,6 +74,9 @@ public class PauseControl : MonoBehaviour
             OnPausePressed.Invoke();
             TimeManager.Instance.timeScale = 1;
             IsPaused = false;
+            GameManager.Instance.TutoPanel.SetActive(false);
+            GameManager.Instance.TutoPanel2.SetActive(false);
+            
           //  DataManager.Instance.CurrentMusic.UnPause();
         }
         
